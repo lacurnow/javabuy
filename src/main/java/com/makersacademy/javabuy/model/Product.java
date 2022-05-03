@@ -56,4 +56,5 @@ public class Product {
 
     public User getUser() { return this.user; }
     public void setUser(User user) { this.user = user; }
+
 }

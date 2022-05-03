@@ -1,4 +1,4 @@
-package com.makersacademy.acebook.model;
+/*package com.makersacademy.acebook.model;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.*;
@@ -14,4 +14,4 @@ public class PostTest {
 		assertThat(post.getContent(), containsString("hello"));
 	}
 
-}
+}*/

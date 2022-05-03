@@ -17,17 +17,15 @@ public class ProductsController {
     @Autowired
     ProductsRepository repository;
 
-    @GetMapping("/posts")
-    public String index(Model model) {
-        Iterable<Product> posts = repository.findAll();
-        model.addAttribute("posts", posts);
-        model.addAttribute("post", new Product());
-        return "posts/index";
+    @GetMapping("/payment")
+    public String index() {
+        return "payment/index";
     }
 
     @PostMapping("/posts")
     public RedirectView create(@ModelAttribute Product post) {
         repository.save(post);
         return new RedirectView("/posts");
+        }
     }
-}
+

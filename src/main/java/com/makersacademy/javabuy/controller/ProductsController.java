@@ -1,7 +1,5 @@
-package com.makersacademy.acebook.controller;
+package com.makersacademy.javabuy.controller;
 
-import com.makersacademy.acebook.model.Product;
-import com.makersacademy.acebook.repository.ProductsRepository;
 // import org.omg.CORBA.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +8,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
+
+import com.makersacademy.javabuy.model.Product;
+import com.makersacademy.javabuy.repository.ProductsRepository;
 
 @Controller
 public class ProductsController {

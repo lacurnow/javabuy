@@ -1,9 +1,10 @@
-package com.makersacademy.acebook.controller;
+package com.makersacademy.javabuy.controller;
 
-import com.makersacademy.acebook.model.Authority;
-import com.makersacademy.acebook.model.User;
-import com.makersacademy.acebook.repository.AuthoritiesRepository;
-import com.makersacademy.acebook.repository.UserRepository;
+import com.makersacademy.javabuy.model.Authority;
+import com.makersacademy.javabuy.model.User;
+import com.makersacademy.javabuy.repository.AuthoritiesRepository;
+import com.makersacademy.javabuy.repository.UserRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

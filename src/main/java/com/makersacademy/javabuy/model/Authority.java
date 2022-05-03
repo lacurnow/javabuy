@@ -1,4 +1,4 @@
-package com.makersacademy.acebook.model;
+package com.makersacademy.javabuy.model;
 
 import lombok.Data;
 

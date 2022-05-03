@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+    <html xmlns:th="http://www.thymeleaf.org"
+          xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5" >
+    <head lang="en">
+        <meta charset="UTF-8"/>
+        <title>JAVABUY</title>
+        <link rel="stylesheet" href="/main.css" />
+    </head>
+    <body>
+
+    <h1>PRODUCTS</h1>
+
+    <div sec:authorize="isAuthenticated()">
+        Signed in as <span sec:authentication="name"></span>
+    </div>
+
+    <form action="#" th:action="@{/products}" th:object="${product}" method="post">
+        <p>Name: <input type="text" th:field="*{name}" /></p>
+        <p>Price: <input type="text" th:field="*{price}" /></p>
+        <p>Description: <input type="text" th:field="*{description}" /></p>
+        <p>Photo: <input type="text" th:field="*{photo}" /></p>
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
+
+    <ul th:each="product: ${products}">
+        <li th:text="${product.name}" />
+        <li th:text="${product.price}" />
+        <li th:text="${product.description}" />
+        <li th:src="${product.photo}" />
+        <!-- <li th:text="${product.sold}" /> -->
+    </ul>
+
+    </body>
+</html>

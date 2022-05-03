@@ -18,17 +18,17 @@ public class ProductsController {
     @Autowired
     ProductsRepository repository;
 
-    @GetMapping("/posts")
+    @GetMapping("/products")
     public String index(Model model) {
-        Iterable<Product> posts = repository.findAll();
-        model.addAttribute("posts", posts);
-        model.addAttribute("post", new Product());
-        return "posts/index";
+        Iterable<Product> products = repository.findAll();
+        model.addAttribute("products", products);
+        model.addAttribute("product", new Product());
+        return "products/index";
     }
 
-    @PostMapping("/posts")
-    public RedirectView create(@ModelAttribute Product post) {
-        repository.save(post);
-        return new RedirectView("/posts");
+    @PostMapping("/products")
+    public RedirectView create(@ModelAttribute Product product) {
+        repository.save(product);
+        return new RedirectView("/products");
     }
 }

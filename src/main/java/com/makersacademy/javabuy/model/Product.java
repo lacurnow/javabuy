@@ -7,6 +7,8 @@ import javax.persistence.Table;
 import javax.persistence.GenerationType;
 import static java.lang.Boolean.FALSE;
 
+import java.math.BigDecimal;
+
 import lombok.Data;
 
 @Data
@@ -18,14 +20,14 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private Double price;
+    private BigDecimal price;
     private String description;
     private String photo;
     private Boolean sold;
 
     public Product() {}
 
-    public Product(String name, Double price, String description, String photo) {
+    public Product(String name, BigDecimal price, String description, String photo) {
         this.name = name;
         this.price = price;
         this.description = description;
@@ -36,8 +38,8 @@ public class Product {
     public String getName() { return this.name; }
     public void setName(String name) { this.name = name; }
 
-    public String getPrice() { return this.price; }
-    public void setPrice(String price) { this.price = price; }
+    public BigDecimal getPrice() { return this.price; }
+    public void setPrice(BigDecimal price) { this.price = price; }
 
     public String getDescription() { return this.description; }
     public void setDescription(String description) { this.description = description; }

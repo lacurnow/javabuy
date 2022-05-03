@@ -1,6 +1,7 @@
-package com.makersacademy.acebook.repository;
+package com.makersacademy.javabuy.repository;
 
-import com.makersacademy.acebook.model.Product;
+import com.makersacademy.javabuy.model.Product;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 

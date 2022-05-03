@@ -1,4 +1,4 @@
-package com.makersacademy.acebook.controller;
+package com.makersacademy.javabuy.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,6 +8,6 @@ import org.springframework.web.servlet.view.RedirectView;
 public class HomeController {
 	@RequestMapping(value = "/")
 	public RedirectView index() {
-		return new RedirectView("/posts");
+		return new RedirectView("/products");
 	}
 }

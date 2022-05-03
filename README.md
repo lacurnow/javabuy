@@ -16,7 +16,7 @@ The application uses:
 
 - Fork and clone this repository to your machine
 - Open the codebase in an IDE like InteliJ or VSCode
-- Create a new Postgres database called `javabuy`
+- Create a new Postgres database called `javabuy_springboot_development`
 - Install Maven `brew install maven`
 - Build the app and start the server, using the Maven command `mvn spring-boot:run`
 > The database migrations will run automatically at this point

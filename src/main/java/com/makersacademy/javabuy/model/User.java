@@ -1,14 +1,18 @@
 package com.makersacademy.javabuy.model;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.GenerationType;
 
 import lombok.Data;
 
 import static java.lang.Boolean.TRUE;
+
+import java.util.List;
 
 @Data
 @Entity
@@ -20,6 +24,13 @@ public class User {
     private String username;
     private String password;
     private boolean enabled;
+
+    @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
+    private List<Product> products;
+
+    public List<Product> getProducts() {
+        return products;
+    }
 
     public User() {
         this.enabled = TRUE;

@@ -15,7 +15,7 @@
     </div>
 
     <form action="#" th:action="@{/products}" th:object="${product}" method="post">
-        <p>Name: <input type="text" th:field="*{name}" /></p>
+        <p>Product Title: <input type="text" th:field="*{name}" /></p>
         <p>Price: <input type="text" th:field="*{price}" /></p>
         <p>Description: <input type="text" th:field="*{description}" /></p>
         <p>Include a photo of your product:</p>
@@ -25,6 +25,7 @@
     </form>
 
     <ul th:each="product: ${products}">
+        <a th:text="${product.user.username}" ></a>
         <li th:text="${product.name}" />
         <li th:text="${product.price}" />
         <li th:text="${product.description}" />

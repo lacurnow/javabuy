@@ -11,6 +11,7 @@ import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
+import com.makersacademy.javabuy.model.Message;
 import com.makersacademy.javabuy.model.Product;
 import com.makersacademy.javabuy.model.User;
 import com.makersacademy.javabuy.repository.ProductsRepository;
@@ -36,6 +37,7 @@ public class ProductsController {
     @GetMapping("/products/{id}")
     public String viewProduct(@PathVariable ("id") Long id, Model model) {
         Product product = repository.findById(id).get();
+        model.addAttribute("message", new Message());
         model.addAttribute("product", product);
         return "products/product";
     }

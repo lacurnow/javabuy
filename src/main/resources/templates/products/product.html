@@ -20,5 +20,11 @@
   <li th:text="${product.description}" />
   <img th:src="${product.photo}" />
 
+  <form action="#" th:action="@{/messages/{productid} (productid=${product.id})}" th:object="${message}" method="post">
+    <p>Contact the seller: <input type="text" th:field="*{content}" />
+      <input type="submit" value="Submit" /> <input type="reset" value="Reset" />
+    </p>
+  </form>
+
   </body>
 </html>

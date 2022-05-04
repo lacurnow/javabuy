@@ -50,4 +50,10 @@ public class ProductsController {
         model.addAttribute("product", new Product());
         return "products/addProducts";
     }
+
+    @GetMapping("/payment")
+    public String index() {
+        return "payment/index";
+
+    }
 }

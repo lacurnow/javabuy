@@ -9,6 +9,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 import com.makersacademy.javabuy.model.Product;
 import com.makersacademy.javabuy.model.User;
@@ -31,6 +32,14 @@ public class ProductsController {
         model.addAttribute("product", new Product());
         return "products/index";
     }
+
+    @GetMapping("/products/{id}")
+    public String viewProduct(@PathVariable ("id") Long id, Model model) {
+        Product product = repository.findById(id).get();
+        model.addAttribute("product", product);
+        return "products/product";
+    }
+
 
     public static User getLoggedInUser(Principal principal, UserRepository userRepository) {
         String username = principal.getName();

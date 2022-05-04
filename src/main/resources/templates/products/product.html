@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+  <html xmlns:th="http://www.thymeleaf.org" 
+  xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head lang="en">
+  <meta charset="UTF-8" />
+  <title>JAVABUY</title>
+  <link rel="stylesheet" href="/main.css" />
+</head>
+<body>
+
+  <h1>PRODUCTS</h1>
+
+  <div sec:authorize="isAuthenticated()">
+    Signed in as <span sec:authentication="name"></span>
+  </div>
+
+  <a th:text="${product.user.username}"></a>
+  <li th:text="${product.name}" />
+  <li th:text="${product.price}" />
+  <li th:text="${product.description}" />
+  <img th:src="${product.photo}" />
+
+  </body>
+</html>

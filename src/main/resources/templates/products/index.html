@@ -29,6 +29,9 @@
         <li th:text="${product.description}" />
         <img th:src="${product.photo}" />/>
         <!-- <li th:text="${product.sold}" /> -->
+        <form action="#" th:action="@{/purchase/{id} (id=${product.id})}" th:object="${product}" method="get">
+            <input type="submit" value="PURCHASE!"/>
+        </form>
     </ul>
     </body>
 </html>

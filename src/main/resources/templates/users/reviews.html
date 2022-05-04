@@ -3,7 +3,7 @@
           xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5" >
     <head lang="en">
         <meta charset="UTF-8"/>
-        <title>Account</title>
+        <title>Change Account Details</title>
         <link rel="stylesheet" href="/main.css" />
     </head>
     <body>
@@ -14,12 +14,7 @@
 
     <div th:insert="navbar :: navbar">  </div>
 
-    <h1>My Account</h1><div class="authorization" sec:authorize="isAuthenticated()">
-        Signed in as <span sec:authentication="name"></span>
-    </div>
+    *List of user's reviews to appear here*
 
-   <p><button onclick="window.location.href='/accountdetails'">Change Account Details</button></p>
-   <p><button onclick="window.location.href='/reviews'">See Buyer Reviews</button></p>
-  
   </body>
-</html>
+  </html>

@@ -52,4 +52,9 @@ public class UsersController {
     public String editAccountDetails() {
         return "users/accountDetails";
     }
+
+    @GetMapping("/reviews")
+    public String seeBuyerReviews() {
+        return "users/reviews";
+    }
 }

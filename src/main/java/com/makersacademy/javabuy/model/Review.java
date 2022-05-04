@@ -8,10 +8,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.GenerationType;
-import static java.lang.Boolean.TRUE;
-import static java.lang.Boolean.FALSE;
-
-import java.math.BigDecimal;
 
 import lombok.Data;
 

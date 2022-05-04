@@ -7,7 +7,11 @@ import org.springframework.web.servlet.view.RedirectView;
 @Controller
 public class HomeController {
 	@RequestMapping(value = "/")
+	public String homePage() {
+		return "homePage";
+	}
+
 	public RedirectView index() {
-		return new RedirectView("/products");
+		return new RedirectView("/products");  
 	}
 }

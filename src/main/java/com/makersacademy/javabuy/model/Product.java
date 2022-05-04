@@ -8,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.GenerationType;
+import static java.lang.Boolean.TRUE;
 import static java.lang.Boolean.FALSE;
 
 import java.math.BigDecimal;
@@ -42,6 +43,8 @@ public class Product {
         this.sold = FALSE;
 
     }
+    public Long getId() { return this.id; }
+
     public String getName() { return this.name; }
     public void setName(String name) { this.name = name; }
 
@@ -54,7 +57,8 @@ public class Product {
     public String getPhoto() { return this.photo; }
     public void setPhoto(String photo) { this.photo = photo; }
 
+    public void setAsSold() { this.sold = TRUE; }
+
     public User getUser() { return this.user; }
     public void setUser(User user) { this.user = user; }
-
 }

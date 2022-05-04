@@ -34,4 +34,9 @@ public class UsersController {
         authoritiesRepository.save(authority);
         return new RedirectView("/login");
     }
+
+    @GetMapping("/users")
+    public RedirectView login() {
+    return new RedirectView("/login");
+    }
 }

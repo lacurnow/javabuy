@@ -38,7 +38,7 @@ public class ProductsController {
         return user;
     }
 
-    @PostMapping("/addproducts")
+    @PostMapping("/products")
     public RedirectView create(@ModelAttribute Product product, Principal principal) {
         product.setUser(getLoggedInUser(principal, userRepository));
         repository.save(product);

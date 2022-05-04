@@ -41,6 +41,18 @@ public class MessagesController {
     return "messages/index";
   }
 
+  @GetMapping("/messages/{productid}/{enquirerid}")
+  public String viewMessages(@PathVariable ("productid") Long productid, @PathVariable ("enquirerid") Long enquirerid, Model model, Principal principal) {
+    Product product = productsRepository.findById(productid).get();
+    User user = getUser(principal);
+    User enquirer = userRepository.findById(enquirerid).get();
+    Iterable<Message> messages = messagesRepository.findMessagesByProductAndEnquirer(product, enquirer);
+    List<Product> products = user.getProducts();
+    // Iterable<Message> messages = messagesRepository.findAllBySellerOrderByTimestamp(user);
+    model.addAttribute("messages", messages);
+    return "messages/thread";
+  }
+
   @PostMapping("/messages/{productid}")
   public RedirectView sendMessage(@PathVariable ("productid") Long productid, @ModelAttribute Message message, Principal principal) {
     Product product = productsRepository.findById(productid).get();

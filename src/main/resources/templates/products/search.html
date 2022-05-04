@@ -7,6 +7,8 @@
         <link rel="stylesheet" href="/main.css" />
     </head>
 
+    <div th:insert="navbar :: navbar">  </div>
+
     <form th:action="@{/products/search}">
         Search items: <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
         &nbsp;

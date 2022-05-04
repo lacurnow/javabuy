@@ -6,8 +6,6 @@
         <title>JAVABUY</title>
         <link rel="stylesheet" href="/main.css" />
     </head>
-    <body>
-
     <header>
         <a href="/">
         </a>
@@ -16,6 +14,7 @@
 
     <div th:insert="navbar :: navbar">  </div>
 
+    <body>
     <h1>PRODUCTS</h1>
 
     <div sec:authorize="isAuthenticated()">
@@ -27,7 +26,7 @@
         <li th:text="${product.name}" />
         <li th:text="${product.price}" />
         <li th:text="${product.description}" />
-        <img th:src="${product.photo}" />/>
+        <img th:src="${product.photo}" />
         <!-- <li th:text="${product.sold}" /> -->
         <form action="#" th:action="@{/purchase/{id} (id=${product.id})}" th:object="${product}" method="get">
             <input type="submit" value="PURCHASE!"/>

@@ -1,19 +1,29 @@
 <!DOCTYPE html>
-    <html xmlns:th="http://www.thymeleaf.org"
-          xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5" >
-    <head lang="en">
-        <meta charset="UTF-8"/>
-        <title>JAVABUY</title>
-        <link rel="stylesheet" href="/main.css" />
-    </head>
-    
-<h1>YOU ARE LOOKING TO PURCHASE:</h1>
+  <html xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5" >
+  <head lang="en">
+      <meta charset="UTF-8"/>
+      <title>JAVABUY</title>
+      <link rel="stylesheet" href="/main.css" />
+  </head>
 
-  <li th:text="${product.name}" />
-  <li th:text="${product.price}" />
-  <img th:src="${product.photo}" />
-  <p> To confirm purchase, please click below: </p>
-  <form action="#" th:action="@{/purchase/{id} (id=${product.id})}" th:object="${product}" method="post">
-      <input type="submit" value="PURCHASE!"/>
-  </form>
-</ul>
+  <header>
+    <a href="/">
+    </a>
+    <h1>JavaBuy</h1>
+  </header>
+  
+  <div th:insert="navbar :: navbar">  </div>
+  
+  <body>
+    <h1>YOU ARE LOOKING TO PURCHASE:</h1>
+
+      <li th:text="${product.name}" />
+      <li th:text="${product.price}" />
+      <img th:src="${product.photo}" />
+      <p> To confirm purchase, please click below: </p>
+      <form action="#" th:action="@{/purchase/{id} (id=${product.id})}" th:object="${product}" method="post">
+          <input type="submit" value="PURCHASE!"/>
+      </form>
+    </ul>
+  </body>

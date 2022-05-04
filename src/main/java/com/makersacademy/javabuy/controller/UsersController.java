@@ -49,8 +49,7 @@ public class UsersController {
     }
 
     @GetMapping("/accountdetails")
-    public String editAccountDetails(Model model) {
-        model.addAttribute("user", new User());
+    public String editAccountDetails() {
         return "users/accountDetails";
     }
 }

@@ -8,18 +8,25 @@
     </head>
 
     <form th:action="@{/products/search}">
-        Filter: <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
+        Search items: <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
         &nbsp;
         <input type="submit" value="Search" />
         &nbsp;
         <input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
     </form>
    
+    <table>
+        <tr>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Description</th>
+        </tr>
     <tr th:each="product : ${listProducts}">
-        <td th:text="${product.name}">Name</td>
-        <td th:text="${product.price}">Price</td>
-        <td th:text="${product.description}">Description</td>
-        <td>
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.price}"></td>
+        <td th:text="${product.description}"></td>
+        </tr>
+        <table>
 
  <script type="text/javascript">
         function clearSearch() {

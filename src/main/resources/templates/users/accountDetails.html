@@ -18,12 +18,6 @@
         Signed in as <span sec:authentication="name"></span>
     </div>
 
-    <form action="#" th:action="@{/accountdetails}" th:object="${user}" method="post">
-      <p>Change Profile Picture </p>
-        <p><input type="text" th:field="*{photoLocation}" /></p>
-      <p><input type="submit" value="Submit" /></p>
-    </form>
-
     <p>Change Account Password </p>
     <p><input type="text" value="New Password" /></p>
     <p><button> Submit </button></p>

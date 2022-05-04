@@ -14,14 +14,11 @@
 
     <div th:insert="navbar :: navbar">  </div>
 
-    <h1>Account Details</h1><div class="authorization" sec:authorize="isAuthenticated()">
+    <h1>My Account</h1><div class="authorization" sec:authorize="isAuthenticated()">
         Signed in as <span sec:authentication="name"></span>
     </div>
 
-    <form action="#" th:action="@{/accountdetails}" th:object="${user}" method="post">
-      <p>Change Account Details </p>
-      <p><input type="submit" value="Submit" /></p>
-    </form>
-
+   <p><button onclick="window.location.href='/accountdetails'">Change Account Details</button></p>
+  
   </body>
 </html>

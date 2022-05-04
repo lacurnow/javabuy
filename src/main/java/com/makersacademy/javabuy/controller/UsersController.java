@@ -48,22 +48,9 @@ public class UsersController {
         return "users/accountPage";
     }
 
-    @PostMapping("/accountdetails")
-    public RedirectView changeAccountDetails() {
-        return new RedirectView("users/accountDetails");
-    }
-
     @GetMapping("/accountdetails")
     public String editAccountDetails(Model model) {
         model.addAttribute("user", new User());
         return "users/accountDetails";
-    }
-
-    @PostMapping("/accountdetails")
-    public RedirectView addProfilePhoto(@ModelAttribute User user, Principal principal) {
-        User loggedInUser = ProductsController.getLoggedInUser(principal, userRepository);
-        loggedInUser.setPhotoLocation(user.getPhotoLocation());
-        userRepository.save(loggedInUser);
-        return new RedirectView("/account");
     }
 }

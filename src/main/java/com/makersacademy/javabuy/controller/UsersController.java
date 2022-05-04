@@ -1,5 +1,7 @@
 package com.makersacademy.javabuy.controller;
 
+import java.security.Principal;
+
 import com.makersacademy.javabuy.model.Authority;
 import com.makersacademy.javabuy.model.User;
 import com.makersacademy.javabuy.repository.AuthoritiesRepository;
@@ -38,5 +40,21 @@ public class UsersController {
     @GetMapping("/users")
     public RedirectView login() {
     return new RedirectView("/login");
+    }
+
+    @GetMapping("/account")
+    public String addProfilePhoto(Model model) {
+        model.addAttribute("user", new User());
+        return "users/accountPage";
+    }
+
+    @GetMapping("/accountdetails")
+    public String editAccountDetails() {
+        return "users/accountDetails";
+    }
+
+    @GetMapping("/reviews")
+    public String seeBuyerReviews() {
+        return "users/reviews";
     }
 }

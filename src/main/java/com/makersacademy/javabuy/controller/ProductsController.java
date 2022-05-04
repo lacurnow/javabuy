@@ -2,6 +2,7 @@ package com.makersacademy.javabuy.controller;
 
 // import org.omg.CORBA.Request;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,8 @@ import java.util.List;
 import java.util.Optional;
 
 import com.makersacademy.javabuy.model.Message;
+import com.makersacademy.javabuy.service.ProductsService;
+
 import com.makersacademy.javabuy.model.Product;
 import com.makersacademy.javabuy.model.User;
 import com.makersacademy.javabuy.repository.ProductsRepository;
@@ -25,6 +28,9 @@ public class ProductsController {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    private ProductsService service;
 
     @GetMapping("/products")
     public String index(Model model) {
@@ -67,6 +73,16 @@ public class ProductsController {
         return "payment/index";
 
     }
+
+    @GetMapping("/products/search")
+    public String viewSearch(Model model, @Param("keyword") String keyword) {
+        List<Product> listProducts = service.listAll(keyword);
+        model.addAttribute("listProducts", listProducts);
+        model.addAttribute("keyword", keyword);
+         
+        return "/products/search";
+    }
+     
 
 
 }

@@ -32,6 +32,11 @@ public class UsersController {
         userRepository.save(user);
         Authority authority = new Authority(user.getUsername(), "ROLE_USER");
         authoritiesRepository.save(authority);
-        return new RedirectView("/login");
+        return new RedirectView("/users");
+    }
+
+    @GetMapping("/users")
+    public RedirectView login() {
+    return new RedirectView("/login");
     }
 }

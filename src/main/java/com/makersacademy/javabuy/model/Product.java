@@ -1,8 +1,11 @@
 package com.makersacademy.javabuy.model;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.GenerationType;
 import static java.lang.Boolean.TRUE;
@@ -25,6 +28,10 @@ public class Product {
     private String description;
     private String photo;
     private Boolean sold;
+
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="seller_id")
+    private User user;
 
     public Product() {}
 
@@ -52,5 +59,6 @@ public class Product {
 
     public void setAsSold() { this.sold = TRUE; }
 
-
+    public User getUser() { return this.user; }
+    public void setUser(User user) { this.user = user; }
 }

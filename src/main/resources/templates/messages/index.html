@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head lang="en">
+  <meta charset="UTF-8" />
+  <title>JAVABUY</title>
+  <link rel="stylesheet" href="/main.css" />
+</head>
+<header>
+  <a href="/">
+  </a>
+  <h1>JavaBuy</h1>
+</header>
+
+<div th:insert="navbar :: navbar"> </div>
+
+<body>
+  <h1>PRODUCTS</h1>
+
+  <div sec:authorize="isAuthenticated()">
+    Signed in as <span sec:authentication="name"></span>
+  </div>
+
+  <ul th:each="message: ${receivedEnquiries}">
+    <a th:text="${message.sender.username}"></a>
+    <li th:text="${message.timestamp}" />
+    <li th:text="${message.content}" />
+  </ul>
+</body>
+
+</html>

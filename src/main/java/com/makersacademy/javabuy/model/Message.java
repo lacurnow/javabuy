@@ -29,6 +29,10 @@ public class Message {
   private Product product;
 
   @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "sellerid")
+  private User seller;
+
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "enquirerid")
   private User enquirer;
 
@@ -65,6 +69,14 @@ public class Message {
 
   public void setProduct(Product product) {
     this.product = product;
+  }
+
+  public User getSeller() {
+    return this.seller;
+  }
+
+  public void setSeller(User seller) {
+    this.seller = seller;
   }
 
   public User getEnquirer() {

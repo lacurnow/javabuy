@@ -3,26 +3,26 @@
           xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5" >
     <head lang="en">
         <meta charset="UTF-8"/>
-        <title>JAVABUY</title>
+        <title>Sell</title>
         <link rel="stylesheet" href="/main.css" />
     </head>
     <body>
 
     <header>
-        <a href="/">
-        </a>
-        <h1>JavaBuy</h1>
-    </header>
+      <a href="/">
+      </a>
+      <h1>JavaBuy</h1>
+    </header>  
 
     <div th:insert="navbar :: navbar">  </div>
 
-    <h1>PRODUCTS</h1>
+    <h1>Sell an Item</h1>
 
     <div sec:authorize="isAuthenticated()">
         Signed in as <span sec:authentication="name"></span>
     </div>
 
-    <!-- <form action="#" th:action="@{/products}" th:object="${product}" method="post">
+    <form action="#" th:action="@{/products}" th:object="${product}" method="post">
         <p>Product Title: <input type="text" th:field="*{name}" /></p>
         <p>Price: <input type="text" th:field="*{price}" /></p>
         <p>Description: <input type="text" th:field="*{description}" /></p>
@@ -30,15 +30,7 @@
         <label for="imagepath">Select a file:</label>
         <input type="file" id="photo" name="photo" th:field="*{photo}"><br>
         <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
-    </form> -->
+    </form>
 
-    <ul th:each="product: ${products}">
-        <a th:text="${product.user.username}" ></a>
-        <li th:text="${product.name}" />
-        <li th:text="${product.price}" />
-        <li th:text="${product.description}" />
-        <img th:src="${product.photo}" />
-        <!-- <li th:text="${product.sold}" /> -->
-    </ul>
-    </body>
-</html>
+  </body>
+  </html>

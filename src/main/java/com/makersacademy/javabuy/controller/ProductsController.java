@@ -45,8 +45,15 @@ public class ProductsController {
         return new RedirectView("/products");
     }
 
+    @GetMapping("/addproducts")
+    public String addProducts(Model model) {
+        model.addAttribute("product", new Product());
+        return "products/addProducts";
+    }
+
     @GetMapping("/payment")
     public String index() {
         return "payment/index";
+
     }
 }

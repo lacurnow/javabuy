@@ -44,4 +44,9 @@ public class ProductsController {
         repository.save(product);
         return new RedirectView("/products");
     }
+
+    @GetMapping("/payment")
+    public String index() {
+        return "payment/index";
+    }
 }

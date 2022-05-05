@@ -57,7 +57,6 @@ public class MessagesController {
     User user = getUser(principal);
     User enquirer = userRepository.findById(enquirerid).get();
     Iterable<Message> messages = messagesRepository.findMessagesByProductAndEnquirer(product, enquirer);
-    List<Product> products = user.getProducts();
       model.addAttribute("user", user);
       model.addAttribute("messages", messages);
       model.addAttribute("product", product);

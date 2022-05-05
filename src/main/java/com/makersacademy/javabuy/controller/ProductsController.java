@@ -41,10 +41,12 @@ public class ProductsController {
     }
 
     @GetMapping("/products/{id}")
-    public String viewProduct(@PathVariable ("id") Long id, Model model) {
+    public String viewProduct(@PathVariable ("id") Long id, Model model, Principal principal) {
         Product product = repository.findById(id).get();
+        User user = getLoggedInUser(principal, userRepository);
         model.addAttribute("message", new Message());
         model.addAttribute("product", product);
+        model.addAttribute("user", user);
         return "products/product";
     }
 

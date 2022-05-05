@@ -35,7 +35,7 @@ public class Product {
     @JoinColumn(name="seller_id")
     private User user;
 
-    @OneToMany(mappedBy="review", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy="product", fetch = FetchType.LAZY)
     private List<Review> reviews;
 
     public List<Review> getReviews() {

@@ -29,6 +29,10 @@ public class Review {
   @JoinColumn(name="user_id")
   private User user;
 
+  @ManyToOne(fetch=FetchType.LAZY)
+  @JoinColumn(name="product_id")
+  private Product product;
+
   public Review() {}
 
   public Review(String title, String content, Integer rating, String photo) {
@@ -54,4 +58,7 @@ public class Review {
 
   public User getUser() { return this.user; }
   public void setUser(User user) { this.user = user; }
+
+  public Product getProduct() { return this.product; }
+  public void setProduct(Product product) { this.product = product; }
 }

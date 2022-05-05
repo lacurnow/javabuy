@@ -40,7 +40,7 @@ public class ReviewsController {
     model.addAttribute("product", product);
     User user = userRepository.findById(userId);
     model.addAttribute("user", user);
-    Review review = new Review();
+    // Review review = new Review();
     model.addAttribute("review", review);
     review.setUser(user);
     review.setProduct(product);

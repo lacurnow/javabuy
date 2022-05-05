@@ -1,7 +1,6 @@
 package com.makersacademy.javabuy.controller;
 
 import java.security.Principal;
-import java.util.List;
 
 import com.makersacademy.javabuy.model.Message;
 import com.makersacademy.javabuy.model.Product;

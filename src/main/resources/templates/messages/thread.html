@@ -24,9 +24,6 @@
   </div>
   <a th:href="@{/messages}">Back to Messages</a>
 
-  <ul th:each="enquirer: ${enquirers}">
-    <li th:text="${enquirer.username}" />
-    </ul>
   <div th:if="${user == enquirer || user == product.user}">
     <div th:if="${user == enquirer}">
       <h2 th:inline="text">To: [[${product.user.username}]]</h2>
@@ -35,18 +32,17 @@
       <h2 th:inline="text">To: [[${enquirer.username}]]</h2>
     </div>
     <h2>Subject: <a th:href="@{/products/{id} (id=${product.id})}">[[${product.name}]]</a></h2>
-  <div th:each="message: ${messages}">
-    <ul>
-      <li th:inline="text">[[${message.sender.username}]] on [[${message.formatTimestamp()}]]:</li>
-      <blockquote th:text="${message.content}"></blockquote>
-    </ul>
-  </div>
-
-  <form action="#" th:action="@{/messages/{productid}/{enquirerid} (productid=${product.id}, enquirerid=${enquirer.id})}" th:object="${message}" method="post">
-    <p>Send a reply: <input type="text" th:field="*{content}" />
-      <input type="submit" value="Submit" /> <input type="reset" value="Reset" />
-    </p>
-  </form>
+    <div th:each="message: ${messages}">
+      <ul>
+        <li th:inline="text">[[${message.sender.username}]] on [[${message.formatTimestamp()}]]:</li>
+        <blockquote th:text="${message.content}"></blockquote>
+      </ul>
+    </div>
+    <form action="#" th:action="@{/messages/{productid}/{enquirerid} (productid=${product.id}, enquirerid=${enquirer.id})}" th:object="${message}" method="post">
+      <p>Send a reply: <input type="text" th:field="*{content}" />
+        <input type="submit" value="Submit" /> <input type="reset" value="Reset" />
+      </p>
+    </form>
   </div>
   <div th:unless="${user == enquirer || user == product.user}">
     Nothing found.

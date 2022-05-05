@@ -22,8 +22,8 @@
       <li th:text="${product.price}" />
       <img th:src="${product.photo}" />
       <p> To confirm purchase, please click below: </p>
-      <form action="#" th:action="@{/purchase/{id} (id=${product.id})}" th:object="${product}" method="post">
-          <input type="submit" value="PURCHASE!"/>
+      <form action="#" th:action="@{/shoppingCart/addProduct/{id} (id=${product.id})}" th:object="${product}" method="get">
+          <input type="submit" value="Add to cart"/>
       </form>
     </ul>
   </body>

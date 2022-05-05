@@ -31,7 +31,7 @@
         <img th:src="${product.review.photo}" />
 
         <p> Add a review below: </p>
-        <form action="#" th:action="@{/productreviews(productId=${product.id})}" th:object="${review}" method="post">
+        <form action="#" th:action="@{/productreviews(productId=${product.id}, userId=${user.id})}" th:object="${review}" method="post">
           <p>Review Title: <input type="text" th:field="*{title}" /></p>
           <p>Content: <input type="text" th:field="*{content}" /></p>
           <p>Rating (1-5): <input type="text" th:field="*{rating}" /></p>

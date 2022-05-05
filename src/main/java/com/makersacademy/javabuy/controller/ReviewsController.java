@@ -35,16 +35,14 @@ public class ReviewsController {
   }
 
   @PostMapping("/productreviews")
-  public RedirectView addReview(@RequestParam Long productId, @RequestParam Long userId, Model model, @ModelAttribute Review review) {
-    Product product = productsRepository.findProductById(productId);
-    model.addAttribute("product", product);
-    User user = userRepository.findById(userId);
-    model.addAttribute("user", user);
-    // Review review = new Review();
-    model.addAttribute("review", review);
-    review.setUser(user);
-    review.setProduct(product);
+  public RedirectView addReview(@RequestParam Long productId, @RequestParam Long userId, @ModelAttribute Review review) {
+    Optional<Product> product = productsRepository.findById(productId);
+    Optional<User> user = userRepository.findById(userId);
+    if (user.isPresent() && product.isPresent()) {
+    review.setUser(user.get());
+    review.setProduct(product.get());
     reviewsRepository.save(review);
+    }
     return new RedirectView("/productreviews");
   }
 }

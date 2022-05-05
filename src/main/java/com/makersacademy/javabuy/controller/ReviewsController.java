@@ -26,12 +26,12 @@ public class ReviewsController {
   @Autowired
   UserRepository userRepository;
 
-  @GetMapping("/productreviews")
-  public String listReviews(@RequestParam Long productId, Model model) {
+  @GetMapping("/productreviews/{productId}")
+  public String listReviews(@PathVariable("productId") Long productId, Model model) {
     Product product = productsRepository.findProductById(productId);
     model.addAttribute("product", product);
     product.getReviews();
-    return "/products/product_reviews";
+    return "products/product_reviews";
   }
 
   @PostMapping("/productreviews")
@@ -43,6 +43,6 @@ public class ReviewsController {
     review.setProduct(product.get());
     reviewsRepository.save(review);
     }
-    return new RedirectView("/productreviews");
+    return new RedirectView("/productreviews/{productId}");
   }
 }

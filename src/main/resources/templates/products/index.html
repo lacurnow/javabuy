@@ -31,10 +31,9 @@
         <form action="#" th:action="@{/purchase/{id} (id=${product.getId()})}" th:object="${product}" method="get">
             <input type="submit" value="PURCHASE!"/>
         </form>
-        <form action="#" th:action="@{/productreviews (productId=${product.id})}" th:object="${review}" method="get">
+        <form action="#" th:action="@{/productreviews/{productId} (productId=${product.id})}" th:object="${review}" method="get">
             <input type="submit" value="Reviews"/>
         </form>
-        <p><button onclick="window.location.href='/productreviews'">Reviews</button></p>
     </ul>
     </body>
 </html>

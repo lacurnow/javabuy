@@ -78,7 +78,7 @@ public class MessagesController {
     if (message.getContent() != "") {
       messagesRepository.save(message);
     }
-    return new RedirectView("/products");
+    return new RedirectView("/messages");
   }
 
   @PostMapping("/messages/{productid}/{enquirerid}")

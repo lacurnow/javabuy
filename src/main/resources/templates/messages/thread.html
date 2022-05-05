@@ -6,19 +6,35 @@
   <title>JAVABUY</title>
   <link rel="stylesheet" href="/main.css" />
 </head>
+<header>
+  <a href="/">
+  </a>
+  <h1>JavaBuy</h1>
+</header>
+
+<div th:insert="navbar :: navbar"> </div>
+
 
 <body>
 
-  <h1>MESSAGES</h1>
+  <h1>Message Detail</h1>
 
   <div sec:authorize="isAuthenticated()">
     Signed in as <span sec:authentication="name"></span>
   </div>
+  <a th:href="@{/messages}">Back to Messages</a>
 
   <ul th:each="enquirer: ${enquirers}">
     <li th:text="${enquirer.username}" />
     </ul>
   <div th:if="${user == enquirer || user == product.user}">
+    <div th:if="${user == enquirer}">
+      <h2 th:inline="text">To: [[${product.user.username}]]</h2>
+    </div>
+    <div th:if="${user == product.user}">
+      <h2 th:inline="text">To: [[${enquirer.username}]]</h2>
+    </div>
+    <h2>Subject: <a th:href="@{/products/{id} (id=${product.id})}">[[${product.name}]]</a></h2>
   <div th:each="message: ${messages}">
     <ul>
       <li th:inline="text">[[${message.sender.username}]] on [[${message.formatTimestamp()}]]:</li>

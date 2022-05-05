@@ -6,22 +6,30 @@
   <title>JAVABUY</title>
   <link rel="stylesheet" href="/main.css" />
 </head>
+<header>
+  <a href="/">
+  </a>
+  <h1>JavaBuy</h1>
+</header>
+
+<div th:insert="navbar :: navbar"> </div>
 <body>
 
-  <h1>PRODUCTS</h1>
+  <h1>Product Detail</h1>
 
   <div sec:authorize="isAuthenticated()">
     Signed in as <span sec:authentication="name"></span>
   </div>
+  <a th:href="@{/products}">Back to Products</a>
 
-  <a th:text="${product.user.username}"></a>
+  <li th:text="${product.user.username}" />
   <li th:text="${product.name}" />
   <li th:text="${product.price}" />
   <li th:text="${product.description}" />
   <img th:src="${product.photo}" />
 
   <div th:if="${user != product.user}">
-    <form action="#" th:action="@{/messages/{productid} (productid=${product.id})}" th:object="${message}" method="post">
+    <form action="#" th:action="@{/messages/{productid}/{enquirerid} (productid=${product.id}, enquirerid=${user.id})}" th:object="${message}" method="post">
       <p>Contact the seller: <input type="text" th:field="*{content}" />
         <input type="submit" value="Submit" /> <input type="reset" value="Reset" />
       </p>

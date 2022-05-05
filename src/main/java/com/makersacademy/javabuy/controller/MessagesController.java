@@ -42,15 +42,6 @@ public class MessagesController {
     return "messages/index";
   }
 
-  // @GetMapping("/messages/{productid}")
-  // public String viewMessages(@PathVariable ("productid") Long productid, Model model, Principal principal) {
-  //   Product product = productsRepository.findById(productid).get();
-  //   Iterable<User> enquirers = messagesRepository.findEnquirersByProduct(product);
-  //   model.addAttribute("enquirers", enquirers);
-  //   return "messages/test";
-  // }
-
-
   @GetMapping("/messages/{productid}/{enquirerid}")
   public String viewMessages(@PathVariable ("productid") Long productid, @PathVariable ("enquirerid") Long enquirerid, Model model, Principal principal) {
     Product product = productsRepository.findById(productid).get();
@@ -63,26 +54,10 @@ public class MessagesController {
       model.addAttribute("enquirer", enquirer);
       model.addAttribute("message", new Message());
       return "messages/thread";
-
-
-  }
-
-  @PostMapping("/messages/{productid}")
-  public RedirectView sendMessage(@PathVariable ("productid") Long productid, @ModelAttribute Message message, Principal principal) {
-    Product product = productsRepository.findById(productid).get();
-    message.setProduct(product);
-    message.setSeller(product.getUser());
-    message.setEnquirer(getUser(principal));
-    message.setSender(getUser(principal));
-    message.generateTimestamp();
-    if (message.getContent() != "") {
-      messagesRepository.save(message);
-    }
-    return new RedirectView("/messages");
   }
 
   @PostMapping("/messages/{productid}/{enquirerid}")
-  public RedirectView sendReply(@PathVariable ("productid") Long productid, @PathVariable ("enquirerid") Long enquirerid, @ModelAttribute Message message, Principal principal) {
+  public RedirectView sendMessage(@PathVariable ("productid") Long productid, @PathVariable ("enquirerid") Long enquirerid, @ModelAttribute Message message, Principal principal) {
     Product product = productsRepository.findById(productid).get();
     User enquirer = userRepository.findById(enquirerid).get();
     message.setProduct(product);

@@ -10,7 +10,9 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
+import com.makersacademy.javabuy.model.Message;
 import com.makersacademy.javabuy.service.ProductsService;
 
 import com.makersacademy.javabuy.model.Product;
@@ -37,6 +39,17 @@ public class ProductsController {
         model.addAttribute("product", new Product());
         return "products/index";
     }
+
+    @GetMapping("/products/{id}")
+    public String viewProduct(@PathVariable ("id") Long id, Model model, Principal principal) {
+        Product product = repository.findById(id).get();
+        User user = getLoggedInUser(principal, userRepository);
+        model.addAttribute("message", new Message());
+        model.addAttribute("product", product);
+        model.addAttribute("user", user);
+        return "products/product";
+    }
+
 
     public static User getLoggedInUser(Principal principal, UserRepository userRepository) {
         String username = principal.getName();

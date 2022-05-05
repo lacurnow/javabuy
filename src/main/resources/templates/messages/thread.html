@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head lang="en">
+  <meta charset="UTF-8" />
+  <title>JAVABUY</title>
+  <link rel="stylesheet" href="/main.css" />
+</head>
+<header>
+  <a href="/">
+  </a>
+  <h1>JavaBuy</h1>
+</header>
+
+<div th:insert="navbar :: navbar"> </div>
+
+
+<body>
+
+  <h1>Message Detail</h1>
+
+  <div sec:authorize="isAuthenticated()">
+    Signed in as <span sec:authentication="name"></span>
+  </div>
+  <a th:href="@{/messages}">Back to Messages</a>
+
+  <div th:if="${user == enquirer || user == product.user}">
+    <div th:if="${user == enquirer}">
+      <h2 th:inline="text">To: [[${product.user.username}]]</h2>
+    </div>
+    <div th:if="${user == product.user}">
+      <h2 th:inline="text">To: [[${enquirer.username}]]</h2>
+    </div>
+    <h2>Subject: <a th:href="@{/products/{id} (id=${product.id})}">[[${product.name}]]</a></h2>
+    <div th:each="message: ${messages}">
+      <ul>
+        <li th:inline="text">[[${message.sender.username}]] on [[${message.formatTimestamp()}]]:</li>
+        <blockquote th:text="${message.content}"></blockquote>
+      </ul>
+    </div>
+    <form action="#" th:action="@{/messages/{productid}/{enquirerid} (productid=${product.id}, enquirerid=${enquirer.id})}" th:object="${message}" method="post">
+      <p>Send a reply: <input type="text" th:field="*{content}" />
+        <input type="submit" value="Submit" /> <input type="reset" value="Reset" />
+      </p>
+    </form>
+  </div>
+  <div th:unless="${user == enquirer || user == product.user}">
+    Nothing found.
+  </div>
+
+</body>
+
+</html>

@@ -48,6 +48,8 @@ public class User {
         this.enabled = enabled;
     }
 
+    public Long getId() { return this.id; }
+
     public String getUsername() { return this.username; }
     public String getPassword() { return this.password; }
     public void setUsername(String username) { this.username = username; }

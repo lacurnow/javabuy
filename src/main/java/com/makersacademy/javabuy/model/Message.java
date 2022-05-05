@@ -10,6 +10,8 @@ import javax.persistence.Table;
 import javax.persistence.GenerationType;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import lombok.Data;
 
@@ -99,6 +101,13 @@ public class Message {
     long now = System.currentTimeMillis();
     Timestamp timestamp = new Timestamp(now);
     this.timestamp = timestamp;
+  }
+
+  public String formatTimestamp() {
+    LocalDateTime localDateTime = this.timestamp.toLocalDateTime();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE d MMM y, HH:mm:ss");
+    String formatted = localDateTime.format(formatter);
+    return formatted;
   }
 
 }

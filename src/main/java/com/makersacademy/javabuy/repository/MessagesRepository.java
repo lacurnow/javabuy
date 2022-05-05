@@ -16,6 +16,9 @@ public interface MessagesRepository extends CrudRepository<Message, Long> {
 
   // @Query("SELECT DISTINCT m.product FROM Message m WHERE m.seller = ?1")
 
+  @Query("SELECT m FROM Message m WHERE m.enquirer = ?1 AND m.timestamp IN (SELECT MAX(m.timestamp) FROM Message m GROUP BY m.enquirer, m.product) ORDER BY m.timestamp DESC")
+  Iterable<Message> findByEnquirerGroupByEnquirerAndProduct(User enquirer);
+
   @Query("SELECT m FROM Message m WHERE m.seller = ?1 AND m.timestamp IN (SELECT MAX(m.timestamp) FROM Message m GROUP BY m.enquirer, m.product) ORDER BY m.timestamp DESC")
   Iterable<Message> findBySellerGroupByEnquirerAndProduct(User seller);
 

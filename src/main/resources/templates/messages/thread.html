@@ -9,7 +9,7 @@
 
 <body>
 
-  <h1>PRODUCTS</h1>
+  <h1>MESSAGES</h1>
 
   <div sec:authorize="isAuthenticated()">
     Signed in as <span sec:authentication="name"></span>
@@ -18,9 +18,7 @@
   <ul th:each="enquirer: ${enquirers}">
     <li th:text="${enquirer.username}" />
     </ul>
-
-    
-
+  <div th:if="${user == enquirer || user == product.user}">
   <ul th:each="message: ${messages}">
     <a th:text="${message.sender.username}"></a>
     <li th:text="${message.timestamp}" />
@@ -32,6 +30,10 @@
       <input type="submit" value="Submit" /> <input type="reset" value="Reset" />
     </p>
   </form>
+  </div>
+  <div th:unless="${user == enquirer || user == product.user}">
+    Nothing found.
+  </div>
 
 </body>
 

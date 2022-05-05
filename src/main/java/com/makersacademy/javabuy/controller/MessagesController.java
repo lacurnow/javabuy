@@ -35,21 +35,20 @@ public class MessagesController {
   @GetMapping("/messages")
   public String index(Model model, Principal principal) {
     User user = getUser(principal);
-    List<Product> products = user.getProducts();
     Iterable<Message> receivedEnquiries = messagesRepository.findBySellerGroupByEnquirerAndProduct(user);
-
-    // Iterable<Message> receivedEnquiries = messagesRepository.findAllBySellerOrderByTimestamp(user);
+    Iterable<Message> sentEnquiries = messagesRepository.findByEnquirerGroupByEnquirerAndProduct(user);
     model.addAttribute("receivedEnquiries", receivedEnquiries);
+    model.addAttribute("sentEnquiries", sentEnquiries);
     return "messages/index";
   }
 
-  @GetMapping("/messages/{productid}")
-  public String viewMessages(@PathVariable ("productid") Long productid, Model model, Principal principal) {
-    Product product = productsRepository.findById(productid).get();
-    Iterable<User> enquirers = messagesRepository.findEnquirersByProduct(product);
-    model.addAttribute("enquirers", enquirers);
-    return "messages/test";
-  }
+  // @GetMapping("/messages/{productid}")
+  // public String viewMessages(@PathVariable ("productid") Long productid, Model model, Principal principal) {
+  //   Product product = productsRepository.findById(productid).get();
+  //   Iterable<User> enquirers = messagesRepository.findEnquirersByProduct(product);
+  //   model.addAttribute("enquirers", enquirers);
+  //   return "messages/test";
+  // }
 
 
   @GetMapping("/messages/{productid}/{enquirerid}")
@@ -59,16 +58,14 @@ public class MessagesController {
     User enquirer = userRepository.findById(enquirerid).get();
     Iterable<Message> messages = messagesRepository.findMessagesByProductAndEnquirer(product, enquirer);
     List<Product> products = user.getProducts();
-    // Iterable<Message> messages = messagesRepository.findAllBySellerOrderByTimestamp(user);
-    if (user == enquirer || user == product.getUser()) {
+      model.addAttribute("user", user);
       model.addAttribute("messages", messages);
       model.addAttribute("product", product);
       model.addAttribute("enquirer", enquirer);
       model.addAttribute("message", new Message());
       return "messages/thread";
-    } else {
-      return "messages/index";
-    }
+
+
   }
 
   @PostMapping("/messages/{productid}")

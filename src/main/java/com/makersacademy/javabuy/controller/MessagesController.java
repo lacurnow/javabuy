@@ -36,8 +36,9 @@ public class MessagesController {
   public String index(Model model, Principal principal) {
     User user = getUser(principal);
     List<Product> products = user.getProducts();
+    Iterable<Message> receivedEnquiries = messagesRepository.findBySellerGroupByEnquirerAndProduct(user);
 
-    Iterable<Message> receivedEnquiries = messagesRepository.findAllBySellerOrderByTimestamp(user);
+    // Iterable<Message> receivedEnquiries = messagesRepository.findAllBySellerOrderByTimestamp(user);
     model.addAttribute("receivedEnquiries", receivedEnquiries);
     return "messages/index";
   }
@@ -59,11 +60,15 @@ public class MessagesController {
     Iterable<Message> messages = messagesRepository.findMessagesByProductAndEnquirer(product, enquirer);
     List<Product> products = user.getProducts();
     // Iterable<Message> messages = messagesRepository.findAllBySellerOrderByTimestamp(user);
-    model.addAttribute("messages", messages);
-    model.addAttribute("product", product);
-    model.addAttribute("enquirer", enquirer);
-    model.addAttribute("message", new Message());
-    return "messages/thread";
+    if (user == enquirer || user == product.getUser()) {
+      model.addAttribute("messages", messages);
+      model.addAttribute("product", product);
+      model.addAttribute("enquirer", enquirer);
+      model.addAttribute("message", new Message());
+      return "messages/thread";
+    } else {
+      return "messages/index";
+    }
   }
 
   @PostMapping("/messages/{productid}")

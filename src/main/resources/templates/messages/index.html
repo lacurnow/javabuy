@@ -21,11 +21,28 @@
     Signed in as <span sec:authentication="name"></span>
   </div>
 
-  <ul th:each="message: ${receivedEnquiries}">
-    <a th:text="${message.sender.username}"></a>
+    <h2>Your received enquiries</h2>
+    <table>
+      <tr>
+        <th>From</th>
+        <th>Subject</th>
+        <th>Last updated</th>
+      </tr>
+      <div th:each="message: ${receivedEnquiries}">
+        <tr>
+      
+          <td th:text="${message.enquirer.username}"></td>
+          <td><a th:href="@{/messages/{productid}/{enquirerid} (productid=${message.product.id}, enquirerid=${message.enquirer.id})}"><div th:text="${message.product.name}"></div></a></td>
+          <td th:text="${message.timestamp}"></td>
+        
+        </a>
+        </tr>
+      </div>
+    </table>
+    <!-- <a th:text="${message.sender.username}"></a>
     <li th:text="${message.timestamp}" />
     <li th:text="${message.content}" />
-  </ul>
+  </div> -->
 </body>
 
 </html>

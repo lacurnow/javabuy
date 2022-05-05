@@ -19,6 +19,8 @@
     <li th:text="${enquirer.username}" />
     </ul>
 
+    
+
   <ul th:each="message: ${messages}">
     <a th:text="${message.sender.username}"></a>
     <li th:text="${message.timestamp}" />

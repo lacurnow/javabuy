@@ -25,10 +25,12 @@
         <li th:text="${product.price}" />
         <img th:src="${product.photo}" />
 
+        <ul th:each="review: ${reviews}">
         <li th:text="${product.review.title}" />
         <li th:text="${product.review.content}" />
         <li th:text="${product.review.rating}" />
         <img th:src="${product.review.photo}" />
+        </ul>
 
         <p> Add a review below: </p>
         <form action="#" th:action="@{/productreviews(productId=${product.id}, userId=${user.id})}" th:object="${review}" method="post">
@@ -40,6 +42,6 @@
           <input type="file" id="photo" name="photo" th:field="*{photo}"><br>
           <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
       </form>
-      </ul>
+
     </body>
     </html>

@@ -32,7 +32,7 @@ public class User {
         return products;
     }
 
-    @OneToMany(mappedBy="review", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
     private List<Review> reviews;
 
     public List<Review> getReviews() {

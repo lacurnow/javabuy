@@ -16,8 +16,10 @@ import com.makersacademy.javabuy.model.Message;
 import com.makersacademy.javabuy.service.ProductsService;
 
 import com.makersacademy.javabuy.model.Product;
+import com.makersacademy.javabuy.model.Review;
 import com.makersacademy.javabuy.model.User;
 import com.makersacademy.javabuy.repository.ProductsRepository;
+import com.makersacademy.javabuy.repository.ReviewsRepository;
 import com.makersacademy.javabuy.repository.UserRepository;
 
 @Controller
@@ -28,6 +30,9 @@ public class ProductsController {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    ReviewsRepository reviewsRepository;
 
     @Autowired
     private ProductsService service;
@@ -47,9 +52,9 @@ public class ProductsController {
         model.addAttribute("message", new Message());
         model.addAttribute("product", product);
         model.addAttribute("user", user);
+        model.addAttribute("review", new Review());
         return "products/product";
     }
-
 
     public static User getLoggedInUser(Principal principal, UserRepository userRepository) {
         String username = principal.getName();
@@ -85,6 +90,17 @@ public class ProductsController {
         return "/products/search";
     }
      
-
+    @PostMapping("/productreviews")
+    public RedirectView addReview(@RequestParam Long id, @RequestParam Long userId, @ModelAttribute Review review) {
+      Optional<Product> product = repository.findById(id);
+      Optional<User> user = userRepository.findById(userId);
+      if (user.isPresent() && product.isPresent()) {
+      review.setUser(user.get());
+      review.setProduct(product.get());
+      reviewsRepository.save(review);
+      }
+      review = new Review();
+      return new RedirectView(String.format("/products/%o",id));
+    }
 
 }

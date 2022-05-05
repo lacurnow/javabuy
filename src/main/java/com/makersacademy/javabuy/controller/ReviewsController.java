@@ -26,23 +26,23 @@ public class ReviewsController {
   @Autowired
   UserRepository userRepository;
 
-  @GetMapping("/productreviews/{productId}")
-  public String listReviews(@PathVariable("productId") Long productId, Model model) {
-    Product product = productsRepository.findProductById(productId);
-    model.addAttribute("product", product);
-    product.getReviews();
-    return "products/product_reviews";
-  }
+  // @GetMapping("/productreviews/{productId}")
+  // public String listReviews(@PathVariable("productId") Long productId, Model model) {
+  //   Product product = productsRepository.findProductById(productId);
+  //   model.addAttribute("product", product);
+  //   product.getReviews();
+  //   return "products/product";
+  // }
 
-  @PostMapping("/productreviews")
-  public RedirectView addReview(@RequestParam Long productId, @RequestParam Long userId, @ModelAttribute Review review) {
-    Optional<Product> product = productsRepository.findById(productId);
-    Optional<User> user = userRepository.findById(userId);
-    if (user.isPresent() && product.isPresent()) {
-    review.setUser(user.get());
-    review.setProduct(product.get());
-    reviewsRepository.save(review);
-    }
-    return new RedirectView("/productreviews/{productId}");
-  }
+  // @PostMapping("/productreviews")
+  // public RedirectView addReview(@RequestParam Long id, @RequestParam Long userId, @ModelAttribute Review review) {
+  //   Optional<Product> product = productsRepository.findById(id);
+  //   Optional<User> user = userRepository.findById(userId);
+  //   if (user.isPresent() && product.isPresent()) {
+  //   review.setUser(user.get());
+  //   review.setProduct(product.get());
+  //   reviewsRepository.save(review);
+  //   }
+  //   return new RedirectView("/products/{id}");
+  // }
 }

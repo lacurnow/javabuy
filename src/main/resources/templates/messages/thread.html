@@ -15,17 +15,21 @@
     Signed in as <span sec:authentication="name"></span>
   </div>
 
+  <ul th:each="enquirer: ${enquirers}">
+    <li th:text="${enquirer.username}" />
+    </ul>
+
   <ul th:each="message: ${messages}">
     <a th:text="${message.sender.username}"></a>
     <li th:text="${message.timestamp}" />
     <li th:text="${message.content}" />
   </ul>
 
-  <!-- <form action="#" th:action="@{/messages/{productid} (productid=${product.id})}" th:object="${message}" method="post">
-    <p>Contact the seller: <input type="text" th:field="*{content}" />
+  <form action="#" th:action="@{/messages/{productid}/{enquirerid} (productid=${product.id}, enquirerid=${enquirer.id})}" th:object="${message}" method="post">
+    <p>Send a reply: <input type="text" th:field="*{content}" />
       <input type="submit" value="Submit" /> <input type="reset" value="Reset" />
     </p>
-  </form> -->
+  </form>
 
 </body>
 

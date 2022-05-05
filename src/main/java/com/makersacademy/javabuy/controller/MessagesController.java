@@ -36,10 +36,20 @@ public class MessagesController {
   public String index(Model model, Principal principal) {
     User user = getUser(principal);
     List<Product> products = user.getProducts();
+
     Iterable<Message> receivedEnquiries = messagesRepository.findAllBySellerOrderByTimestamp(user);
     model.addAttribute("receivedEnquiries", receivedEnquiries);
     return "messages/index";
   }
+
+  @GetMapping("/messages/{productid}")
+  public String viewMessages(@PathVariable ("productid") Long productid, Model model, Principal principal) {
+    Product product = productsRepository.findById(productid).get();
+    Iterable<User> enquirers = messagesRepository.findEnquirersByProduct(product);
+    model.addAttribute("enquirers", enquirers);
+    return "messages/test";
+  }
+
 
   @GetMapping("/messages/{productid}/{enquirerid}")
   public String viewMessages(@PathVariable ("productid") Long productid, @PathVariable ("enquirerid") Long enquirerid, Model model, Principal principal) {
@@ -50,6 +60,9 @@ public class MessagesController {
     List<Product> products = user.getProducts();
     // Iterable<Message> messages = messagesRepository.findAllBySellerOrderByTimestamp(user);
     model.addAttribute("messages", messages);
+    model.addAttribute("product", product);
+    model.addAttribute("enquirer", enquirer);
+    model.addAttribute("message", new Message());
     return "messages/thread";
   }
 
@@ -65,5 +78,20 @@ public class MessagesController {
       messagesRepository.save(message);
     }
     return new RedirectView("/products");
+  }
+
+  @PostMapping("/messages/{productid}/{enquirerid}")
+  public RedirectView sendReply(@PathVariable ("productid") Long productid, @PathVariable ("enquirerid") Long enquirerid, @ModelAttribute Message message, Principal principal) {
+    Product product = productsRepository.findById(productid).get();
+    User enquirer = userRepository.findById(enquirerid).get();
+    message.setProduct(product);
+    message.setSeller(product.getUser());
+    message.setEnquirer(enquirer);
+    message.setSender(getUser(principal));
+    message.generateTimestamp();
+    if (message.getContent() != "") {
+      messagesRepository.save(message);
+    }
+    return new RedirectView("/messages/{productid}/{enquirerid}");
   }
 }

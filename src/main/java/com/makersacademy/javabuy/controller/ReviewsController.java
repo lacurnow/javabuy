@@ -26,7 +26,7 @@ public class ReviewsController {
   @Autowired
   UserRepository userRepository;
 
-  @GetMapping("productreviews")
+  @GetMapping("/productreviews")
   public String listReviews(@RequestParam Long productId, Model model) {
     Product product = productsRepository.findProductById(productId);
     model.addAttribute("product", product);
@@ -45,6 +45,6 @@ public class ReviewsController {
     review.setUser(user);
     review.setProduct(product);
     reviewsRepository.save(review);
-    return new RedirectView("/productreviews/{id}");
+    return new RedirectView("/productreviews");
   }
 }

@@ -6,6 +6,7 @@ CREATE TABLE reviews (
   content varchar (250) NOT NULL,
   rating integer,
   user_id bigint,
+  product_id bigint,
   photo varchar(100),
   FOREIGN KEY(user_id) REFERENCES users(id)
 );

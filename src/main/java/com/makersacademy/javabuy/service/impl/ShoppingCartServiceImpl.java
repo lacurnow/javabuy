@@ -31,22 +31,22 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
   @Override
   public void addProduct(Product product) {
-    System.out.println("The added product hashcode: " + product.hashCode());
       if (productsInCart.containsKey(product)) {
         productsInCart.replace(product, productsInCart.get(product) + 1);
       } else {
         productsInCart.put(product, 1);
       }
-      System.out.println("The set after adding product is: " + productsInCart.entrySet());
   }
 
   @Override
   public void removeProduct(Product product) {
-    // if (productsInCart.containsKey(product)) {
-    productsInCart.remove(product);
-    System.out.println("Remove product hashcode: " + product.hashCode()); 
-    // }
-    System.out.println("The set after removal is: " + productsInCart.entrySet());
+    if (productsInCart.containsKey(product)) {
+      if (productsInCart.get(product) > 1) {
+        productsInCart.replace(product, productsInCart.get(product) -1);
+      } else if (productsInCart.get(product) == 1) {
+        productsInCart.remove(product);
+      }
+    }
   }
 
   /**

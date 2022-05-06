@@ -66,7 +66,7 @@ public class UsersController {
     @GetMapping("solditems")
     public String seeSoldItems(Model model) {
         Iterable<Product> soldProducts = productRepository.findBySoldTrue();
-        model.addAttribute("products", soldProducts);
+        model.addAttribute("soldProducts", soldProducts);
         model.addAttribute("product", new Product());
         return "users/soldItems";
     }

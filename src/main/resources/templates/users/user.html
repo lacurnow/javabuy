@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head lang="en">
+  <meta charset="UTF-8" />
+  <title>JAVABUY</title>
+  <link rel="stylesheet" href="/main.css" />
+</head>
+<header>
+  <a href="/">
+  </a>
+  <h1>JavaBuy</h1>
+</header>
+
+<div th:insert="navbar :: navbar"> </div>
+
+<body>
+
+  <h1 th:text="${user.username}"></h1>
+
+  <div sec:authorize="isAuthenticated()">
+    Signed in as <span sec:authentication="name"></span>
+  </div>
+
+  <h2 th:inline="text">[[${user.username}]]'s products</h2>
+  <div th:if="${user.products.iterator().hasNext()}">
+    <ul th:each="product: ${user.products}">
+      <a th:href="@{/products/{id}(id=${product.id})}">
+        <li th:text="${product.name}" />
+      </a>
+    </ul>
+  </div>
+  <div th:unless="${user.products.iterator().hasNext()}">
+    <div th:inline="text">[[${user.username}]] has no products for sale at the moment.</div>
+  </div>
+
+  <h2 th:inline="text">Reviews for [[${user.username}]]</h2>
+  <p>Write a review:</p>
+  <form action="#" th:action="@{/userreviews/{userid} (userid=${user.id})}" th:object="${userReview}" method="post">
+    <p>Review Title: <input type="text" th:field="*{title}" /></p>
+    <p>Rating:
+      <select th:field="*{rating}">
+        <option th:each="i : ${#numbers.sequence(5, 1)}" th:value="${i}" th:text="${i}">
+        </option>
+      </select>
+    </p>
+    <p>Your review: <input type="text" th:field="*{content}" /></p>
+    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+  </form>
+
+
+  </body> 
+</html>

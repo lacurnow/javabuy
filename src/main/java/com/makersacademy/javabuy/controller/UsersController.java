@@ -4,6 +4,7 @@ import java.security.Principal;
 
 import com.makersacademy.javabuy.model.Authority;
 import com.makersacademy.javabuy.model.User;
+import com.makersacademy.javabuy.model.UserReview;
 import com.makersacademy.javabuy.repository.AuthoritiesRepository;
 import com.makersacademy.javabuy.repository.UserRepository;
 
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -56,5 +58,13 @@ public class UsersController {
     @GetMapping("/reviews")
     public String seeBuyerReviews() {
         return "users/reviews";
+    }
+
+    @GetMapping("/users/{id}")
+    public String viewUser(@PathVariable("id") Long id, Model model, Principal principal) {
+        User user = userRepository.findById(id).get();
+        model.addAttribute("user", user);
+        model.addAttribute("userReview", new UserReview());
+        return "users/user";
     }
 }

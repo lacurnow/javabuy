@@ -99,7 +99,7 @@ public class ProductsController {
       review.setProduct(product.get());
       reviewsRepository.save(review);
       }
-      review = new Review();
+    //   review = new Review();
       return new RedirectView(String.format("/products/%o",id));
     }
 

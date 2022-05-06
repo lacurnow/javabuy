@@ -16,7 +16,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "FAVOURITE_ITEMS")
-class FavouriteItems {
+public class FavouriteItems {
 
     @EmbeddedId
     FavouriteitemsKey id ;

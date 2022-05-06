@@ -36,10 +36,11 @@
     </form>
   </div>
 
+    <p> Item Reviews: </p>
     <ul th:each="review: ${product.reviews}">
-    <li th:text="${review.title}" />
-    <li th:text="${review.content}" />
-    <li th:text="${review.rating}" />
+    Review Title: <li th:text="${review.title}" />
+    Review Content: <li th:text="${review.content}" />
+    Rating: <li th:text="${review.rating}" />
     <img th:src="${review.photo}" />
     </ul>
 

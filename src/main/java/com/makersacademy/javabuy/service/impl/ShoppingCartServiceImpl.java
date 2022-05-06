@@ -20,71 +20,59 @@ import org.springframework.context.annotation.ScopedProxyMode;
 @Transactional
 public class ShoppingCartServiceImpl implements ShoppingCartService {
 
-    private final ProductsRepository productsRepository;
+  private final ProductsRepository productsRepository;
 
-    private Map<Product, Integer> productsInCart = new HashMap<>();
+  private Map<Product, Integer> productsInCart = new HashMap<>();
 
-    @Autowired
-    public ShoppingCartServiceImpl(ProductsRepository productsRepository) {
-        this.productsRepository = productsRepository;
+  @Autowired
+  public ShoppingCartServiceImpl(ProductsRepository productsRepository) {
+    this.productsRepository = productsRepository;
+  }
+
+  @Override
+  public void addProduct(Product product) {
+    System.out.println("The added product hashcode: " + product.hashCode());
+      if (productsInCart.containsKey(product)) {
+        productsInCart.replace(product, productsInCart.get(product) + 1);
+      } else {
+        productsInCart.put(product, 1);
+      }
+      System.out.println("The set after adding product is: " + productsInCart.entrySet());
+  }
+
+  @Override
+  public void removeProduct(Product product) {
+    // if (productsInCart.containsKey(product)) {
+    productsInCart.remove(product);
+    System.out.println("Remove product hashcode: " + product.hashCode()); 
+    // }
+    System.out.println("The set after removal is: " + productsInCart.entrySet());
+  }
+
+  /**
+   * @return unmodifiable copy of the map
+   */
+  @Override
+  public Map<Product, Integer> getProductsInCart() {
+    return Collections.unmodifiableMap(productsInCart);
+  }
+  
+  @Override
+  public void checkout() {
+    Product product;
+    for (Map.Entry<Product, Integer> entry : productsInCart.entrySet()) {
+        product = productsRepository.findProductById(product.getId());
     }
+    productsRepository.save(productsInCart.keySet());
+    productsRepository.flush();
+    productsInCart.clear();
+  }
 
-    @Override
-    public void addProduct(Product product) {
-        if (productsInCart.containsKey(product)) {
-            productsInCart.replace(product, productsInCart.get(product) + 1);
-        } else {
-            productsInCart.put(product, 1);
-        }
-    }
-
-    @Override
-    public void removeProduct(Product product) {
-        if (productsInCart.containsKey(product)) {
-            if (productsInCart.get(product) > 1)
-                productsInCart.replace(product, productsInCart.get(product) - 1);
-            else if (productsInCart.get(product) == 1) {
-                productsInCart.remove(product);
-            }
-        }
-    }
-
-    /**
-     * @return unmodifiable copy of the map
-     */
-    @Override
-    public Map<Product, Integer> getProductsInCart() {
-        return Collections.unmodifiableMap(productsInCart);
-    }
-
-    /**
-     * Checkout will rollback if there is not enough of some product in stock
-     *
-     * @throws NotEnoughProductsInStockException
-     */
-    
-    @Override
-    public void checkout() 
-    //throws NotEnoughProductsInStockException
-    {
-        Product product;
-        for (Map.Entry<Product, Integer> entry : productsInCart.entrySet()) {
-            // Refresh quantity for every product before checking
-            product = productsRepository.findProductById(product.getId());
-            // if (product.getQuantity() < entry.getValue())
-            //     throw new NotEnoughProductsInStockException(product);
-            // entry.getKey().setQuantity(product.getQuantity() - entry.getValue());
-        }
-        productsRepository.save(productsInCart.keySet());
-        productsRepository.flush();
-        productsInCart.clear();
-    }
-
-    @Override
-    public BigDecimal getTotal() {
-        return productsInCart.entrySet().stream()
-                .map(entry -> entry.getKey().getPrice().multiply(BigDecimal.valueOf(entry.getValue())))
-                .reduce(BigDecimal::add)
-                .orElse(BigDecimal.ZERO);
-    }
+  @Override
+  public BigDecimal getTotal() {
+    return productsInCart.entrySet().stream()
+    .map(entry -> entry.getKey().getPrice().multiply(BigDecimal.valueOf(entry.getValue())))
+    .reduce(BigDecimal::add)
+    .orElse(BigDecimal.ZERO);
+  }
 }

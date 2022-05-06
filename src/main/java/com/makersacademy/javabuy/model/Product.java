@@ -61,4 +61,17 @@ public class Product {
 
     public User getUser() { return this.user; }
     public void setUser(User user) { this.user = user; }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        return id.equals(this.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
 }

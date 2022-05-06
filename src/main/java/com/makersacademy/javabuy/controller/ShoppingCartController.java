@@ -13,44 +13,41 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class ShoppingCartController {
 
-    private final ShoppingCartService shoppingCartService;
+  private final ShoppingCartService shoppingCartService;
 
-    private final ProductService productService;
+  private final ProductService productService;
 
-    @Autowired
-    public ShoppingCartController(ShoppingCartService shoppingCartService, ProductService productService) {
-        this.shoppingCartService = shoppingCartService;
-        this.productService = productService;
-    }
+  @Autowired
+  public ShoppingCartController(ShoppingCartService shoppingCartService, ProductService productService) {
+    this.shoppingCartService = shoppingCartService;
+    this.productService = productService;
+  }
 
-    @GetMapping("/shoppingCart")
-    public ModelAndView shoppingCart() {
-        ModelAndView modelAndView = new ModelAndView("/shopping_cart");
-        modelAndView.addObject("products", shoppingCartService.getProductsInCart());
-        modelAndView.addObject("total", shoppingCartService.getTotal().toString());
-        return modelAndView;
-    }
+  @GetMapping("/shoppingCart")
+  public ModelAndView shoppingCart() {
+    ModelAndView modelAndView = new ModelAndView("/shopping_cart");
+    modelAndView.addObject("products", shoppingCartService.getProductsInCart());
+    modelAndView.addObject("total", shoppingCartService.getTotal().toString());
+    return modelAndView;
+  }
 
-    @GetMapping("/shoppingCart/addProduct/{id}")
-    public ModelAndView addProductToCart(@PathVariable("id") Long id) {
-        Product product = productService.findProductById(id);
-        shoppingCartService.addProduct(product);
-        return shoppingCart();
-    }
+  @GetMapping("/shoppingCart/addProduct/{id}")
+  public ModelAndView addProductToCart(@PathVariable("id") Long id) {
+    Product product = productService.findProductById(id);
+    shoppingCartService.addProduct(product);
+    return shoppingCart();
+  }
 
-    @GetMapping("/shoppingCart/removeProduct/{id}")
-    public ModelAndView removeProductFromCart(@PathVariable("id") Long id) {
-        productService.findProductById(id).ifPresent(shoppingCartService::removeProduct);
-        return shoppingCart();
-    }
+  @GetMapping("/shoppingCart/removeProduct/{id}")
+  public ModelAndView removeProductFromCart(@PathVariable("id") Long id) {
+    Product product = productService.findProductById(id);
+    shoppingCartService.removeProduct(product);
+    return shoppingCart();
+  }
 
-    @GetMapping("/shoppingCart/checkout")
-    public ModelAndView checkout() {
-        // try {
-        shoppingCartService.checkout();
-        // } catch (NotEnoughProductsInStockException e) {
-        //     return shoppingCart().addObject("outOfStockMessage", e.getMessage());
-        // }
-        return shoppingCart();
-    }
+  @GetMapping("/shoppingCart/checkout")
+public ModelAndView checkout() {
+    shoppingCartService.checkout();
+    return shoppingCart();
+  }
 }

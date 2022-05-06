@@ -20,18 +20,17 @@
 
       <h1>
         <p>SHOPPING CART</p>
-          <p>Signed in as:</p><span sec:authentication="name"></span></p>
       </h1>
-
-      <!-- <div class="alert alert-info" th:if="${outOfStockMessage}" th:utext="${outOfStockMessage}"></div> -->
+      <p>Signed in as:</p>
+        <span sec:authentication="name"></span>
+      </p>
 
       <div th:each="product : ${products.entrySet()}">
           <div>
-              <h1><a th:text="${product.getKey().name}">Title</a></h1>
-              <h3 th:text="${product.getKey().description}">Description</h3>
+              <h2><a th:text="${product.getKey().name}">Title</a></h2>
           </div>
           <div>
-              <div th:inline="text">Price: [[${product.getKey().price}]] $</div>
+              <div th:inline="text">Price: £[[${product.getKey().price}]] </div>
               <a th:href="@{'/shoppingCart/removeProduct/{id}'(id=${product.getKey().id})}">
                   <button type="button" th:text="Remove">Remove</button>
               </a>

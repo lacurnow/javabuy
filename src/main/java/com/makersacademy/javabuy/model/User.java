@@ -32,6 +32,13 @@ public class User {
         return products;
     }
 
+    @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
+    private List<Review> reviews;
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
     public User() {
         this.enabled = TRUE;
     }

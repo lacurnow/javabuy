@@ -6,12 +6,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.GenerationType;
 import static java.lang.Boolean.TRUE;
 import static java.lang.Boolean.FALSE;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import lombok.Data;
 
@@ -33,6 +35,13 @@ public class Product {
     @JoinColumn(name="seller_id")
     private User user;
 
+    @OneToMany(mappedBy="product", fetch = FetchType.LAZY)
+    private List<Review> reviews;
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+    
     public Product() {}
 
     public Product(String name, BigDecimal price, String description, String photo) {

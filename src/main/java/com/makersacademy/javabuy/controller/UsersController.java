@@ -3,8 +3,10 @@ package com.makersacademy.javabuy.controller;
 import java.security.Principal;
 
 import com.makersacademy.javabuy.model.Authority;
+import com.makersacademy.javabuy.model.Product;
 import com.makersacademy.javabuy.model.User;
 import com.makersacademy.javabuy.repository.AuthoritiesRepository;
+import com.makersacademy.javabuy.repository.ProductsRepository;
 import com.makersacademy.javabuy.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,9 @@ public class UsersController {
     UserRepository userRepository;
     @Autowired
     AuthoritiesRepository authoritiesRepository;
+
+    @Autowired
+    ProductsRepository productRepository;
 
     @GetMapping("/users/new")
     public String signup(Model model) {
@@ -59,7 +64,17 @@ public class UsersController {
     }
 
     @GetMapping("solditems")
-    public String seeSoldItems() {
+    public String seeSoldItems(Model model) {
+        Iterable<Product> soldProducts = productRepository.findAll();
+        model.addAttribute("products", soldProducts);
+        model.addAttribute("product", new Product());
         return "users/soldItems";
     }
+
+    // @PostMapping("/solditems")
+    // public RedirectView create(@ModelAttribute Product product, Principal principal) {
+    //     product.setUser(getLoggedInUser(principal, userRepository));
+    //     repository.save(product);
+    //     return new RedirectView("/products");
+    // }
 }

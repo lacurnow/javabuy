@@ -48,6 +48,7 @@ public class ProductsController {
     @GetMapping("/products/{id}")
     public String viewProduct(@PathVariable ("id") Long id, Model model, Principal principal) {
         Product product = repository.findById(id).get();
+        // Iterable<Review> review = reviewsRepository.findAllById(id);
         User user = getLoggedInUser(principal, userRepository);
         model.addAttribute("message", new Message());
         model.addAttribute("product", product);
@@ -78,7 +79,6 @@ public class ProductsController {
     @GetMapping("/payment")
     public String index() {
         return "payment/index";
-
     }
 
     @GetMapping("/products/search")

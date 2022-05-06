@@ -28,6 +28,12 @@ public class UsersController {
     @Autowired
     ProductsRepository productRepository;
 
+    private User getUser(Principal principal) {
+        String username = principal.getName();
+        User user = userRepository.findByUsername(username);
+        return user;
+    }
+
     @GetMapping("/users/new")
     public String signup(Model model) {
         model.addAttribute("user", new User());
@@ -64,8 +70,9 @@ public class UsersController {
     }
 
     @GetMapping("solditems")
-    public String seeSoldItems(Model model) {
-        Iterable<Product> soldProducts = productRepository.findBySoldTrue();
+    public String seeSoldItems(Model model, Principal principal) {
+        User user = getUser(principal);
+        Iterable<Product> soldProducts = productRepository.findBySoldTrue(user);
         model.addAttribute("soldProducts", soldProducts);
         model.addAttribute("product", new Product());
         return "users/soldItems";

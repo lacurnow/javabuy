@@ -18,15 +18,15 @@
         Signed in as <span sec:authentication="name"></span>
     </div>
 
-    <ul th:each="product: ${products}">
-      <ul th:if="${product.sold}">
+    <ul th:each="product: ${soldProducts}">
+      <!-- <ul th:if="${product.sold}"> -->
       <li th:text="${product.user.username}" />
       <li th:text="${product.name}" />
       <li th:text="${product.price}" />
       <li th:text="${product.description}" />
       <img th:src="${product.photo}" />
       </ul>
-      </ul>
+      <!-- </ul> -->
 
   </body>
   </html>

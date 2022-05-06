@@ -20,5 +20,6 @@ public List<Product> search(String keyword);
   Product findProductById(Long productid);
 
   // For finding sold items
+  // @Query("SELECT p FROM Product p WHERE p.sold = true")
   public Iterable<Product> findBySoldTrue();
 }

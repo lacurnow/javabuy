@@ -57,4 +57,9 @@ public class UsersController {
     public String seeBuyerReviews() {
         return "users/reviews";
     }
+
+    @GetMapping("solditems")
+    public String seeSoldItems() {
+        return "users/soldItems";
+    }
 }

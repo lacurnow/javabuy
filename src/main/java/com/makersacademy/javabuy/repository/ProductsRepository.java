@@ -18,4 +18,7 @@ public List<Product> search(String keyword);
   
   //For product purchase
   Product findProductById(Long productid);
+
+  // For finding sold items
+  public Iterable<Product> findBySoldTrue();
 }

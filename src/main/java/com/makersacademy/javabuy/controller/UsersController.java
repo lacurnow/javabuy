@@ -65,16 +65,9 @@ public class UsersController {
 
     @GetMapping("solditems")
     public String seeSoldItems(Model model) {
-        Iterable<Product> soldProducts = productRepository.findAll();
+        Iterable<Product> soldProducts = productRepository.findBySoldTrue();
         model.addAttribute("products", soldProducts);
         model.addAttribute("product", new Product());
         return "users/soldItems";
     }
-
-    // @PostMapping("/solditems")
-    // public RedirectView create(@ModelAttribute Product product, Principal principal) {
-    //     product.setUser(getLoggedInUser(principal, userRepository));
-    //     repository.save(product);
-    //     return new RedirectView("/products");
-    // }
 }

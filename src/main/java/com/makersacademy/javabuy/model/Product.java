@@ -67,6 +67,7 @@ public class Product {
     public void setPhoto(String photo) { this.photo = photo; }
 
     public void setAsSold() { this.sold = TRUE; }
+    public Boolean getSold() { return this.sold; }
 
     public User getUser() { return this.user; }
     public void setUser(User user) { this.user = user; }

@@ -69,12 +69,17 @@ public class UsersController {
         return "users/reviews";
     }
 
-    @GetMapping("solditems")
+    @GetMapping("/solditems")
     public String seeSoldItems(Model model, Principal principal) {
         User user = getUser(principal);
         Iterable<Product> soldProducts = productRepository.findBySoldTrue(user);
         model.addAttribute("soldProducts", soldProducts);
         model.addAttribute("product", new Product());
         return "users/soldItems";
+    }
+
+    @GetMapping("/listeditems")
+    public String seeListedItems() {
+        return "users/listedItems";
     }
 }

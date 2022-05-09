@@ -80,7 +80,11 @@ public class UsersController {
     public String viewUser(@PathVariable("id") Long id, Model model, Principal principal) {
         User user = userRepository.findById(id).get();
         Iterable<UserReview> userReviews = userReviewsRepository.findByUserOrderByTimestampDesc(user);
+        Integer averageUserRating = userReviewsRepository.findRoundedAverageRatingByUser(user);
+        Integer userReviewCount = userReviewsRepository.countByUser(user);
         model.addAttribute("user", user);
+        model.addAttribute("userReviewCount", userReviewCount);
+        model.addAttribute("averageUserRating", averageUserRating);
         model.addAttribute("userReviews", userReviews);
         model.addAttribute("userReview", new UserReview());
         return "users/user";

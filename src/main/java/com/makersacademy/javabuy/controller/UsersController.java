@@ -86,12 +86,21 @@ public class UsersController {
         return "users/user";
     }
 
-    @GetMapping("solditems")
+    @GetMapping("/solditems")
     public String seeSoldItems(Model model, Principal principal) {
         User user = getUser(principal);
         Iterable<Product> soldProducts = productRepository.findBySoldTrue(user);
         model.addAttribute("soldProducts", soldProducts);
         model.addAttribute("product", new Product());
         return "users/soldItems";
+    }
+
+    @GetMapping("/listeditems")
+    public String seeListedItems(Model model, Principal principal) {
+        User user = getUser(principal);
+        Iterable<Product> listedProducts = productRepository.findListedProductsByUser(user);
+        model.addAttribute("listedProducts", listedProducts);
+        model.addAttribute("product", new Product());
+        return "users/listedItems";
     }
 }

@@ -5,15 +5,22 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.GenerationType;
 import static java.lang.Boolean.TRUE;
-import static java.lang.Boolean.FALSE;
 
 import java.math.BigDecimal;
+
+import static java.lang.Boolean.FALSE;
+
+
+import java.util.Set;
+
 import java.util.List;
+
 
 import lombok.Data;
 
@@ -25,6 +32,8 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @ManyToMany(mappedBy = "favouriteProducts")
+    Set<User> favourites;
     private String name;
     private BigDecimal price;
     private String description;
@@ -67,6 +76,7 @@ public class Product {
     public void setPhoto(String photo) { this.photo = photo; }
 
     public void setAsSold() { this.sold = TRUE; }
+    public Boolean getSold() { return this.sold; }
 
     public User getUser() { return this.user; }
     public void setUser(User user) { this.user = user; }

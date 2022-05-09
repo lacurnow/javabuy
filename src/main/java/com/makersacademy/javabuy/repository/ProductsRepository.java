@@ -3,6 +3,7 @@ package com.makersacademy.javabuy.repository;
 import java.util.List;
 
 import com.makersacademy.javabuy.model.Product;
+import com.makersacademy.javabuy.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,4 +19,8 @@ public List<Product> search(String keyword);
   
   //For product purchase
   Product findProductById(Long productid);
+
+  // For finding sold items
+  @Query("SELECT p FROM Product p WHERE p.sold = true AND p.user = ?1")
+  public Iterable<Product> findBySoldTrue(User user);
 }

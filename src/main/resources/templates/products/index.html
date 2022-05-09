@@ -22,7 +22,7 @@
     </div>
 
     <ul th:each="product: ${products}">
-        <a th:text="${product.user.username}" ></a>
+        <a th:href="@{/users/{id}(id=${product.user.id})}"><div th:text="${product.user.username}" ></div></a>
         <a th:href="@{/products/{id}(id=${product.id})}"><li th:text="${product.name}" /></a>
         <li th:text="${product.price}" />
         <li th:text="${product.description}" />

@@ -26,10 +26,10 @@
 
   <div th:if="${user == enquirer || user == product.user}">
     <div th:if="${user == enquirer}">
-      <h2 th:inline="text">To: [[${product.user.username}]]</h2>
+      <h2>To: <a th:href="@{/users/{id}(id=${product.user.id})}">[[${product.user.username}]]</a></h2>
     </div>
     <div th:if="${user == product.user}">
-      <h2 th:inline="text">To: [[${enquirer.username}]]</h2>
+      <h2>To: <a th:href="@{/users/{id}(id=${enquirer.id})}">[[${enquirer.username}]]</a></h2>
     </div>
     <h2>Subject: <a th:href="@{/products/{id} (id=${product.id})}">[[${product.name}]]</a></h2>
     <div th:each="message: ${messages}">

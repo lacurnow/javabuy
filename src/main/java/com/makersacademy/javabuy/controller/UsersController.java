@@ -79,10 +79,12 @@ public class UsersController {
     @GetMapping("/users/{id}")
     public String viewUser(@PathVariable("id") Long id, Model model, Principal principal) {
         User user = userRepository.findById(id).get();
+        User signedInUser = getUser(principal);
         Iterable<UserReview> userReviews = userReviewsRepository.findByUserOrderByTimestampDesc(user);
         Integer averageUserRating = userReviewsRepository.findRoundedAverageRatingByUser(user);
         Integer userReviewCount = userReviewsRepository.countByUser(user);
         model.addAttribute("user", user);
+        model.addAttribute("signedInUser", signedInUser);
         model.addAttribute("userReviewCount", userReviewCount);
         model.addAttribute("averageUserRating", averageUserRating);
         model.addAttribute("userReviews", userReviews);

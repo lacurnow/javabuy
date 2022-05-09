@@ -35,7 +35,7 @@ public class UserReviewsController {
     userReview.setUser(user);
     userReview.setAuthor(signedInUser);
     userReview.generateTimestamp();
-      userReviewsRepository.save(userReview);
+    userReviewsRepository.save(userReview);
     return new RedirectView("/users/{userid}");
   }
 }

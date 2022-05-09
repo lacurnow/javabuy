@@ -1,6 +1,7 @@
 package com.makersacademy.javabuy.controller;
 
 import java.security.Principal;
+import java.util.List;
 
 import com.makersacademy.javabuy.model.Authority;
 import com.makersacademy.javabuy.model.Product;
@@ -9,6 +10,7 @@ import com.makersacademy.javabuy.model.UserReview;
 import com.makersacademy.javabuy.repository.AuthoritiesRepository;
 import com.makersacademy.javabuy.repository.ProductsRepository;
 import com.makersacademy.javabuy.repository.UserRepository;
+import com.makersacademy.javabuy.repository.UserReviewsRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +31,9 @@ public class UsersController {
 
     @Autowired
     ProductsRepository productRepository;
+
+    @Autowired
+    UserReviewsRepository userReviewsRepository;
 
     private User getUser(Principal principal) {
         String username = principal.getName();
@@ -74,11 +79,13 @@ public class UsersController {
     @GetMapping("/users/{id}")
     public String viewUser(@PathVariable("id") Long id, Model model, Principal principal) {
         User user = userRepository.findById(id).get();
+        Iterable<UserReview> userReviews = userReviewsRepository.findByUserOrderByTimestampDesc(user);
         model.addAttribute("user", user);
+        model.addAttribute("userReviews", userReviews);
         model.addAttribute("userReview", new UserReview());
         return "users/user";
     }
-    
+
     @GetMapping("solditems")
     public String seeSoldItems(Model model, Principal principal) {
         User user = getUser(principal);

@@ -79,7 +79,11 @@ public class UsersController {
     }
 
     @GetMapping("/listeditems")
-    public String seeListedItems() {
+    public String seeListedItems(Model model, Principal principal) {
+        User user = getUser(principal);
+        Iterable<Product> listedProducts = productRepository.findListedProductsByUser(user);
+        model.addAttribute("listedProducts", listedProducts);
+        model.addAttribute("product", new Product());
         return "users/listedItems";
     }
 }

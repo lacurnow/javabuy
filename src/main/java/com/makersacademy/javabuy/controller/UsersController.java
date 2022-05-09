@@ -72,7 +72,15 @@ public class UsersController {
     }
 
     @GetMapping("/reviews")
-    public String seeBuyerReviews() {
+    public String seeBuyerReviews(Model model, Principal principal) {
+        User user = getUser(principal);
+        Iterable<UserReview> userReviews = userReviewsRepository.findByUserOrderByTimestampDesc(user);
+        Integer averageUserRating = userReviewsRepository.findRoundedAverageRatingByUser(user);
+        Integer userReviewCount = userReviewsRepository.countByUser(user);
+        model.addAttribute("user", user);
+        model.addAttribute("userReviewCount", userReviewCount);
+        model.addAttribute("averageUserRating", averageUserRating);
+        model.addAttribute("userReviews", userReviews);
         return "users/reviews";
     }
 

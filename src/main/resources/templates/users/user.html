@@ -49,27 +49,27 @@
       <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
     </form>
   </div>
-  <h3>
     <div th:switch="${userReviewCount}">
       <div th:case="'0'">
         No reviews yet.
       </div>
+      <h3>
       <div th:case="'1'">
         <div th:switch="${averageUserRating}">
-          <div th:case="'1'">&starf; &star; &star; &star; &star; (Based on 1 review)</div>
-          <div th:case="'2'">&starf; &starf; &star; &star; &star; (Based on 1 review)</div>
-          <div th:case="'3'">&starf; &starf; &starf; &star; &star; (Based on 1 review)</div>
-          <div th:case="'4'">&starf; &starf; &starf; &starf; &star; (Based on 1 review)</div>
-          <div th:case="'5'">&starf; &starf; &starf; &starf; &starf; (Based on 1 review)</div>
+          <div th:case="'1'">Overall: &starf; &star; &star; &star; &star; (Based on 1 review)</div>
+          <div th:case="'2'">Overall: &starf; &starf; &star; &star; &star; (Based on 1 review)</div>
+          <div th:case="'3'">Overall: &starf; &starf; &starf; &star; &star; (Based on 1 review)</div>
+          <div th:case="'4'">Overall: &starf; &starf; &starf; &starf; &star; (Based on 1 review)</div>
+          <div th:case="'5'">Overall: &starf; &starf; &starf; &starf; &starf; (Based on 1 review)</div>
         </div>
       </div>
       <div th:case="*">
         <div th:switch="${averageUserRating}">
-          <div th:case="'1'">&starf; &star; &star; &star; &star; (Based on [[${userReviewCount}]] reviews)</div>
-          <div th:case="'2'">&starf; &starf; &star; &star; &star; (Based on [[${userReviewCount}]] reviews)</div>
-          <div th:case="'3'">&starf; &starf; &starf; &star; &star; (Based on [[${userReviewCount}]] reviews)</div>
-          <div th:case="'4'">&starf; &starf; &starf; &starf; &star; (Based on [[${userReviewCount}]] reviews)</div>
-          <div th:case="'5'">&starf; &starf; &starf; &starf; &starf; (Based on [[${userReviewCount}]] reviews)</div>
+          <div th:case="'1'">Overall: &starf; &star; &star; &star; &star; (Based on [[${userReviewCount}]] reviews)</div>
+          <div th:case="'2'">Overall: &starf; &starf; &star; &star; &star; (Based on [[${userReviewCount}]] reviews)</div>
+          <div th:case="'3'">Overall: &starf; &starf; &starf; &star; &star; (Based on [[${userReviewCount}]] reviews)</div>
+          <div th:case="'4'">Overall: &starf; &starf; &starf; &starf; &star; (Based on [[${userReviewCount}]] reviews)</div>
+          <div th:case="'5'">Overall: &starf; &starf; &starf; &starf; &starf; (Based on [[${userReviewCount}]] reviews)</div>
         </div>
       </div>
     </div>

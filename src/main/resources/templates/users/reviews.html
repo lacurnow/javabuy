@@ -14,7 +14,53 @@
 
     <div th:insert="navbar :: navbar">  </div>
 
-    *List of user's reviews to appear here*
+    <h1>Your reviews</h1>
+
+    <h2>
+        <div th:switch="${userReviewCount}">
+            <div th:case="'0'">
+                No reviews yet.
+            </div>
+            <div th:case="'1'">
+                <div th:switch="${averageUserRating}">
+                    <div th:case="'1'">Overall:&starf; &star; &star; &star; &star; (Based on 1 review)</div>
+                    <div th:case="'2'">Overall:&starf; &starf; &star; &star; &star; (Based on 1 review)</div>
+                    <div th:case="'3'">Overall:&starf; &starf; &starf; &star; &star; (Based on 1 review)</div>
+                    <div th:case="'4'">Overall:&starf; &starf; &starf; &starf; &star; (Based on 1 review)</div>
+                    <div th:case="'5'">Overall:&starf; &starf; &starf; &starf; &starf; (Based on 1 review)</div>
+                </div>
+            </div>
+            <div th:case="*">
+                <div th:switch="${averageUserRating}">
+                    <div th:case="'1'">Overall:&starf; &star; &star; &star; &star; (Based on [[${userReviewCount}]] reviews)</div>
+                    <div th:case="'2'">Overall:&starf; &starf; &star; &star; &star; (Based on [[${userReviewCount}]] reviews)</div>
+                    <div th:case="'3'">Overall: &starf; &starf; &starf; &star; &star; (Based on [[${userReviewCount}]] reviews)</div>
+                    <div th:case="'4'">Overall:&starf; &starf; &starf; &starf; &star; (Based on [[${userReviewCount}]] reviews)
+                    </div>
+                    <div th:case="'5'">Overall:&starf; &starf; &starf; &starf; &starf; (Based on [[${userReviewCount}]] reviews)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </h2>
+    <div th:each="userReview: ${userReviews}">
+        <li>
+            <th:inline="text">[[${userReview.author.username}]] on [[${userReview.formatTimestamp()}]]:
+        </li>
+        <blockquote>
+            <h4 th:inline="text">[[${userReview.title}]]
+                <div th:switch="${userReview.rating}">
+                    <div th:case="'1'">&starf; &star; &star; &star; &star;</div>
+                    <div th:case="'2'">&starf; &starf; &star; &star; &star;</div>
+                    <div th:case="'3'">&starf; &starf; &starf; &star; &star;</div>
+                    <div th:case="'4'">&starf; &starf; &starf; &starf; &star;</div>
+                    <div th:case="'5'">&starf; &starf; &starf; &starf; &starf;</div>
+                </div>
+            </h4>
+            <p th:text="${userReview.content}"></p>
+        </blockquote>
+        <hr>
+    </div>
 
   </body>
   </html>

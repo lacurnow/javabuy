@@ -49,13 +49,6 @@ public class User {
         return reviews;
     }
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Review> userReviews;
-
-    public List<Review> getUserReviews() {
-        return userReviews;
-    }
-
     public User() {
         this.enabled = TRUE;
     }

@@ -39,7 +39,7 @@ public class ProductsController {
 
     @GetMapping("/products")
     public String index(Model model) {
-        Iterable<Product> products = repository.findAll();
+        Iterable<Product> products = repository.findUnsoldProducts();
         model.addAttribute("products", products);
         model.addAttribute("product", new Product());
         return "products/index";

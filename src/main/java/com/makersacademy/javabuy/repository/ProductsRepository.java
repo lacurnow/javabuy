@@ -23,4 +23,7 @@ public List<Product> search(String keyword);
   // For finding sold items
   @Query("SELECT p FROM Product p WHERE p.sold = true AND p.user = ?1")
   public Iterable<Product> findBySoldTrue(User user);
+
+  @Query("SELECT p FROM Product p WHERE p.user = ?1")
+  public Iterable<Product> findListedProductsByUser(User user);
 }

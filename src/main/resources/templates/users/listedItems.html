@@ -19,12 +19,15 @@
     </div>
 
 
-    <!-- <ul th:each="product: ${soldProducts}">
+    <ul th:each="product: ${listedProducts}">
       <li th:text="${product.name}" />
       <li th:text="${product.price}" />
       <li th:text="${product.description}" />
       <img th:src="${product.photo}" />
+      <div th:if="${product.sold}">
+        <div>Sold!</div>
+        </div>
       </ul>
-       -->
+      
   </body>
   </html>

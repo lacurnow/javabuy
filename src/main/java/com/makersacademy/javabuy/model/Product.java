@@ -11,6 +11,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.GenerationType;
 import static java.lang.Boolean.TRUE;
+
+import java.math.BigDecimal;
+
 import static java.lang.Boolean.FALSE;
 
 

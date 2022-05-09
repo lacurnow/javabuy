@@ -18,6 +18,7 @@
         Signed in as <span sec:authentication="name"></span>
     </div>
 
+    <a th:href="@{/account}">Back to Account Details</a>
 
     <ul th:each="product: ${listedProducts}">
       <li th:text="${product.name}" />

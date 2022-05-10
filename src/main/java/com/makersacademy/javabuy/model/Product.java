@@ -57,14 +57,14 @@ public class Product {
     
     public Product() {}
 
-    public Product(String name, BigDecimal price, String description, String photo) {
+    public Product(String name, BigDecimal price, String description, String photo, Boolean sold) {
         this.name = name;
         this.price = price;
         this.description = description;
         this.photo = photo;
-        this.sold = FALSE;
-
+        this.sold = sold;
     }
+    
     public Long getId() { return this.id; }
 
     public String getName() { return this.name; }
@@ -79,8 +79,24 @@ public class Product {
     public String getPhoto() { return this.photo; }
     public void setPhoto(String photo) { this.photo = photo; }
 
+
     public void setAsSold() { this.sold = TRUE; }
+    public Boolean getSold() { return this.sold; }
+
 
     public User getUser() { return this.user; }
     public void setUser(User user) { this.user = user; }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        return id.equals(this.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
 }

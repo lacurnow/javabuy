@@ -22,7 +22,7 @@
   </div>
   <a th:href="@{/products}">Back to Products</a>
 
-  <li th:text="${product.user.username}" />
+  <a th:href="@{/users/{id}(id=${product.user.id})}"><li th:text="${product.user.username}" /></a>
   <li th:text="${product.name}" />
   <li th:text="${product.price}" />
   <li th:text="${product.description}" />

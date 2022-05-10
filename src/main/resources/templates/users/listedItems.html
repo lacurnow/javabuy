@@ -3,7 +3,7 @@
           xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5" >
     <head lang="en">
         <meta charset="UTF-8"/>
-        <title>Change Account Details</title>
+        <title>Listed Items</title>
         <link rel="stylesheet" href="/main.css" />
     </head>
     <body>
@@ -14,15 +14,21 @@
 
     <div th:insert="navbar :: navbar">  </div>
 
-    <h1>Change Account Details</h1><div class="authorization" sec:authorize="isAuthenticated()">
+    <h1>My Listed Items</h1><div class="authorization" sec:authorize="isAuthenticated()">
         Signed in as <span sec:authentication="name"></span>
     </div>
 
     <a th:href="@{/account}">Back to Account Details</a>
 
-    <p>Change Account Password </p>
-    <p><input type="text" value="New Password" /></p>
-    <p><button> Submit </button></p>
-
+    <ul th:each="product: ${listedProducts}">
+      <li th:text="${product.name}" />
+      <li th:text="${product.price}" />
+      <li th:text="${product.description}" />
+      <img th:src="${product.photo}" />
+      <div th:if="${product.sold}">
+        <div>Sold!</div>
+        </div>
+      </ul>
+      
   </body>
   </html>

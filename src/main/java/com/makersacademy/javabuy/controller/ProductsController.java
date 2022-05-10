@@ -45,7 +45,7 @@ public class ProductsController {
 
     @GetMapping("/products")
     public String index(Model model) {
-        Iterable<Product> products = repository.findAll();
+        Iterable<Product> products = repository.findUnsoldProducts();
         model.addAttribute("products", products);
         model.addAttribute("product", new Product());
         return "products/index";
@@ -110,6 +110,7 @@ public class ProductsController {
       return new RedirectView(String.format("/products/%o",id));
     }
 
+
     @PostMapping("favourites/{id}/{userId}")
     public RedirectView addToFavourites(@PathVariable Long id, @PathVariable Long userId, @ModelAttribute FavouriteItems favouriteItems, Model model) {
       Optional<Product> product = repository.findById(id);
@@ -124,5 +125,6 @@ public class ProductsController {
     
     
     }
+
 
 

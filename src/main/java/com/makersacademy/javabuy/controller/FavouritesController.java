@@ -48,5 +48,11 @@ public class FavouritesController {
         model.addAttribute("favourites", favourites);
         return "favourites/index";
     }
+
+    @PostMapping("/favourites/remove/{id}")
+    public RedirectView removeFromfavourites(@PathVariable ("id") Long id) {
+       favouriteItemsRepository.deleteByproduct_id(id);
+       return new RedirectView(String.format("/favourites/"));
+    }
     
 }

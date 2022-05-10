@@ -25,6 +25,10 @@
     <li th:text="${favourite.product.price}" />
     <li th:text="${favourite.product.description}" />
     <img th:src="${favourite.product.photo}" />
+    <form action="#" th:action="@{/favourites/remove/{id} (id=${favourite.product.id})}" method="post">
+        <input type="submit" value="Remove from favourites!"/>
+    </form>
+   
     </ul>
 
         

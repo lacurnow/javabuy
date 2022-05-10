@@ -11,9 +11,13 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 public interface FavouriteItemsRepository extends JpaRepository<FavouriteItems, Long>  {
 
     Iterable<FavouriteItems> findByuser_id(Long userId);
+@Transactional
+    long deleteByproduct_id(long id);
 
     
 }

@@ -47,6 +47,10 @@ public class Product {
     @OneToMany(mappedBy="product", fetch = FetchType.LAZY)
     private List<Review> reviews;
 
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="buyer_id")
+    private User buyer;
+
     public List<Review> getReviews() {
         return reviews;
     }
@@ -59,8 +63,8 @@ public class Product {
         this.description = description;
         this.photo = photo;
         this.sold = FALSE;
-
     }
+
     public Long getId() { return this.id; }
 
     public String getName() { return this.name; }
@@ -80,4 +84,7 @@ public class Product {
 
     public User getUser() { return this.user; }
     public void setUser(User user) { this.user = user; }
+
+    public User getBuyer() { return this.buyer; }
+    public void setBuyer(User buyer) { this.buyer = buyer; }
 }

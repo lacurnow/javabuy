@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+    <html xmlns:th="http://www.thymeleaf.org"
+          xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5" >
+    <head lang="en">
+        <meta charset="UTF-8"/>
+        <title>Sold Items</title>
+        <link rel="stylesheet" href="/main.css" />
+    </head>
+    <body>
+    
+    <header>
+        <h1>JavaBuy</h1>
+    </header>
+
+    <div th:insert="navbar :: navbar">  </div>
+
+    <h1>Contact Us!</h1><div class="authorization" sec:authorize="isAuthenticated()">
+        Signed in as <span sec:authentication="name"></span>
+    </div>
+
+  <div class="contact-form">
+    <form action="#" th:action="@{/contact_page}" method="post">
+    <h1 class="form-header">Contact Form</h1>
+    <input type="text" name="fname" class="input-field" placeholder="First Name">
+    <p><input type="text" name="lname" class="input-field" placeholder="Last Name"></p>
+    <p></p><input type="email" name="email" class="input-field" placeholder="Email"></p>
+    <p></p><textarea type="text" name="message" class="input-field textarea-field" placeholder="Message"></textarea></p>
+    <input type="submit" class="btn" value="Send Message"/>
+    </form>
+  </div>
+</body>

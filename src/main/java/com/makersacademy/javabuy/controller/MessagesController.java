@@ -43,26 +43,33 @@ public class MessagesController {
 
   @GetMapping("/messages/{sellerid}/{enquirerid}")
   public String viewMessages(@PathVariable ("sellerid") Long sellerid, @PathVariable ("enquirerid") Long enquirerid, @RequestParam(required = false) Long productid, Model model, Principal principal) {
-    Product product = productsRepository.findById(productid).get();
     User user = getUser(principal);
     User seller = userRepository.findById(sellerid).get();
     User enquirer = userRepository.findById(enquirerid).get();
-    Iterable<Message> messages = messagesRepository.findMessagesByProductAndEnquirer(product, enquirer);
-      model.addAttribute("user", user);
-      model.addAttribute("messages", messages);
+    if (productid != null) {
+      Product product = productsRepository.findById(productid).get();
       model.addAttribute("product", product);
-      model.addAttribute("seller", seller);
-      model.addAttribute("enquirer", enquirer);
-      model.addAttribute("message", new Message());
-      return "messages/thread";
+      Iterable<Message> messages = messagesRepository.findMessagesByProductAndEnquirer(product, enquirer);
+      model.addAttribute("messages", messages);
+    } else {
+      Iterable<Message> messages = messagesRepository.findMessagesBySellerAndEnquirer(seller, enquirer);
+      model.addAttribute("messages", messages);
+    }
+    model.addAttribute("user", user);
+    model.addAttribute("seller", seller);
+    model.addAttribute("enquirer", enquirer);
+    model.addAttribute("message", new Message());
+    return "messages/thread";
   }
 
   @PostMapping("/messages/{sellerid}/{enquirerid}")
-  public RedirectView sendMessage(@PathVariable ("sellerid") Long sellerid, @PathVariable ("enquirerid") Long enquirerid, @ModelAttribute Message message, Principal principal) {
-    // Product product = productsRepository.findById(productid).get();
+  public RedirectView sendMessage(@PathVariable ("sellerid") Long sellerid, @PathVariable ("enquirerid") Long enquirerid, @RequestParam(required = false) Long productid, @ModelAttribute Message message, Principal principal) {
+    if (productid != null) {
+      Product product = productsRepository.findById(productid).get();
+      message.setProduct(product);
+    }
     User enquirer = userRepository.findById(enquirerid).get();
     User seller = userRepository.findById(sellerid).get();
-    // message.setProduct(product);
     message.setSeller(seller);
     message.setEnquirer(enquirer);
     message.setSender(getUser(principal));

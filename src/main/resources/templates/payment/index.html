@@ -1,21 +1,41 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <html xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5" >
+  <head lang="en">
+      <meta charset="UTF-8"/>
+      <title>JAVABUY</title>
+      <link rel="stylesheet" href="/main.css" />
   </head>
+  <header>
+      <a href="/">
+      </a>
+      <h1>JavaBuy</h1>
+  </header>
+
+  <h1> PAYMENT </h1>
+  <br>
+  <br>
+  <h2>Order details:</h2>
+  <div th:each="product : ${products.entrySet()}">
+    <ul>
+        <li th:text="${product.getKey().name}"></li>
+    </ul>
+  </div>
+  <h2 th:inline="text">Total: £[[${total}]]</h2>
+
   <body>
     <!-- Replace "test" with your own sandbox Business account app client ID -->
     <script src="https://www.paypal.com/sdk/js?client-id=test&currency=GBP"></script>
     <!-- Set up a container element for the button -->
     <div id="paypal-button-container"></div>
-    <script>
+    <script th:inline="text">
       paypal.Buttons({
         // Sets up the transaction when a payment button is clicked
         createOrder: (data, actions) => {
           return actions.order.create({
             purchase_units: [{
               amount: {
-                value: '77.44' // Can also reference a variable or function
+                value: [[${total}]] // Can also reference a variable or function
               }
             }]
           });
@@ -26,14 +46,17 @@
             // Successful capture! For dev/demo purposes:
             console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
             const transaction = orderData.purchase_units[0].payments.captures[0];
-            alert(`Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available details`);
+            // alert(`Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available details`);
             // When ready to go live, remove the alert and show a success message within this page. For example:
-            // const element = document.getElementById('paypal-button-container');
-            // element.innerHTML = '<h3>Thank you for your payment!</h3>';
+            const element = document.getElementById('paypal-button-container');
+            element.innerHTML = '<h3>Thank you for your payment!</h3>';
             // Or go to another URL:  actions.redirect('thank_you.html');
           });
         }
       }).render('#paypal-button-container');
     </script>
+      <a th:href="@{/products}">
+        <button type="button">Continue Shopping</button>
+      </a>
   </body>
 </html>

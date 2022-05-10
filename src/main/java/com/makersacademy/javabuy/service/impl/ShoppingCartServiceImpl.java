@@ -59,12 +59,8 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
   
   @Override
   public void checkout() {
-    Product product;
-    for (Map.Entry<Product, Integer> entry : productsInCart.entrySet()) {
-        product = productsRepository.findProductById(product.getId());
-    }
-    productsRepository.save(productsInCart.keySet());
-    productsRepository.flush();
+    // productsRepository.save(productsInCart.keySet());
+    // productsRepository.flush();
     productsInCart.clear();
   }
 

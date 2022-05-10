@@ -46,8 +46,12 @@ public class ShoppingCartController {
   }
 
   @GetMapping("/shoppingCart/checkout")
-public ModelAndView checkout() {
-    shoppingCartService.checkout();
-    return shoppingCart();
+public ModelAndView checkOut() {
+    // Open Paypal here in new window?
+    ModelAndView modelAndView = new ModelAndView("/payment/index");
+    modelAndView.addObject("products", shoppingCartService.getProductsInCart());
+    modelAndView.addObject("total", shoppingCartService.getTotal().toString());
+    // shoppingCartService.checkout();
+    return modelAndView;
   }
 }

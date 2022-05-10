@@ -57,12 +57,13 @@ public class Product {
     
     public Product() {}
 
-    public Product(String name, BigDecimal price, String description, String photo) {
+    public Product(String name, BigDecimal price, String description, String photo, User buyer) {
         this.name = name;
         this.price = price;
         this.description = description;
         this.photo = photo;
         this.sold = FALSE;
+        this.buyer = buyer;
     }
 
     public Long getId() { return this.id; }

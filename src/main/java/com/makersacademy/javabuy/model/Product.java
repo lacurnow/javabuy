@@ -66,7 +66,7 @@ public class Product {
         this.price = price;
         this.description = description;
         this.photo = photo;
-        this.sold = sold;
+        this.sold = FALSE;
         this.buyer = buyer;
     }
     

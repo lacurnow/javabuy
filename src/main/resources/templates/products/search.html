@@ -24,7 +24,7 @@
           <th>Description</th>
         </tr>
     <tr th:each="product : ${listProducts}">
-        <td th:text="${product.name}"></td>
+        <td><a th:href="@{/products/{id}(id=${product.id})}"><li th:text="${product.name}" /></a></td>
         <td th:text="${product.price}"></td>
         <td th:text="${product.description}"></td>
         </tr>

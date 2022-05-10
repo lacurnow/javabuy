@@ -6,10 +6,14 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
+
+import javax.persistence.Id;
 
 import lombok.Data;
 
@@ -18,30 +22,28 @@ import lombok.Data;
 @Table(name = "FAVOURITE_ITEMS")
 public class FavouriteItems {
 
-    @EmbeddedId
-    FavouriteitemsKey id ;
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @ManyToOne
-    @MapsId("userId")
     @JoinColumn(name = "user_id")
     User user;
 
     @ManyToOne
-    @MapsId("productId")
     @JoinColumn(name = "product_id")
     Product product;
 
     boolean is_favourite;
 
-    @Embeddable
-    class FavouriteitemsKey implements Serializable {
-    
-        @Column(name = "user_id")
-        Long userId;
-    
-        @Column(name = "product_id")
-        Long productId;
-    
-        
-    }
+    public FavouriteItems() {}
+
+
+    public User getUser() { return this.user; }
+    public void setUser(User user) { this.user = user; }
+  
+    public Product getProduct() { return this.product; }
+    public void setProduct(Product product) { this.product = product; }
+
+    public void setFavourite() {is_favourite = true;}
+
     }

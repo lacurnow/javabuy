@@ -9,7 +9,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface FavouriteItemsRepository extends JpaRepository<FavouriteItems, Long>  {
+
+    Iterable<FavouriteItems> findByuser_id(Long userId);
+
     
 }

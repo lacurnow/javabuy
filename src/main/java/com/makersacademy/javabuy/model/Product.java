@@ -49,7 +49,11 @@ public class Product {
 
     public List<Review> getReviews() {
         return reviews;
+
     }
+
+    @OneToMany(mappedBy = "product")
+    Set<FavouriteItems> items;
     
     public Product() {}
 

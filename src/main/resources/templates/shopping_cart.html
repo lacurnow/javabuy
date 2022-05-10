@@ -31,7 +31,7 @@
           </div>
           <div>
               <div th:inline="text">Price: £[[${product.getKey().price}]] </div>
-              <div th:inline="text">Quantity: [[${product.getValue()}]] </div>
+              <!-- <div th:inline="text">Quantity: [[${product.getValue()}]] </div> -->
               <a th:href="@{'/shoppingCart/removeProduct/{id}'(id=${product.getKey().id})}">
                   <button type="button" th:text="Remove">Remove</button>
               </a>

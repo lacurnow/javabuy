@@ -5,6 +5,7 @@
         <meta charset="UTF-8"/>
         <title>NavigationBar</title>
         <link rel="stylesheet" href="/main.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/fontawesome.min.css">
     </head>
     <body>
 
@@ -22,7 +23,7 @@
               </ul>
               <ul>
                 <li sec:authorize="isAuthenticated()">
-                    <a class ="navbar right" th:href="@{/shoppingCart}">Shopping Cart</a>
+                    <a class ="navbar right" th:href="@{/shoppingCart}"><img src="/basket.png" id="basket"/></a>
                 </li>
                 
                 <a class="navbar right" th:href="@{/logout}">Logout</a> 

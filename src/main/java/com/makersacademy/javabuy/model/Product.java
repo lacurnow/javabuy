@@ -53,12 +53,12 @@ public class Product {
     
     public Product() {}
 
-    public Product(String name, BigDecimal price, String description, String photo, Boolean sold) {
+    public Product(String name, BigDecimal price, String description, String photo) {
         this.name = name;
         this.price = price;
         this.description = description;
         this.photo = photo;
-        this.sold = sold;
+        this.sold = FALSE;
     }
     
     public Long getId() { return this.id; }

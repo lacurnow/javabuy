@@ -1,6 +1,9 @@
 package com.makersacademy.javabuy.controller;
 
+import java.util.Map;
+
 import com.makersacademy.javabuy.model.Product;
+import com.makersacademy.javabuy.repository.ProductsRepository;
 import com.makersacademy.javabuy.service.ProductService;
 import com.makersacademy.javabuy.service.ShoppingCartService;
 
@@ -16,6 +19,9 @@ public class ShoppingCartController {
   private final ShoppingCartService shoppingCartService;
 
   private final ProductService productService;
+
+  @Autowired
+  ProductsRepository productsRepository;
 
   @Autowired
   public ShoppingCartController(ShoppingCartService shoppingCartService, ProductService productService) {
@@ -34,7 +40,10 @@ public class ShoppingCartController {
   @GetMapping("/shoppingCart/addProduct/{id}")
   public ModelAndView addProductToCart(@PathVariable("id") Long id) {
     Product product = productService.findProductById(id);
-    shoppingCartService.addProduct(product);
+    Map<Product, Integer> productsInCart = shoppingCartService.getProductsInCart();
+    if(!productsInCart.containsKey(product)) {
+      shoppingCartService.addProduct(product);
+    }
     return shoppingCart();
   }
 
@@ -56,6 +65,12 @@ public ModelAndView checkOut() {
 
   @GetMapping("/refresh")
   public String refreshCart() {
+    //For products in hashmap, mark as sold in products repository.
+    Map<Product, Integer> productsInCart = shoppingCartService.getProductsInCart();
+    for (Product product : productsInCart.keySet()) {
+      product.setAsSold();
+      productsRepository.save(product);
+    }
     shoppingCartService.checkout();
     return "/continueShopping";
   }

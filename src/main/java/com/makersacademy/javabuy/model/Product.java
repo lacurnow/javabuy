@@ -1,5 +1,6 @@
 package com.makersacademy.javabuy.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -66,7 +67,7 @@ public class Product {
         this.price = price;
         this.description = description;
         this.photo = photo;
-        this.sold = sold;
+        this.sold = FALSE;
         this.buyer = buyer;
     }
     

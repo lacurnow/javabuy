@@ -11,13 +11,16 @@ import org.springframework.web.servlet.view.RedirectView;
 import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
+import com.makersacademy.javabuy.model.FavouriteItems;
 import com.makersacademy.javabuy.model.Message;
 import com.makersacademy.javabuy.service.ProductsService;
 
 import com.makersacademy.javabuy.model.Product;
 import com.makersacademy.javabuy.model.Review;
 import com.makersacademy.javabuy.model.User;
+import com.makersacademy.javabuy.repository.FavouriteItemsRepository;
 import com.makersacademy.javabuy.repository.ProductsRepository;
 import com.makersacademy.javabuy.repository.ReviewsRepository;
 import com.makersacademy.javabuy.repository.UserRepository;
@@ -36,6 +39,9 @@ public class ProductsController {
 
     @Autowired
     private ProductsService service;
+
+    @Autowired
+    private FavouriteItemsRepository favouriteItemsRepository;
 
     @GetMapping("/products")
     public String index(Model model) {
@@ -61,6 +67,7 @@ public class ProductsController {
         String username = principal.getName();
         User user = userRepository.findByUsername(username);
         return user;
+        
     }
 
     @PostMapping("/products")
@@ -103,4 +110,19 @@ public class ProductsController {
       return new RedirectView(String.format("/products/%o",id));
     }
 
-}
+    @PostMapping("favourites/{id}/{userId}")
+    public RedirectView addToFavourites(@PathVariable Long id, @PathVariable Long userId, @ModelAttribute FavouriteItems favouriteItems, Model model) {
+      Optional<Product> product = repository.findById(id);
+      Optional<User> user = userRepository.findById(userId);
+      model.addAttribute("favouriteItems", new FavouriteItems());
+    favouriteItems.setUser(user.get());
+    favouriteItems.setProduct(product.get());
+    favouriteItems.setFavourite();
+    favouriteItemsRepository.save(favouriteItems);
+    return new RedirectView(String.format("/products/"));
+    }
+    
+    
+    }
+
+

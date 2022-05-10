@@ -29,7 +29,7 @@
   <img th:src="${product.photo}" />
 
   <div th:if="${user != product.user}">
-    <form action="#" th:action="@{/messages/{sellerid}/{enquirerid} (sellerid=${product.user.id}, enquirerid=${user.id})}" th:object="${message}" method="post">
+    <form action="#" th:action="@{/messages/{sellerid}/{enquirerid}?productid=__${product.id}__ (sellerid=${product.user.id}, enquirerid=${user.id})}" th:object="${message}" method="post">
       <p>Contact the seller: <input type="text" th:field="*{content}" />
         <input type="submit" value="Submit" /> <input type="reset" value="Reset" />
       </p>

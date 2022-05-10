@@ -102,5 +102,4 @@ public class ProductsController {
     //   review = new Review();
       return new RedirectView(String.format("/products/%o",id));
     }
-
 }

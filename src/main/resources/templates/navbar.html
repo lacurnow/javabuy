@@ -20,6 +20,10 @@
 
               </ul>
               <ul>
+                <li sec:authorize="isAuthenticated()">
+                    <a class ="navbar right" th:href="@{/shoppingCart}">Shopping Cart</a>
+                </li>
+                
                 <a class="navbar right" th:href="@{/logout}">Logout</a> 
 
                 <a class="navbar right" th:href="@{/users}">Log in</a>

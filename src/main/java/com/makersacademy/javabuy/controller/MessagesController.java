@@ -38,6 +38,7 @@ public class MessagesController {
     Iterable<Message> sentEnquiries = messagesRepository.findByEnquirerGroupByEnquirerAndProduct(user);
     model.addAttribute("receivedEnquiries", receivedEnquiries);
     model.addAttribute("sentEnquiries", sentEnquiries);
+    model.addAttribute("user", user);
     return "messages/index";
   }
 

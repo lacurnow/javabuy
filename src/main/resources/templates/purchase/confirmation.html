@@ -18,8 +18,10 @@
 
     <h1>Purchase confirmation</h1>
 
-    <p>Thanks for your order of</p>
-    <p th:text="${product.name}"/>
+    <p>Thanks for your order! Your payment has been successful!</p>
+    <a th:href="@{/refresh}">
+      <button type="button">Make a new purchase</button>
+    </a>
 
   </body>
 </html>

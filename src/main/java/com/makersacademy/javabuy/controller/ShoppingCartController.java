@@ -51,7 +51,12 @@ public ModelAndView checkOut() {
     ModelAndView modelAndView = new ModelAndView("/payment/index");
     modelAndView.addObject("products", shoppingCartService.getProductsInCart());
     modelAndView.addObject("total", shoppingCartService.getTotal().toString());
-    // shoppingCartService.checkout();
     return modelAndView;
+  }
+
+  @GetMapping("/refresh")
+  public String refreshCart() {
+    shoppingCartService.checkout();
+    return "/continueShopping";
   }
 }

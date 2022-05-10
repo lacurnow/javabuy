@@ -69,3 +69,10 @@ h1 {
       background-color: rgba(34, 32, 32, 0.518);
     }
 }
+
+#basket {
+    height: 20px;
+    width: auto;  
+    object-fit: contain;
+    float: right;
+}

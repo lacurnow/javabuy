@@ -22,6 +22,14 @@
     Signed in as <span sec:authentication="name"></span>
   </div>
 
+  <div th:if="${user != signedInUser}">
+    <form action="#" th:action="@{/messages/{sellerid}/{enquirerid} (sellerid=${user.id}, enquirerid=${signedInUser.id})}"
+      th:object="${message}" method="post">
+      <p>Contact this user: <input type="text" th:field="*{content}" />
+        <input type="submit" value="Submit" /> <input type="reset" value="Reset" />
+      </p>
+    </form>
+  </div>
   <h2 th:inline="text">[[${user.username}]]'s products</h2>
   <div th:if="${user.products.iterator().hasNext()}">
     <ul th:each="product: ${user.products}">

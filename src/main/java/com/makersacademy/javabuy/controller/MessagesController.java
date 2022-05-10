@@ -57,18 +57,34 @@ public class MessagesController {
       return "messages/thread";
   }
 
-  @PostMapping("/messages/{productid}/{enquirerid}")
-  public RedirectView sendMessage(@PathVariable ("productid") Long productid, @PathVariable ("enquirerid") Long enquirerid, @ModelAttribute Message message, Principal principal) {
-    Product product = productsRepository.findById(productid).get();
+  @PostMapping("/messages/{sellerid}/{enquirerid}")
+  public RedirectView sendMessage(@PathVariable ("sellerid") Long sellerid, @PathVariable ("enquirerid") Long enquirerid, @ModelAttribute Message message, Principal principal) {
+    // Product product = productsRepository.findById(productid).get();
     User enquirer = userRepository.findById(enquirerid).get();
-    message.setProduct(product);
-    message.setSeller(product.getUser());
+    User seller = userRepository.findById(sellerid).get();
+    // message.setProduct(product);
+    message.setSeller(seller);
     message.setEnquirer(enquirer);
     message.setSender(getUser(principal));
     message.generateTimestamp();
     if (message.getContent() != "") {
       messagesRepository.save(message);
     }
-    return new RedirectView("/messages/{productid}/{enquirerid}");
+    return new RedirectView("/messages");
   }
+
+  // @PostMapping("/messages/{sellerid}/{enquirerid}")
+  // public RedirectView sendNewMessage(@PathVariable("sellerid") Long sellerid,
+  //     @PathVariable("enquirerid") Long enquirerid, @ModelAttribute Message message, Principal principal) {
+  //   User seller = userRepository.findById(sellerid).get();
+  //   User enquirer = userRepository.findById(enquirerid).get();
+  //   message.setSeller(seller);
+  //   message.setEnquirer(enquirer);
+  //   message.setSender(getUser(principal));
+  //   message.generateTimestamp();
+  //   if (message.getContent() != "") {
+  //     messagesRepository.save(message);
+  //   }
+  //   return new RedirectView("/messages");
+  // }
 }

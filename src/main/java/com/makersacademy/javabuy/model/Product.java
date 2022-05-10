@@ -47,6 +47,10 @@ public class Product {
     @OneToMany(mappedBy="product", fetch = FetchType.LAZY)
     private List<Review> reviews;
 
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="buyer_id")
+    private User buyer;
+
     public List<Review> getReviews() {
         return reviews;
 
@@ -57,12 +61,13 @@ public class Product {
     
     public Product() {}
 
-    public Product(String name, BigDecimal price, String description, String photo, Boolean sold) {
+    public Product(String name, BigDecimal price, String description, String photo, Boolean sold, User buyer) {
         this.name = name;
         this.price = price;
         this.description = description;
         this.photo = photo;
         this.sold = sold;
+        this.buyer = buyer;
     }
     
     public Long getId() { return this.id; }
@@ -87,6 +92,9 @@ public class Product {
     public User getUser() { return this.user; }
     public void setUser(User user) { this.user = user; }
 
+    public User getBuyer() { return this.buyer; }
+    public void setBuyer(User buyer) { this.buyer = buyer; }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -99,4 +107,5 @@ public class Product {
     public int hashCode() {
         return id.hashCode();
     }
+
 }

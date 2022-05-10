@@ -25,6 +25,7 @@
       <li th:text="${product.price}" />
       <li th:text="${product.description}" />
       <img th:src="${product.photo}" />
+      Purchased by <a th:text="${product.buyer.username}" />
       </ul>
 
   </body>

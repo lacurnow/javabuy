@@ -41,15 +41,17 @@ public class MessagesController {
     return "messages/index";
   }
 
-  @GetMapping("/messages/{productid}/{enquirerid}")
-  public String viewMessages(@PathVariable ("productid") Long productid, @PathVariable ("enquirerid") Long enquirerid, Model model, Principal principal) {
+  @GetMapping("/messages/{sellerid}/{enquirerid}")
+  public String viewMessages(@PathVariable ("sellerid") Long sellerid, @PathVariable ("enquirerid") Long enquirerid, @RequestParam(required = false) Long productid, Model model, Principal principal) {
     Product product = productsRepository.findById(productid).get();
     User user = getUser(principal);
+    User seller = userRepository.findById(sellerid).get();
     User enquirer = userRepository.findById(enquirerid).get();
     Iterable<Message> messages = messagesRepository.findMessagesByProductAndEnquirer(product, enquirer);
       model.addAttribute("user", user);
       model.addAttribute("messages", messages);
       model.addAttribute("product", product);
+      model.addAttribute("seller", seller);
       model.addAttribute("enquirer", enquirer);
       model.addAttribute("message", new Message());
       return "messages/thread";

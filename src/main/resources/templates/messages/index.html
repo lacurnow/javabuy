@@ -33,7 +33,7 @@
         <tr>
           <td th:text="${message.enquirer.username}"></td>
           <td>
-            <a th:href="@{/messages/{productid}/{enquirerid} (productid=${message.product.id}, enquirerid=${message.enquirer.id})}">
+            <a th:href="@{/messages/{sellerid}/{enquirerid}?productid=__${message.product.id}__ (sellerid=${message.seller.id}, enquirerid=${message.enquirer.id})}">
               <div th:text="${message.product.name}"></div>
             </a>
           </td>
@@ -55,7 +55,7 @@
         <tr>
           <td th:text="${message.seller.username}"></td>
           <td>
-            <a th:href="@{/messages/{productid}/{enquirerid} (productid=${message.product.id}, enquirerid=${message.enquirer.id})}">
+            <a th:href="@{/messages/{sellerid}/{enquirerid}?productid=__${message.product.id}__ (sellerid=${message.seller.id}, enquirerid=${message.enquirer.id})}">
               <div th:text="${message.product.name}"></div>
             </a>
           </td>

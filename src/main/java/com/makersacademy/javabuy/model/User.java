@@ -31,6 +31,10 @@ public class User {
   joinColumns = @JoinColumn(name = "user_id"), 
   inverseJoinColumns = @JoinColumn(name = "product_id"))
     Set<Product> favouriteProducts;
+    public Set<Product> getProduct() {
+        return favouriteProducts;
+      }
+
     private String username;
     private String password;
     private boolean enabled;
@@ -42,8 +46,14 @@ public class User {
         return products;
     }
 
+    @OneToMany(mappedBy = "user")
+    Set<FavouriteItems> items;
+
     @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
     private List<Review> reviews;
+
+    @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
+    private List<Product> boughtProducts;
 
     public List<Review> getReviews() {
         return reviews;

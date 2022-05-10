@@ -14,19 +14,12 @@
 
     <div th:insert="navbar :: navbar">  </div>
 
-    <h1>My Sold Items</h1><div class="authorization" sec:authorize="isAuthenticated()">
+    <h1>Submission Confirmation</h1><div class="authorization" sec:authorize="isAuthenticated()">
         Signed in as <span sec:authentication="name"></span>
     </div>
 
-    <a th:href="@{/account}">Back to Account Details</a>
-
-      <ul th:each="product: ${soldProducts}">
-      <li th:text="${product.name}" />
-      <li th:text="${product.price}" />
-      <li th:text="${product.description}" />
-      <img th:src="${product.photo}" />
-      Purchased by <a th:text="${product.buyer.username}" />
-      </ul>
-
-  </body>
-  </html>
+    <div class=confirmation>
+      <p>Thank you for your message.</p>
+      <p>Someone from our customer service team will get back to you soon.</p>
+    </div>
+</body>

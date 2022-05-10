@@ -80,7 +80,7 @@
       </tr>
       <div th:each="message: ${sentEnquiries}">
         <tr>
-          <td th:text="${message.enquirer.username}"></td>
+          <td th:text="${message.seller.username}"></td>
           <td>
             <div th:unless="${message.product == null}">
               <div th:text="${message.product.name}"></div>

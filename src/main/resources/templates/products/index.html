@@ -30,11 +30,14 @@
         <!-- <li th:text="${product.sold}" /> -->
         <form action="#" th:action="@{/purchase/{id} (id=${product.getId()})}" th:object="${product}" method="get">
             <input type="submit" value="PURCHASE!"/>
-
-           <!-- <form action="#" th:action="@{/favourites/{id} (id=${product.getId()})}" th:object="${product}" method="get">
-                <input type="submit" value="PURCHASE!"/> -->
-
         </form>
+
+            <form action="#" th:action="@{/favourites/{id}/{userId}(id=${product.id}, userId=${product.user.id})}" th:object="${favouriteItems}" method="post">
+                <input type="submit" value="Add to favourites"/> 
+                </form>
+                
+
+        
     </ul>
     </body>
 </html>

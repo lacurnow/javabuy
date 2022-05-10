@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+  <html xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5" >
+  <head lang="en">
+      <meta charset="UTF-8"/>
+      <title>JAVABUY</title>
+      <link rel="stylesheet" href="/main.css" />
+  </head>
+
+  <header>
+    <a href="/">
+    </a>
+    <h1>JavaBuy</h1>
+  </header>
+  
+  <div th:insert="navbar :: navbar">  </div>
+
+  <body>
+    <div class="container">
+
+      <h1>
+        <p>SHOPPING CART</p>
+      </h1>
+      <p>Signed in as:</p>
+        <span sec:authentication="name"></span>
+      </p>
+
+      <div th:each="product : ${products.entrySet()}">
+          <div>
+              <h2 th:text="${product.getKey().name}"></h2>
+          </div>
+          <div>
+              <div th:inline="text">Price: £[[${product.getKey().price}]] </div>
+              <div th:inline="text">Quantity: [[${product.getValue()}]] </div>
+              <a th:href="@{'/shoppingCart/removeProduct/{id}'(id=${product.getKey().id})}">
+                  <button type="button" th:text="Remove">Remove</button>
+              </a>
+          </div>
+          <br></br>
+      </div>
+
+      <div>
+          <h2 th:inline="text">Total: £[[${total}]]</h2>
+          <a th:href="@{'/shoppingCart/checkout'}">
+              <button type="button" th:text="Checkout">Checkout</button>
+          </a>
+      </div>
+      <a th:href="@{/products}">
+        <button type="button">Continue Shopping</button>
+      </a>
+
+    </div>
+  </body>

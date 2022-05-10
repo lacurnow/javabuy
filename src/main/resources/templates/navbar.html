@@ -17,9 +17,14 @@
                   <a class="navbar" th:href="@{/products}">Buy</a>
                   <a class="navbar" th:href="@{/addproducts}">Sell</a>
                   <a class="navbar" th:href="@{/products/search}">Find items</a>
+                  <a class="navbar" th:href="@{/favourites}">My Favourites</a>
 
               </ul>
               <ul>
+                <li sec:authorize="isAuthenticated()">
+                    <a class ="navbar right" th:href="@{/shoppingCart}">Shopping Cart</a>
+                </li>
+                
                 <a class="navbar right" th:href="@{/logout}">Logout</a> 
 
                 <a class="navbar right" th:href="@{/users}">Log in</a>

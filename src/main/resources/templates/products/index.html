@@ -22,14 +22,18 @@
     </div>
 
     <ul th:each="product: ${products}">
-        <a th:text="${product.user.username}" ></a>
-        <li th:text="${product.name}" />
+        <a th:href="@{/users/{id}(id=${product.user.id})}"><div th:text="${product.user.username}" ></div></a>
+        <a th:href="@{/products/{id}(id=${product.id})}"><li th:text="${product.name}" /></a>
         <li th:text="${product.price}" />
         <li th:text="${product.description}" />
         <img th:src="${product.photo}" />
         <!-- <li th:text="${product.sold}" /> -->
-        <form action="#" th:action="@{/purchase/{id} (id=${product.id})}" th:object="${product}" method="get">
+        <form action="#" th:action="@{/purchase/{id} (id=${product.getId()})}" th:object="${product}" method="get">
             <input type="submit" value="PURCHASE!"/>
+
+           <!-- <form action="#" th:action="@{/favourites/{id} (id=${product.getId()})}" th:object="${product}" method="get">
+                <input type="submit" value="PURCHASE!"/> -->
+
         </form>
     </ul>
     </body>

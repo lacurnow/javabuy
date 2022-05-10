@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+    <html xmlns:th="http://www.thymeleaf.org"
+          xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5" >
+    <head lang="en">
+        <meta charset="UTF-8"/>
+        <title>JAVABUY</title>
+        <link rel="stylesheet" href="/main.css" />
+    </head>
+
+    <div th:insert="navbar :: navbar">  </div>
+
+    <form th:action="@{/products/search}">
+        Search items: <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
+        &nbsp;
+        <input type="submit" value="Search" />
+        &nbsp;
+        <input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
+    </form>
+   
+    <table>
+        <tr>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Description</th>
+        </tr>
+    <tr th:each="product : ${listProducts}">
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.price}"></td>
+        <td th:text="${product.description}"></td>
+        </tr>
+        <table>
+
+ <script type="text/javascript">
+        function clearSearch() {
+            window.location = "[[@{/products/search}]]";
+        }
+    </script>
+
+
+    <body>

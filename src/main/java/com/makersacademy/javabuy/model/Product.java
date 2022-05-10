@@ -5,13 +5,22 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.GenerationType;
 import static java.lang.Boolean.TRUE;
-import static java.lang.Boolean.FALSE;
 
 import java.math.BigDecimal;
+
+import static java.lang.Boolean.FALSE;
+
+
+import java.util.Set;
+
+import java.util.List;
+
 
 import lombok.Data;
 
@@ -23,6 +32,8 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @ManyToMany(mappedBy = "favouriteProducts")
+    Set<User> favourites;
     private String name;
     private BigDecimal price;
     private String description;
@@ -33,6 +44,13 @@ public class Product {
     @JoinColumn(name="seller_id")
     private User user;
 
+    @OneToMany(mappedBy="product", fetch = FetchType.LAZY)
+    private List<Review> reviews;
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+    
     public Product() {}
 
     public Product(String name, BigDecimal price, String description, String photo, Boolean sold) {
@@ -57,8 +75,10 @@ public class Product {
     public String getPhoto() { return this.photo; }
     public void setPhoto(String photo) { this.photo = photo; }
 
-    public Boolean getIsSold(Boolean sold) { return this.sold; }
-    public void setIsSold(Boolean sold) { this.sold = sold; }
+
+    public void setAsSold() { this.sold = TRUE; }
+    public Boolean getSold() { return this.sold; }
+
 
     public User getUser() { return this.user; }
     public void setUser(User user) { this.user = user; }

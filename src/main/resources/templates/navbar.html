@@ -16,6 +16,8 @@
               <ul class="nav navbar-nav">
                   <a class="navbar" th:href="@{/products}">Buy</a>
                   <a class="navbar" th:href="@{/addproducts}">Sell</a>
+                  <a class="navbar" th:href="@{/products/search}">Find items</a>
+
               </ul>
               <ul>
                 <li sec:authorize="isAuthenticated()">
@@ -31,6 +33,8 @@
                 <a class="navbar right" th:href="@{/contact_page}">Contact us!</a> 
 
                 <a class="navbar right" th:href="@{/account}">Account</a>
+
+                <a class="navbar right" th:href="@{/messages}">Messages</a>
                   
               </ul>
           </div>    

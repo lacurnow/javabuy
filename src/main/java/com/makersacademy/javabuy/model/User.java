@@ -46,7 +46,7 @@ public class User {
     private List<Review> reviews;
 
     @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
-    private Product product;
+    private List<Product> boughtProducts;
 
     public List<Review> getReviews() {
         return reviews;

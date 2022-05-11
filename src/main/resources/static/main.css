@@ -157,6 +157,7 @@ tr:hover {background-color: rgb(235, 210, 247);}
     float: right;
     font-family: 'Monaco', cursive;
     font-size: 15px;
+    padding: 0px 20px 60px 0px;
 }
 
 .accountoptions {
@@ -179,3 +180,4 @@ tr:hover {background-color: rgb(235, 210, 247);}
     cursor: pointer;
     margin-top: 50px;
 }
+

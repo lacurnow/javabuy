@@ -158,3 +158,24 @@ tr:hover {background-color: rgb(235, 210, 247);}
     font-family: 'Monaco', cursive;
     font-size: 15px;
 }
+
+.accountoptions {
+    width: 150px; 
+    float:left; 
+    padding: 20px;
+    text-align: center; 
+    background: #a1ecb2; 
+    margin:10px;
+    font-family: 'Monaco', cursive;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 0 10px 0 rgb(203, 240, 240);
+    display: flex;
+    border: 5px;
+    border-radius: 10px;
+    background-color: #d9eeea;
+    overflow-wrap: break-word;
+    justify-content: center;
+    cursor: pointer;
+    margin-top: 50px;
+}

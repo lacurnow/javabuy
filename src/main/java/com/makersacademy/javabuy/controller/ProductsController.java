@@ -120,7 +120,7 @@ public class ProductsController {
     favouriteItems.setProduct(product.get());
     favouriteItems.setFavourite();
     favouriteItemsRepository.save(favouriteItems);
-    return new RedirectView(String.format("/products/"));
+    return new RedirectView(String.format("/products"));
     }
     
     

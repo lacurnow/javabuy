@@ -3,6 +3,7 @@ package com.makersacademy.javabuy.controller;
 import java.security.Principal;
 
 import com.makersacademy.javabuy.model.Authority;
+import com.makersacademy.javabuy.model.Message;
 import com.makersacademy.javabuy.model.Product;
 import com.makersacademy.javabuy.model.User;
 import com.makersacademy.javabuy.model.UserReview;
@@ -96,6 +97,7 @@ public class UsersController {
         model.addAttribute("averageUserRating", averageUserRating);
         model.addAttribute("userReviews", userReviews);
         model.addAttribute("userReview", new UserReview());
+        model.addAttribute("message", new Message());
         return "users/user";
     }
 

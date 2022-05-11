@@ -84,20 +84,20 @@ h1 {
     border-radius: 10px;
     background-color: #d9eeea;
     margin: 10px;
-    padding: 20px;
+    padding: 10px;
     overflow-wrap: break-word;
-    width: 170px;
+    width: 250px;
     justify-content: center;
 }
 
 .flex-container {
     display: flex;
-    flex-direction: row;
-    min-height: 100vh;
+    flex-wrap: wrap;
+    justify-content: left;
 }
 
 .prodimg {
-    width: 150px;
+    width: 220px;
     height: auto;
     border-radius: 10px;
 }
@@ -109,7 +109,6 @@ header {
 
 body {
     display: inline;
-    margin: 50px;
 }
 
 .contact-form {

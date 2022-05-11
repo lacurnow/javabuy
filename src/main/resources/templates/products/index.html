@@ -7,30 +7,39 @@
         <link rel="stylesheet" href="/main.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
+
     <header>
         <a href="/">
         </a>
-        <h1>JavaBuy</h1>
+        <h1 class="javabuy">JavaBuy</h1>
+
+        <div th:insert="navbar :: navbar">  </div>
     </header>
 
-    <div th:insert="navbar :: navbar">  </div>
-
     <body>
-    <h1>PRODUCTS</h1>
 
-    <div sec:authorize="isAuthenticated()">
+    <h1>PRODUCTS</h1>
+    <br>
+
+    <div class="authorization" sec:authorize="isAuthenticated()">
         Signed in as <span sec:authentication="name"></span>
     </div>
+    <br>
+    <br>
 
-    <ul th:each="product: ${products}">
-        <a th:href="@{/users/{id}(id=${product.user.id})}"><div th:text="${product.user.username}" ></div></a>
-        <a th:href="@{/products/{id}(id=${product.id})}"><li th:text="${product.name}" /></a>
-        <li th:text="${product.price}" />
-        <li th:text="${product.description}" />
-        <img th:src="${product.photo}" />
+    <div class="flex-container">
+    <ul class="product" th:each="product: ${products}">
+        <a th:href="@{/products/{id}(id=${product.id})}"><p th:text="${product.name}"></p>
+        <img class="prodimg" th:src="${product.photo}" />
+        
+        <br>
+        <div th:inline="text">£[[${product.price}]]</div>
+        <br>
+
         <form action="#" th:action="@{/purchase/{id} (id=${product.getId()})}" th:object="${product}" method="get">
-            <input type="submit" value="PURCHASE!"/>
+            <input class="btn" type="submit" value="PURCHASE!"/>
         </form>
+
 
             <form action="#" th:action="@{/favourites/{id} (id=${product.getId()})}" th:object="${favouriteItems}" method="post">
                 <input type="submit" onclick="myFunction()" value="Add to favourites" /> 
@@ -51,6 +60,8 @@
                     }
                     </script>
         
+
     </ul>
+    </div>
     </body>
 </html>

@@ -1,34 +1,50 @@
 <!DOCTYPE html>
-    <html xmlns:th="http://www.thymeleaf.org"
-          xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5" >
-    <head lang="en">
-        <meta charset="UTF-8"/>
-        <title>JAVABUY</title>
-        <link rel="stylesheet" href="/main.css" />
-    </head>
+  <html xmlns:th="http://www.thymeleaf.org" 
+  xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head lang="en">
+  <meta charset="UTF-8" />
+  <title>JAVABUY</title>
+  <link rel="stylesheet" href="/main.css" />
+</head>
 
-    <div th:insert="navbar :: navbar">  </div>
+<header>
+  <a href="/">
+  </a>
+  <h1 class="javabuy">JavaBuy</h1>
 
+  <div th:insert="navbar :: navbar">  </div>
+</header>
+
+<body>
+
+  <h1>Search for a Product</h1>
+
+  <div class="authorization" sec:authorize="isAuthenticated()">
+    Signed in as <span sec:authentication="name"></span>
+</div>
+
+    <div class="search">
     <form th:action="@{/products/search}">
         Search items: <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
         &nbsp;
-        <input type="submit" value="Search" />
+        <input class="btn" type="submit" value="Search" />
         &nbsp;
-        <input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
-    </form>
+        <input class="btn" type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
+    </form></div>
    
-    <table>
+   <p><div class="table"> <table>
         <tr>
           <th>Name</th>
           <th>Price</th>
           <th>Description</th>
         </tr>
     <tr th:each="product : ${listProducts}">
-        <td><a th:href="@{/products/{id}(id=${product.id})}"><li th:text="${product.name}" /></a></td>
-        <td th:text="${product.price}"></td>
-        <td th:text="${product.description}"></td>
+        <td><a th:href="@{/products/{id}(id=${product.id})}"><ul th:text="${product.name}" /></a></td>
+        <th th:text="${product.price}"></th>
+        <th th:text="${product.description}"></th>
         </tr>
-        <table>
+        <table></p> 
+    </div>
 
  <script type="text/javascript">
         function clearSearch() {
@@ -36,5 +52,5 @@
         }
     </script>
 
-
-    <body>
+</body>
+</html>

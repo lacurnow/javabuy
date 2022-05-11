@@ -6,13 +6,16 @@
         <title>Sold Items</title>
         <link rel="stylesheet" href="/main.css" />
     </head>
-    <body>
     
     <header>
-        <h1>JavaBuy</h1>
-    </header>
+        <a href="/">
+        </a>
+        <h1 class="javabuy">JavaBuy</h1>
 
     <div th:insert="navbar :: navbar">  </div>
+    </header>
+
+    <body>
 
     <h1>Submission Confirmation</h1><div class="authorization" sec:authorize="isAuthenticated()">
         Signed in as <span sec:authentication="name"></span>
@@ -22,4 +25,5 @@
       <p>Thank you for your message.</p>
       <p>Someone from our customer service team will get back to you soon.</p>
     </div>
-</body>
+    </body>
+</html>

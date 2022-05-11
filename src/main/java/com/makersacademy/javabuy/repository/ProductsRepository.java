@@ -26,6 +26,6 @@ public interface ProductsRepository extends JpaRepository<Product, Long> {
  @Query("SELECT p FROM Product p WHERE p.user = ?1")
  public Iterable<Product> findListedProductsByUser(User user);
 
-  @Query("SELECT p FROM Product p WHERE p.sold = FALSE")
+  @Query("SELECT p FROM Product p WHERE p.sold = FALSE OR p.sold = null")
   public List<Product> findUnsoldProducts();
 }

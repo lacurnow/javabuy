@@ -6,20 +6,21 @@
   <title>JAVABUY</title>
   <link rel="stylesheet" href="/main.css" />
 </head>
+
 <header>
   <a href="/">
   </a>
-  <h1>JavaBuy</h1>
-</header>
+  <h1 class="javabuy">JavaBuy</h1>
 
-<div th:insert="navbar :: navbar"> </div>
+  <div th:insert="navbar :: navbar">  </div>
+</header>
 
 <body>
   <h1>MESSAGES</h1>
 
-  <div sec:authorize="isAuthenticated()">
+  <div class="authorization" sec:authorize="isAuthenticated()">
     Signed in as <span sec:authentication="name"></span>
-  </div>
+</div>
 
   <div th:if="${receivedEnquiries.iterator().hasNext()}">
     <h2>Your received enquiries</h2>
@@ -27,15 +28,41 @@
       <tr>
         <th>From</th>
         <th>Subject</th>
+        <th>Latest message</th>
         <th>Last updated</th>
       </tr>
       <div th:each="message: ${receivedEnquiries}">
         <tr>
           <td th:text="${message.enquirer.username}"></td>
           <td>
-            <a th:href="@{/messages/{productid}/{enquirerid} (productid=${message.product.id}, enquirerid=${message.enquirer.id})}">
-              <div th:text="${message.product.name}"></div>
-            </a>
+            <div th:unless="${message.product == null}">
+                <div th:text="${message.product.name}"></div>
+            </div>
+            <div th:if="${message.product == null}">
+                Enquiry
+            </div>
+          </td>
+          <td>
+            <div th:unless="${message.product == null}">
+              <a th:href="@{/messages/{sellerid}/{enquirerid}?productid=__${message.product.id}__ (sellerid=${message.seller.id}, enquirerid=${message.enquirer.id})}">
+                <div th:if="${message.sender == user}">
+                  <div th:inline="text">You: [[${message.content}]]</div>
+                </div>
+                <div th:unless="${message.sender == user}">
+                  [[${message.sender.username}]]: [[${message.content}]]
+                </div>
+              </a>
+            </div>
+            <div th:if="${message.product == null}">
+              <a th:href="@{/messages/{sellerid}/{enquirerid} (sellerid=${message.seller.id}, enquirerid=${message.enquirer.id})}">
+                <div th:if="${message.sender == user}">
+                  <div th:inline="text">You: [[${message.content}]]</div>
+                </div>
+                <div th:unless="${message.sender == user}">
+                  [[${message.sender.username}]]: [[${message.content}]]
+                </div>
+              </a>
+            </div>
           </td>
           <td th:text="${message.formatTimestamp()}"></td>
         </tr>
@@ -49,15 +76,43 @@
       <tr>
         <th>To</th>
         <th>Subject</th>
+        <th>Latest message</th>
         <th>Last updated</th>
       </tr>
       <div th:each="message: ${sentEnquiries}">
         <tr>
           <td th:text="${message.seller.username}"></td>
           <td>
-            <a th:href="@{/messages/{productid}/{enquirerid} (productid=${message.product.id}, enquirerid=${message.enquirer.id})}">
+            <div th:unless="${message.product == null}">
               <div th:text="${message.product.name}"></div>
-            </a>
+            </div>
+            <div th:if="${message.product == null}">
+              Enquiry
+            </div>
+          </td>
+          <td>
+            <div th:unless="${message.product == null}">
+              <a
+                th:href="@{/messages/{sellerid}/{enquirerid}?productid=__${message.product.id}__ (sellerid=${message.seller.id}, enquirerid=${message.enquirer.id})}">
+                <div th:if="${message.sender == user}">
+                  <div th:inline="text">You: [[${message.content}]]</div>
+                </div>
+                <div th:unless="${message.sender == user}">
+                  [[${message.sender.username}]]: [[${message.content}]]
+                </div>
+              </a>
+            </div>
+            <div th:if="${message.product == null}">
+              <a
+                th:href="@{/messages/{sellerid}/{enquirerid} (sellerid=${message.seller.id}, enquirerid=${message.enquirer.id})}">
+                <div th:if="${message.sender == user}">
+                  <div th:inline="text">You: [[${message.content}]]</div>
+                </div>
+                <div th:unless="${message.sender == user}">
+                  [[${message.sender.username}]]: [[${message.content}]]
+                </div>
+              </a>
+            </div>
           </td>
           <td th:text="${message.formatTimestamp()}"></td>
         </tr>

@@ -6,15 +6,16 @@
         <title>Signup</title>
         <link rel="stylesheet" href="/main.css" />
     </head>
-    <body>
     
     <header>
         <a href="/">
         </a>
-        <h1>JavaBuy</h1>
+        <h1 class="javabuy">JavaBuy</h1>
+    
+        <div th:insert="navbar :: navbar">  </div>
     </header>
 
-    <div th:insert="navbar :: navbar">  </div>
+    <body>
 
         <form action="#" th:action="@{/users}" th:object="${user}" method="post">
             <p>Username: <input type="text" th:field="*{username}" /></p>

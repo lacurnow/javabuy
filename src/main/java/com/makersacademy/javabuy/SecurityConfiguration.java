@@ -30,6 +30,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/addproducts").hasRole("USER")
                 .antMatchers("/products/search").hasRole("USER")
                 .antMatchers("/account").hasRole("USER")
+                .antMatchers("/messages").hasRole("USER")
+                .antMatchers("/favourites").hasRole("USER")
+                .antMatchers("/contact_page").hasRole("USER")
                 .antMatchers("/users").permitAll()
                 .and().formLogin();
     }

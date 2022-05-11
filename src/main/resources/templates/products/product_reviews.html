@@ -6,18 +6,19 @@
         <title>JAVABUY</title>
         <link rel="stylesheet" href="/main.css" />
     </head>
+
     <header>
         <a href="/">
         </a>
-        <h1>JavaBuy</h1>
-    </header>
+        <h1 class="javabuy">JavaBuy</h1>
 
-    <div th:insert="navbar :: navbar">  </div>
+        <div th:insert="navbar :: navbar">  </div>
+    </header>
 
     <body>
     <h1>Product Reviews</h1>
 
-    <div sec:authorize="isAuthenticated()">
+    <div class="authorization" sec:authorize="isAuthenticated()">
         Signed in as <span sec:authentication="name"></span>
     </div>
   

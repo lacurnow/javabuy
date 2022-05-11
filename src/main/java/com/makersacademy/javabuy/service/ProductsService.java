@@ -33,7 +33,7 @@ public class ProductsService {
      
     public List<Product> listAll(String keyword) {
         if (keyword != null) {
-            return repo.searchIgnoreCase(keyword);
+            return repo.findBykeywordIgnoreCase(keyword);
         }
         return repo.findUnsoldProducts();
     }

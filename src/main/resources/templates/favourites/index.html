@@ -29,7 +29,7 @@
         <img class="prodimg" th:src="${favourite.product.photo}" />
 
         <br>
-        <div th:inline="text">£[[${favourite.product.price}]]</div></a>
+        <div th:inline="text">£[[${favourite.product.price}]]</div>
         <br>
 
         <form action="#" th:action="@{/favourites/remove/{id} (id=${favourite.product.id})}" method="post">

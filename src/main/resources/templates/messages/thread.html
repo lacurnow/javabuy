@@ -24,27 +24,40 @@
   </div>
   <a th:href="@{/messages}">Back to Messages</a>
 
-  <div th:if="${user == enquirer || user == product.user}">
+  <div th:if="${user == enquirer || user == seller}">
     <div th:if="${user == enquirer}">
-      <h2>To: <a th:href="@{/users/{id}(id=${product.user.id})}">[[${product.user.username}]]</a></h2>
+      <h2>To: <a th:href="@{/users/{id}(id=${seller.id})}">[[${seller.username}]]</a></h2>
     </div>
-    <div th:if="${user == product.user}">
+    <div th:if="${user == seller}">
       <h2>To: <a th:href="@{/users/{id}(id=${enquirer.id})}">[[${enquirer.username}]]</a></h2>
     </div>
-    <h2>Subject: <a th:href="@{/products/{id} (id=${product.id})}">[[${product.name}]]</a></h2>
+    <div th:unless="${product == null}">
+      <h2>Subject: <a th:href="@{/products/{id} (id=${product.id})}">[[${product.name}]]</a></h2>
+    </div>
     <div th:each="message: ${messages}">
       <ul>
         <li th:inline="text">[[${message.sender.username}]] on [[${message.formatTimestamp()}]]:</li>
         <blockquote th:text="${message.content}"></blockquote>
       </ul>
     </div>
-    <form action="#" th:action="@{/messages/{productid}/{enquirerid} (productid=${product.id}, enquirerid=${enquirer.id})}" th:object="${message}" method="post">
-      <p>Send a reply: <input type="text" th:field="*{content}" />
-        <input type="submit" value="Submit" /> <input type="reset" value="Reset" />
-      </p>
-    </form>
+    <div th:unless="${product == null}">
+      <form action="#" th:action="@{/messages/{sellerid}/{enquirerid}?productid=__${product.id}__ (sellerid=${seller.id}, enquirerid=${enquirer.id})}"
+        th:object="${message}" method="post">
+        <p>Send a reply: <input type="text" th:field="*{content}" />
+          <input type="submit" value="Submit" /> <input type="reset" value="Reset" />
+        </p>
+      </form>
+    </div>
+    <div th:if="${product == null}">
+      <form action="#" th:action="@{/messages/{sellerid}/{enquirerid} (sellerid=${seller.id}, enquirerid=${enquirer.id})}"
+        th:object="${message}" method="post">
+        <p>Send a reply: <input type="text" th:field="*{content}" />
+          <input type="submit" value="Submit" /> <input type="reset" value="Reset" />
+        </p>
+      </form>
+    </div>
   </div>
-  <div th:unless="${user == enquirer || user == product.user}">
+  <div th:unless="${user == enquirer || user == seller}">
     Nothing found.
   </div>
 

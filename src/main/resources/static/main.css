@@ -140,6 +140,8 @@ body {
     color: black;
     margin-top: 50px;
     padding: 20px;
+    font-size: 20px;
+    column-gap: 40px;
 }
 
 .search {
@@ -149,3 +151,5 @@ body {
     transform: translate(-50%, -50%);
     position: absolute;
 }
+
+tr:hover {background-color: rgb(235, 210, 247);}

@@ -111,18 +111,18 @@ public class ProductsController {
     }
 
 
-    @PostMapping("favourites/{id}/{userId}")
-    public RedirectView addToFavourites(@PathVariable Long id, @PathVariable Long userId, @ModelAttribute FavouriteItems favouriteItems, Model model) {
+    @PostMapping("favourites/{id}")
+    public RedirectView addToFavourites(@PathVariable ("id") Long id, @ModelAttribute FavouriteItems favouriteItems, Model model, Principal principal) {
       Optional<Product> product = repository.findById(id);
-      Optional<User> user = userRepository.findById(userId);
-      model.addAttribute("favouriteItems", new FavouriteItems());
-    favouriteItems.setUser(user.get());
+      User loggedinUser = getLoggedInUser(principal, userRepository);
+      Long userId = loggedinUser.getId();
+      Optional<User> person = userRepository.findById(userId);
+    favouriteItems.setUser(person.get());
     favouriteItems.setProduct(product.get());
     favouriteItems.setFavourite();
     favouriteItemsRepository.save(favouriteItems);
     return new RedirectView(String.format("/products/"));
     }
-    
     
     }
 

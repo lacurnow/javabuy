@@ -24,17 +24,23 @@
               <ul>
                 <a sec:authorize="isAuthenticated()" class ="navbar right" th:href="@{/shoppingCart}"><img src="/basket.png" id="basket"/></a>
                 
-                <a class="navbar right" th:href="@{/logout}">Logout</a> 
+                <div sec:authorize="isAuthenticated()">
+                    <a class="navbar right" th:href="@{/logout}">Logout</a> 
+                </div>
 
-                <a class="navbar right" th:href="@{/users}">Log in</a>
+                <div sec:authorize="!isAuthenticated()">
+                    <a class="navbar right" th:href="@{/users}">Log in</a>
+        
+                    <a class="navbar right" th:href="@{/users/new}">Sign up</a>
+                </div>
 
-                <a class="navbar right" th:href="@{/users/new}">Sign up</a>
-      
-                <a class="navbar right" th:href="@{/contact_page}">Contact us!</a> 
+                <div sec:authorize="isAuthenticated()">
+                    <a class="navbar right" th:href="@{/contact_page}">Contact us!</a> 
 
-                <a class="navbar right" th:href="@{/account}">Account</a>
+                    <a class="navbar right" th:href="@{/account}">Account</a>
 
-                <a class="navbar right" th:href="@{/messages}">Messages</a>
+                    <a class="navbar right" th:href="@{/messages}">Messages</a>
+                </div>
                   
               </ul>
           </div>    

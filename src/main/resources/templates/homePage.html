@@ -15,9 +15,21 @@
     <div th:insert="navbar :: navbar">  </div>
     </header>
 
-    <body>
-
-        <h2> Welcome to JavaBuy! </h2>
-
+    <h1> Welcome to JavaBuy! </h1>
+    
+    <h2> Some of our products at a glance...</h2>
+        <table>
+            <tr>
+                <div th:each="product: ${products}">
+                    <td th:inline="text">[[${product.name}]]: £[[${product.price}]]</td>
+                </div>
+            </tr>
+            <tr>
+                <div th:each="product: ${products}">
+                    <td><img th:src="${product.photo}" height="300"/></td>
+                </div>
+            </tr> 
+        </table>
+    <h1><a href="/users">Login</a> or <a href="/users/new">sign up</a> to browse, buy, or sell</h1>
     </body>
 </html>

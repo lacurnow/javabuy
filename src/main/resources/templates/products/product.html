@@ -18,7 +18,7 @@
   <body>
     <h1>Product Detail</h1>
 
-    <div sec:authorize="isAuthenticated()">
+    <div class="authorization" sec:authorize="isAuthenticated()">
       Signed in as <span sec:authentication="name"></span>
     </div>
     <a th:href="@{/products}">Back to Products</a>

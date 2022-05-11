@@ -176,5 +176,5 @@ tr:hover {background-color: rgb(235, 210, 247);}
     background-color: #d9eeea;
     overflow-wrap: break-word;
     justify-content: center;
+    cursor: pointer;
 }
-

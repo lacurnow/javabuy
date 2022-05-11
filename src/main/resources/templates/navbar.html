@@ -22,9 +22,7 @@
 
               </ul>
               <ul>
-                <li sec:authorize="isAuthenticated()">
-                    <a class ="navbar right" th:href="@{/shoppingCart}"><img src="/basket.png" id="basket"/></a>
-                </li>
+                <a sec:authorize="isAuthenticated()" class ="navbar right" th:href="@{/shoppingCart}"><img src="/basket.png" id="basket"/></a>
                 
                 <div sec:authorize="isAuthenticated()">
                     <a class="navbar right" th:href="@{/logout}">Logout</a> 

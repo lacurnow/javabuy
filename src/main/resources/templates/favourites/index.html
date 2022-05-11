@@ -22,20 +22,22 @@
     </div>
     <br>
     <br>
-    <ul th:each="favourite: ${favourites}">
-    <a th:text="${favourite.product.name}" ></a>
-    <a th:text="${favourite.product.price}" ></a>
-    <a th:href="@{/products/{id}(id=${favourite.product.id})}"><li th:text="${favourite.product.name}" /></a>
-    <li th:text="${favourite.product.price}" />
-    <li th:text="${favourite.product.description}" />
-    <img th:src="${favourite.product.photo}" />
-    <form action="#" th:action="@{/favourites/remove/{id} (id=${favourite.product.id})}" method="post">
-        <input type="submit" value="Remove from favourites!"/>
-    </form>
-   
+
+    <div class="flex-container">
+    <ul class="product" th:each="favourite: ${favourites}">
+        <a th:href="@{/products/{id}(id=${favourite.product.id})}"><p th:text="${favourite.product.name}" ></p>
+        <img class="prodimg" th:src="${favourite.product.photo}" />
+
+        <br>
+        <div th:inline="text">£[[${favourite.product.price}]]</div></a>
+        <br>
+
+        <form action="#" th:action="@{/favourites/remove/{id} (id=${favourite.product.id})}" method="post">
+            <input class="btn" type="submit" value="Remove from favourites!"/>
+        </form>
+    <br>
+    <br>
     </ul>
-
-        
-
+    </div>
   </body>
 </html>

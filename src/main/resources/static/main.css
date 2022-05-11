@@ -132,4 +132,5 @@ body {
     font-size: 12px;
     border: none;
     cursor: pointer;
+    overflow-wrap: break-word;
 }

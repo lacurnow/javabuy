@@ -10,14 +10,13 @@
   <header>
     <a href="/">
     </a>
-    <h1>JavaBuy</h1>
+    <h1 class="javabuy">JavaBuy</h1>
+
+    <div th:insert="navbar :: navbar">  </div>
   </header>
-  
-  <div th:insert="navbar :: navbar">  </div>
 
   <body>
-    <div class="container">
-
+    <div>
       <h1>
         <p>SHOPPING CART</p>
       </h1>
@@ -37,17 +36,18 @@
               </a>
           </div>
           <br></br>
-      </div>
 
+      </div>
       <div>
           <h2 th:inline="text">Total: £[[${total}]]</h2>
           <a th:href="@{'/shoppingCart/checkout'}">
               <button type="button" th:text="Checkout">Checkout</button>
           </a>
-      </div>
       <a th:href="@{/products}">
         <button type="button">Continue Shopping</button>
       </a>
+      </div>
 
     </div>
   </body>
+</html>

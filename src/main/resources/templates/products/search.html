@@ -7,7 +7,15 @@
         <link rel="stylesheet" href="/main.css" />
     </head>
 
-    <div th:insert="navbar :: navbar">  </div>
+    <header>
+        <a href="/">
+        </a>
+        <h1 class="javabuy">JavaBuy</h1>
+
+        <div th:insert="navbar :: navbar">  </div>
+    </header>
+        <h1>Search for a product</h1>
+    <br>
 
     <form th:action="@{/products/search}">
         Search items: <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" required />

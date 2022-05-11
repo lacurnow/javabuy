@@ -6,21 +6,23 @@
         <title>Sold Items</title>
         <link rel="stylesheet" href="/main.css" />
     </head>
-    <body>
     
-    <header>
-        <h1>JavaBuy</h1>
+      <header>
+        <a href="/">
+        </a>
+        <h1 class="javabuy">JavaBuy</h1>
+
+      <div th:insert="navbar :: navbar">  </div>
     </header>
 
-    <div th:insert="navbar :: navbar">  </div>
-
+    <body>
     <h1>Contact Us!</h1><div class="authorization" sec:authorize="isAuthenticated()">
         Signed in as <span sec:authentication="name"></span>
     </div>
 
   <div class="contact-form">
     <form action="#" th:action="@{/contact_page}" method="post">
-    <h1 class="form-header">Contact Form</h1>
+    <h2 class="form-header">Contact Form</h2>
     <input type="text" name="fname" class="input-field" placeholder="First Name">
     <p><input type="text" name="lname" class="input-field" placeholder="Last Name"></p>
     <p></p><input type="email" name="email" class="input-field" placeholder="Email"></p>
@@ -28,4 +30,5 @@
     <input type="submit" class="btn" value="Send Message"/>
     </form>
   </div>
-</body>
+  </body>
+</html>

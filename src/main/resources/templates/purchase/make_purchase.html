@@ -15,6 +15,9 @@
   <div th:insert="navbar :: navbar">  </div>
   </header>
   
+  <div class="authorization" sec:authorize="isAuthenticated()">
+    Signed in as <span sec:authentication="name"></span>
+</div>
  
     <h1>YOU ARE LOOKING TO PURCHASE:</h1>
 

@@ -19,9 +19,9 @@
 
   <h1>Product Detail</h1>
 
-  <div sec:authorize="isAuthenticated()">
+  <div class="authorization" sec:authorize="isAuthenticated()">
     Signed in as <span sec:authentication="name"></span>
-  </div>
+</div>
   <a th:href="@{/products}">Back to Products</a>
 
   <a th:href="@{/users/{id}(id=${product.user.id})}"><li th:text="${product.user.username}" /></a>

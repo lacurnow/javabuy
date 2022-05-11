@@ -18,9 +18,9 @@
 <body>
   <h1>MESSAGES</h1>
 
-  <div sec:authorize="isAuthenticated()">
+  <div class="authorization" sec:authorize="isAuthenticated()">
     Signed in as <span sec:authentication="name"></span>
-  </div>
+</div>
 
   <div th:if="${receivedEnquiries.iterator().hasNext()}">
     <h2>Your received enquiries</h2>

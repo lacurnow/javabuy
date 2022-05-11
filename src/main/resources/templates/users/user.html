@@ -19,9 +19,9 @@
 
   <h1 th:text="${user.username}"></h1>
 
-  <div sec:authorize="isAuthenticated()">
+  <div class="authorization" sec:authorize="isAuthenticated()">
     Signed in as <span sec:authentication="name"></span>
-  </div>
+</div>
 
   <div th:if="${user != signedInUser}">
     <form action="#" th:action="@{/messages/{sellerid}/{enquirerid} (sellerid=${user.id}, enquirerid=${signedInUser.id})}"

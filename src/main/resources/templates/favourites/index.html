@@ -3,21 +3,25 @@
           xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5" >
     <head lang="en">
         <meta charset="UTF-8"/>
-        <title>Change Account Details</title>
+        <title>Favourites</title>
         <link rel="stylesheet" href="/main.css" />
     </head>
-    <body>
     
     <header>
-        <h1>JavaBuy</h1>
+        <a href="/">
+        </a>
+        <h1 class="javabuy">JavaBuy</h1>
+    
+        <div th:insert="navbar :: navbar">  </div>
     </header>
 
-    <div th:insert="navbar :: navbar">  </div>
-
+    <body>
+    
     <div sec:authorize="isAuthenticated()">
-        Signed in as <span sec:authentication="name"></span>
+        <h1><span sec:authentication="name"></span>'s Favourites</h1>
     </div>
-
+    <br>
+    <br>
     <ul th:each="favourite: ${favourites}">
     <a th:text="${favourite.product.name}" ></a>
     <a th:text="${favourite.product.price}" ></a>
@@ -34,4 +38,4 @@
         
 
   </body>
-  </html>
+</html>

@@ -3,16 +3,16 @@ html {
 }
 
 .javabuy {
-    background-color: #9d9de1;
+    background-color: #4040d3;
     opacity: 0.8;
-    color: black;
+    color: rgb(255, 255, 255);
+    font-size: 50px;
     padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin: 20px 0px;
-    border-radius: 20px;
+    margin: 0px 0px;
 }
 
 h1 {
@@ -28,18 +28,15 @@ h1 {
 
 .navbar {
     overflow: hidden;
-    background-color: #c48383;
-    /* position: sticky;
-    position: -webkit-sticky; */
-    top: 0;
-    border-radius: 10px;
+    background-color: #cae0b3;
     font-family: 'Monaco', cursive;
     font-size: 40;
+    padding: 0;
 }
 
 .navbar a {
     float: left;
-    display: block;
+    /* display: block; */
     color: black;
     text-align: center;
     padding: 14px 20px;
@@ -82,31 +79,57 @@ h1 {
 }
 
 .product {
+    display: flex;
     border: 5px;
     border-radius: 10px;
-    background-color: #c3e5f0;
+    background-color: #d9eeea;
     margin: 10px;
     padding: 20px;
+    overflow-wrap: break-word;
+    width: 170px;
+    justify-content: center;
 }
 
-.container {
-    display: flex; 
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
 }
 
 .prodimg {
     width: 150px;
     height: auto;
-    justify-content: center;
     border-radius: 10px;
 }
 
 header {
-    position: fixed;
     width: 100%;
     min-width: 1300px;
 }
 
 body {
     display: inline;
-    padding: 100px;
+    margin: 50px;
+}
+
+.contact-form {
+    width: 500px;
+    background-color: #fff;
+    box-shadow: 0 0 10px 0 #999;
+    margin-top: 220px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    padding: 20px;
+}
+
+.btn {
+    border-radius: 20px;
+    color: black;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: rgb(231, 249, 230);
+    font-size: 12px;
+    border: none;
+    cursor: pointer;
 }

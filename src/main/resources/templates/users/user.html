@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
-<head lang="en">
-  <meta charset="UTF-8" />
-  <title>JAVABUY</title>
-  <link rel="stylesheet" href="/main.css" />
-</head>
-<header>
-  <a href="/">
-  </a>
-  <h1>JavaBuy</h1>
-</header>
+  <head lang="en">
+    <meta charset="UTF-8" />
+    <title>JAVABUY</title>
+    <link rel="stylesheet" href="/main.css" />
+  </head>
 
-<div th:insert="navbar :: navbar"> </div>
+  <header>
+    <a href="/">
+    </a>
+    <h1 class="javabuy">JavaBuy</h1>
 
-<body>
+    <div th:insert="navbar :: navbar">  </div>
+  </header>
+
+  <body>
 
   <h1 th:text="${user.username}"></h1>
 

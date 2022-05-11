@@ -6,35 +6,39 @@
         <title>JAVABUY</title>
         <link rel="stylesheet" href="/main.css" />
     </head>
+
     <header>
         <a href="/">
         </a>
-        <h1>JavaBuy</h1>
-    </header>
+        <h1 class="javabuy">JavaBuy</h1>
 
     <div th:insert="navbar :: navbar">  </div>
+    </header>
 
     <body>
+
     <h1>PRODUCTS</h1>
+    <br>
 
     <div sec:authorize="isAuthenticated()">
         Signed in as <span sec:authentication="name"></span>
     </div>
 
-    <div class="container">
+    <div class="flex-container">
     <ul class="product" th:each="product: ${products}">
         <a th:href="@{/products/{id}(id=${product.id})}"><p th:text="${product.name}"></p>
         <img class="prodimg" th:src="${product.photo}" />
+        
         <br>
         <div th:inline="text">£[[${product.price}]]</div>
         <br>
-        <form action="#" th:action="@{/purchase/{id} (id=${product.getId()})}" th:object="${product}" method="get">
-            <input type="submit" value="PURCHASE!"/>
-        </form>
 
-            <form action="#" th:action="@{/favourites/{id}/{userId}(id=${product.id}, userId=${product.user.id})}" th:object="${favouriteItems}" method="post">
-                <input type="submit" value="Add to favourites"/> 
-                </form>  
+        <form action="#" th:action="@{/purchase/{id} (id=${product.getId()})}" th:object="${product}" method="get">
+            <input class="btn" type="submit" value="PURCHASE!"/>
+        </form>
+        <form action="#" th:action="@{/favourites/{id}/{userId}(id=${product.id}, userId=${product.user.id})}" th:object="${favouriteItems}" method="post">
+            <input class="btn" type="submit" value="Add to favourites"/> 
+        </form>  
     <br>
     <br>
     </ul>

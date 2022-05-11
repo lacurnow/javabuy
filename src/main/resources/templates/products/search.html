@@ -17,26 +17,28 @@
         <h1>Search for a product</h1>
     <br>
 
+    <div class="search">
     <form th:action="@{/products/search}">
         Search items: <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
         &nbsp;
-        <input type="submit" value="Search" />
+        <input class="btn" type="submit" value="Search" />
         &nbsp;
-        <input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
-    </form>
+        <input class="btn" type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
+    </form></div>
    
-    <table>
+   <p><div class="table"> <table>
         <tr>
           <th>Name</th>
           <th>Price</th>
           <th>Description</th>
         </tr>
     <tr th:each="product : ${listProducts}">
-        <td><a th:href="@{/products/{id}(id=${product.id})}"><li th:text="${product.name}" /></a></td>
-        <td th:text="${product.price}"></td>
-        <td th:text="${product.description}"></td>
+        <td><a th:href="@{/products/{id}(id=${product.id})}"><ul th:text="${product.name}" /></a></td>
+        <th th:text="${product.price}"></th>
+        <th th:text="${product.description}"></th>
         </tr>
-        <table>
+        <table></p> 
+    </div>
 
  <script type="text/javascript">
         function clearSearch() {

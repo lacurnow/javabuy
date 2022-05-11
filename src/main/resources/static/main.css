@@ -134,3 +134,18 @@ body {
     cursor: pointer;
     overflow-wrap: break-word;
 }
+
+.table {
+    font-family: 'Monaco', cursive;
+    color: black;
+    margin-top: 50px;
+    padding: 20px;
+}
+
+.search {
+    font-family: 'Monaco', cursive;
+    color: black;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+}

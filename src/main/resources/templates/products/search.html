@@ -17,15 +17,16 @@
         <h1>Search for a product</h1>
     <br>
 
+    <div class="search">
     <form th:action="@{/products/search}">
         Search items: <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
         &nbsp;
-        <input type="submit" value="Search" />
+        <input class="btn" type="submit" value="Search" />
         &nbsp;
-        <input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
-    </form>
+        <input class="btn" type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
+    </form></div>
    
-    <table>
+   <p><div class="table"> <table>
         <tr>
           <th>Name</th>
           <th>Price</th>
@@ -36,7 +37,7 @@
         <td th:text="${product.price}"></td>
         <td th:text="${product.description}"></td>
         </tr>
-        <table>
+        <table></p> </div>
 
  <script type="text/javascript">
         function clearSearch() {

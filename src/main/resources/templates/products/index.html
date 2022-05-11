@@ -21,22 +21,23 @@
         Signed in as <span sec:authentication="name"></span>
     </div>
 
-    <ul th:each="product: ${products}">
-        <a th:href="@{/users/{id}(id=${product.user.id})}"><div th:text="${product.user.username}" ></div></a>
-        <a th:href="@{/products/{id}(id=${product.id})}"><li th:text="${product.name}" /></a>
-        <li th:text="${product.price}" />
-        <li th:text="${product.description}" />
-        <img th:src="${product.photo}" />
+    <div class="container">
+    <ul class="product" th:each="product: ${products}">
+        <a th:href="@{/products/{id}(id=${product.id})}"><p th:text="${product.name}"></p>
+        <img class="prodimg" th:src="${product.photo}" />
+        <br>
+        <div th:inline="text">£[[${product.price}]]</div>
+        <br>
         <form action="#" th:action="@{/purchase/{id} (id=${product.getId()})}" th:object="${product}" method="get">
             <input type="submit" value="PURCHASE!"/>
         </form>
 
             <form action="#" th:action="@{/favourites/{id}/{userId}(id=${product.id}, userId=${product.user.id})}" th:object="${favouriteItems}" method="post">
                 <input type="submit" value="Add to favourites"/> 
-                </form>
-                
-
-        
+                </form>  
+    <br>
+    <br>
     </ul>
+    </div>
     </body>
 </html>

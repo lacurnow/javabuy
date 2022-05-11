@@ -1,61 +1,62 @@
 <!DOCTYPE html>
   <html xmlns:th="http://www.thymeleaf.org" 
   xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-<head lang="en">
-  <meta charset="UTF-8" />
-  <title>JAVABUY</title>
-  <link rel="stylesheet" href="/main.css" />
-</head>
+  <head lang="en">
+    <meta charset="UTF-8" />
+    <title>JAVABUY</title>
+    <link rel="stylesheet" href="/main.css" />
+  </head>
 
-<header>
-  <a href="/">
-  </a>
-  <h1 class="javabuy">JavaBuy</h1>
+  <header>
+    <a href="/">
+    </a>
+    <h1 class="javabuy">JavaBuy</h1>
 
-  <div th:insert="navbar :: navbar">  </div>
-</header>
+    <div th:insert="navbar :: navbar">  </div>
+  </header>
 
-<body>
+  <body>
+    <h1>Product Detail</h1>
 
-  <h1>Product Detail</h1>
+    <div sec:authorize="isAuthenticated()">
+      Signed in as <span sec:authentication="name"></span>
+    </div>
+    <a th:href="@{/products}">Back to Products</a>
+    <br>
+    <hr>
+    <a th:href="@{/users/{id}(id=${product.user.id})}"><li th:text="${product.user.username}" /></a>
+    <li th:text="${product.name}" />
+    <li th:inline="text"> £[[${product.price}]]</li>
+    <li th:text="${product.description}"/>
+    <img th:src="${product.photo}" />
+    <br>
+    <div th:if="${user != product.user}">
+      <form action="#" th:action="@{/messages/{productid}/{enquirerid} (productid=${product.id}, enquirerid=${user.id})}" th:object="${message}" method="post">
+        <p>Contact the seller: <input type="text" th:field="*{content}" />
+          <input type="submit" value="Submit" /> <input type="reset" value="Reset" />
+        </p>
+      </form>
+    </div>
+    <br>
+    <hr>
+    <p> Item Reviews: </p>
+    <ul th:each="review: ${product.reviews}">
+    Review Title: <li th:text="${review.title}" />
+    Review Content: <li th:text="${review.content}" />
+    Rating: <li th:text="${review.rating}" />
+    <img th:src="${review.photo}" />
+    </ul>
 
-  <div sec:authorize="isAuthenticated()">
-    Signed in as <span sec:authentication="name"></span>
-  </div>
-  <a th:href="@{/products}">Back to Products</a>
-
-  <a th:href="@{/users/{id}(id=${product.user.id})}"><li th:text="${product.user.username}" /></a>
-  <li th:text="${product.name}" />
-  <li th:text="${product.price}" />
-  <li th:text="${product.description}" />
-  <img th:src="${product.photo}" />
-
-  <div th:if="${user != product.user}">
-    <form action="#" th:action="@{/messages/{sellerid}/{enquirerid}?productid=__${product.id}__ (sellerid=${product.user.id}, enquirerid=${user.id})}" th:object="${message}" method="post">
-      <p>Contact the seller: <input type="text" th:field="*{content}" />
-        <input type="submit" value="Submit" /> <input type="reset" value="Reset" />
-      </p>
+    <p> Add a review below: </p>
+    <form action="#" th:action="@{/productreviews(id=${product.id}, userId=${user.id})}" th:object="${review}" method="post">
+      <p>Review Title: <input type="text" th:field="*{title}" /></p>
+      <p>Content: <input type="text" th:field="*{content}" /></p>
+      <p>Rating (1-5): <input type="text" th:field="*{rating}" /></p>
+      <p>Include a photo with your review:</p>
+      <label for="imagepath">Select a file:</label>
+      <input type="file" id="photo" name="photo" th:field="*{photo}"><br>
+      <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
     </form>
-  </div>
-
-  <p> Item Reviews: </p>
-  <ul th:each="review: ${product.reviews}">
-  Review Title: <li th:text="${review.title}" />
-  Review Content: <li th:text="${review.content}" />
-  Rating: <li th:text="${review.rating}" />
-  <img th:src="${review.photo}" />
-  </ul>
-
-  <p> Add a review below: </p>
-  <form action="#" th:action="@{/productreviews(id=${product.id}, userId=${user.id})}" th:object="${review}" method="post">
-    <p>Review Title: <input type="text" th:field="*{title}" /></p>
-    <p>Content: <input type="text" th:field="*{content}" /></p>
-    <p>Rating (1-5): <input type="text" th:field="*{rating}" /></p>
-    <p>Include a photo with your review:</p>
-    <label for="imagepath">Select a file:</label>
-    <input type="file" id="photo" name="photo" th:field="*{photo}"><br>
-    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
-</form>
 
   </body>
 </html>

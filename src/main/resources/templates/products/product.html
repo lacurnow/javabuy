@@ -24,19 +24,20 @@
     <a th:href="@{/products}">Back to Products</a>
     <br>
     <hr>
-    <a th:href="@{/users/{id}(id=${product.user.id})}"><li th:text="${product.user.username}" /></a>
-    <li th:text="${product.name}" />
-    <li th:inline="text"> £[[${product.price}]]</li>
-    <li th:text="${product.description}"/>
-    <img th:src="${product.photo}" />
-    <br>
-    <div th:if="${user != product.user}">
-      <form action="#" th:action="@{/messages/{productid}/{enquirerid} (productid=${product.id}, enquirerid=${user.id})}" th:object="${message}" method="post">
-        <p>Contact the seller: <input type="text" th:field="*{content}" />
-          <input type="submit" value="Submit" /> <input type="reset" value="Reset" />
-        </p>
-      </form>
-    </div>
+      <a th:href="@{/users/{id}(id=${product.user.id})}"><li th:text="${product.user.username}" /></a>
+      <li th:text="${product.name}" />
+      <li th:inline="text"> £[[${product.price}]]</li>
+      <li th:text="${product.description}"/>
+      <br>
+        <img class="bigpic" th:src="@{/{path} (path=${product.photo})}" />
+      <br>
+      <div th:if="${user != product.user}">
+        <form action="#" th:action="@{/messages/{productid}/{enquirerid} (productid=${product.id}, enquirerid=${user.id})}" th:object="${message}" method="post">
+          <p>Contact the seller: <input type="text" th:field="*{content}" />
+            <input type="submit" value="Submit" /> <input type="reset" value="Reset" />
+          </p>
+        </form>
+      </div>
     <br>
     <hr>
     <p> Item Reviews: </p>
@@ -44,7 +45,7 @@
     Review Title: <li th:text="${review.title}" />
     Review Content: <li th:text="${review.content}" />
     Rating: <li th:text="${review.rating}" />
-    <img th:src="${review.photo}" />
+    <img th:src="@{/{path} (path=${review.photo})}"/>
     </ul>
 
     <p> Add a review below: </p>

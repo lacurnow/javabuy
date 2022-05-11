@@ -22,11 +22,10 @@
     <h1>YOU ARE LOOKING TO PURCHASE:</h1>
 
       <li th:text="${product.name}" />
-      <li th:text="${product.price}" />
-      <img th:src="${product.photo}" />
-      <p> To confirm purchase, please click below: </p>
+      <li th:inline="text"> £[[${product.price}]] </li>
+      <img class="bigpic" th:src="@{/{path} (path=${product.photo})}" />
       <form action="#" th:action="@{/shoppingCart/addProduct/{id} (id=${product.id})}" th:object="${product}" method="get">
-          <input type="submit" value="Add to cart"/>
+          <input class="btn" type="submit" value="Add to cart"/>
       </form>
     </ul>
   </body>

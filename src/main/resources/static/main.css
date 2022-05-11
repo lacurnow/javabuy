@@ -181,3 +181,8 @@ tr:hover {background-color: rgb(235, 210, 247);}
     margin-top: 50px;
 }
 
+.bigpic {
+    width: 300px;
+    height: auto;
+    padding: 0px 0px 0px 60px;
+}

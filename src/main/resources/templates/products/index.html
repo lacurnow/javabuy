@@ -23,6 +23,8 @@
     <div class="authorization" sec:authorize="isAuthenticated()">
         Signed in as <span sec:authentication="name"></span>
     </div>
+    <br>
+    <br>
 
     <div class="flex-container">
     <ul class="product" th:each="product: ${products}">

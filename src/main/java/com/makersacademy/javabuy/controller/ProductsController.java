@@ -6,6 +6,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
@@ -44,8 +45,10 @@ public class ProductsController {
     private FavouriteItemsRepository favouriteItemsRepository;
 
     @GetMapping("/products")
-    public String index(Model model) {
+    public String index(Model model, Principal principal) {
         Iterable<Product> products = repository.findUnsoldProducts();
+        User user = getLoggedInUser(principal, userRepository);
+        model.addAttribute("user", user);
         model.addAttribute("products", products);
         model.addAttribute("product", new Product());
         return "products/index";
@@ -112,18 +115,19 @@ public class ProductsController {
 
 
     @PostMapping("favourites/{id}")
-    public RedirectView addToFavourites(@PathVariable ("id") Long id, @ModelAttribute FavouriteItems favouriteItems, Model model, Principal principal) {
-      Optional<Product> product = repository.findById(id);
-      User loggedinUser = getLoggedInUser(principal, userRepository);
-      Long userId = loggedinUser.getId();
-      Optional<User> person = userRepository.findById(userId);
-    favouriteItems.setUser(person.get());
-    favouriteItems.setProduct(product.get());
-    favouriteItems.setFavourite();
-    favouriteItemsRepository.save(favouriteItems);
-    return new RedirectView(String.format("/products"));
-    }
-    
+    public RedirectView addToFavourites(@PathVariable ("id") Long id, @ModelAttribute FavouriteItems favouriteItems, Model model, Principal principal, 
+            RedirectAttributes redirectAttributes) {
+        Optional<Product> product = repository.findById(id);
+        User loggedinUser = getLoggedInUser(principal, userRepository);
+        Long userId = loggedinUser.getId();
+        Optional<User> person = userRepository.findById(userId);
+        favouriteItems.setUser(person.get());
+        favouriteItems.setProduct(product.get());
+        favouriteItems.setFavourite();
+        favouriteItemsRepository.save(favouriteItems);
+        redirectAttributes.addFlashAttribute("message", String.format("Added to favourites: %s", product.get().getName()));
+        return new RedirectView(String.format("/products"));
+        }
     }
 
 

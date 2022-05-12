@@ -49,6 +49,10 @@ public class User {
     @OneToMany(mappedBy = "user")
     Set<FavouriteItems> items;
 
+    public Set<FavouriteItems> getItems() {
+        return this.items;
+    }
+
     @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
     private List<Review> reviews;
 
@@ -81,4 +85,14 @@ public class User {
     public String getPassword() { return this.password; }
     public void setUsername(String username) { this.username = username; }
     public void setPassword(String password) { this.password = password; }
+
+    public Boolean favouriteItemsContains(Product product) {
+        for (FavouriteItems item : this.items) {
+            if (item.getProduct() == product) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
 }

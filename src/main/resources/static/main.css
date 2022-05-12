@@ -186,3 +186,18 @@ tr:hover {background-color: rgb(235, 210, 247);}
     height: auto;
     padding: 0px 0px 0px 60px;
 }
+
+.accountitems {
+    width: 150px; 
+    float:left; 
+    padding: 20px;
+    text-align: center; 
+    background: #a1ecb2; 
+    margin:10px;
+    font-family: 'Monaco', cursive;
+    font-size: 16px;
+    border: 5px;
+    border-radius: 10px;
+    background-color: #d9eeea;
+    margin-top: 50px;
+}

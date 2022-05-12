@@ -31,19 +31,21 @@
         &nbsp;
         <input class="btn" type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
     </form></div>
-   
-   <p><div class="table"> <table>
+   <br>
+   <br>
+   <p><div class="search-table"> 
+     <table>
         <tr>
           <th>Name</th>
           <th>Price</th>
           <th>Description</th>
         </tr>
-    <tr th:each="product : ${listProducts}">
-        <td><a th:href="@{/products/{id}(id=${product.id})}"><ul th:text="${product.name}" /></a></td>
-        <th th:text="${product.price}"></th>
-        <th th:text="${product.description}"></th>
+        <tr th:each="product : ${listProducts}">
+          <td><a th:href="@{/products/{id}(id=${product.id})}"><ul th:text="${product.name}" /></a></td>
+        <th th:inline="text"> £[[${product.price}]]</th>
+        <th id="desc" th:text="${product.description}"></th>
         </tr>
-        <table></p> 
+      <table></p> 
     </div>
 
  <script type="text/javascript">

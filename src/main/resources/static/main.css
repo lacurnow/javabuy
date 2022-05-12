@@ -97,10 +97,8 @@ h1 {
 }
 .prodview {
     display: flex;
-    justify-content: center;
     text-align: center;
     display:table-cell;
-    vertical-align:middle;
 }
 
 .prodimg, .revimg {
@@ -148,6 +146,24 @@ body {
     padding: 20px;
     font-size: 20px;
     column-gap: 40px;
+}
+
+.search-table {
+    border-collapse: separate;
+    border-spacing: 0 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.search-table th, .search-table td {
+    width: 150px;
+    text-align: center;
+    border: 1px solid black;
+    padding: 5px;
+}
+
+#desc {
+    width: 300px;
 }
 
 .search {

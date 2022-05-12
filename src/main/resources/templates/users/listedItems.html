@@ -30,7 +30,7 @@
       <p th:inline="text"> £[[${product.price}]] </p>
       <p th:text="${product.description}" />
       <img class="prodimg" th:src="${product.photo}" />
-      <div th:if="${product.sold}">
+      <div class="sold" th:if="${product.sold}">
         <div>Sold!</div>
         </div>
       </ul>

@@ -215,3 +215,8 @@ tr:hover {background-color: rgb(235, 210, 247);}
     width: 400px;
     padding-top: 5px;
 }
+
+.sold {
+    font-size: 20px;
+    color: red;
+}

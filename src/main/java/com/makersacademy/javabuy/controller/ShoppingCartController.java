@@ -68,7 +68,6 @@ public ModelAndView checkOut() {
     //For products in hashmap, mark as sold in products repository.
     Map<Product, Integer> productsInCart = shoppingCartService.getProductsInCart();
     for (Product product : productsInCart.keySet()) {
-      product.setAsSold();
       productsRepository.save(product);
     }
     shoppingCartService.checkout();

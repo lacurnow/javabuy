@@ -27,10 +27,10 @@
       <ul th:each="product: ${soldProducts}">
         <div class="accountitems" >
       <p th:text="${product.name}" />
-      <p th:text="${product.price}" />
+      <p th:inline="text"> £[[${product.price}]] </p>
       <p th:text="${product.description}" />
       <img class="prodimg" th:src="${product.photo}" />
-      Purchased by <a th:text="${product.buyer.username}" />
+      <!-- Purchased by <a th:text="${product.buyer_id.username}" /> -->
       </p></div></div>
 
   </body>

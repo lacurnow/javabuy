@@ -23,13 +23,14 @@
 
     <a th:href="@{/account}">Back to Account Details</a>
 
+    <div class="product">
       <ul th:each="product: ${soldProducts}">
-      <li th:text="${product.name}" />
-      <li th:text="${product.price}" />
-      <li th:text="${product.description}" />
+      <p th:text="${product.name}" />
+      <p th:text="${product.price}" />
+      <p th:text="${product.description}" />
       <img th:src="${product.photo}" />
       Purchased by <a th:text="${product.buyer.username}" />
-      </ul>
+      </p></div>
 
   </body>
   </html>

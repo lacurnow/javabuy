@@ -95,8 +95,15 @@ h1 {
     flex-wrap: wrap;
     justify-content: left;
 }
+.prodview {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    display:table-cell;
+    vertical-align:middle;
+}
 
-.prodimg {
+.prodimg, .revimg {
     width: 220px;
     height: auto;
     border-radius: 10px;
@@ -201,4 +208,10 @@ tr:hover {background-color: rgb(235, 210, 247);}
     background-color: #d9eeea;
     margin-top: 50px;
     overflow-wrap: break-word;
+}
+
+.textarea-field {
+    height: 100px;
+    width: 400px;
+    padding-top: 5px;
 }

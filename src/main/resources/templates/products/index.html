@@ -40,10 +40,16 @@
             <input class="btn" type="submit" value="PURCHASE!"/>
         </form>
 
-        <div th:if="${!user.favouriteItemsContains(product)}">
+        <div th:unless="${user.favouriteItemsContains(product)}">
             <form action="#" th:action="@{/favourites/{id} (id=${product.getId()})}" th:object="${favouriteItems}"
                 method="post">
                 <input type="submit" onclick="myFunction()" value="Add to favourites" />
+            </form>
+        </div>
+
+        <div th:if="${user.favouriteItemsContains(product)}">
+            <form action="#" th:action="@{/products/favourites/remove/{id} (id=${product.id})}" method="post">
+                <input class="btn" type="submit" value="Remove from favourites!" />
             </form>
         </div>
                 

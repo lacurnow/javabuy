@@ -23,8 +23,8 @@
 
     <a th:href="@{/account}">Back to Account Details</a>
 
-    <div class="product">
       <ul th:each="product: ${soldProducts}">
+        <div class="accountitems" >
       <p th:text="${product.name}" />
       <p th:text="${product.price}" />
       <p th:text="${product.description}" />

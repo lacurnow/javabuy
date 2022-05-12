@@ -23,14 +23,15 @@
 
     <a th:href="@{/account}">Back to Account Details</a>
 
+    <div class="flex-container">
       <ul th:each="product: ${soldProducts}">
         <div class="accountitems" >
       <p th:text="${product.name}" />
       <p th:text="${product.price}" />
       <p th:text="${product.description}" />
-      <img th:src="${product.photo}" />
+      <img class="prodimg" th:src="${product.photo}" />
       Purchased by <a th:text="${product.buyer.username}" />
-      </p></div>
+      </p></div></div>
 
   </body>
   </html>

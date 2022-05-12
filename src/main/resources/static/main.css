@@ -1,9 +1,9 @@
 html {
-    font-family: 'Monaco', cursive;
+    font-family: 'Bodoni 72', cursive;
 }
 
 .javabuy {
-    background-color: #4040d3;
+    background-color: #FF6600;
     opacity: 0.8;
     color: rgb(255, 255, 255);
     font-size: 50px;
@@ -16,7 +16,7 @@ html {
 }
 
 h1 {
-    font-family: 'Monaco', cursive;
+    font-family: 'Futura';
     font-size: 60;
     color: black;
     word-spacing: 2;
@@ -28,8 +28,9 @@ h1 {
 
 .navbar {
     overflow: hidden;
-    background-color: #cae0b3;
-    font-family: 'Monaco', cursive;
+    background-color: #f0ead6;
+    font-family: 'Bodoni 72';
+    font-weight: bold;
     font-size: 40;
     padding: 0;
 }
@@ -47,7 +48,7 @@ h1 {
     float: right;
 }
   
-.navbar a:hover {
+.navbar a:hover, .btn:hover {
     animation-name: link-color;
     animation-duration: 300ms;
     animation-fill-mode: forwards;
@@ -82,12 +83,13 @@ h1 {
     display: flex;
     border: 5px;
     border-radius: 10px;
-    background-color: #d9eeea;
+    background-color: #add8e6;
     margin: 10px;
     padding: 10px;
     overflow-wrap: break-word;
     width: 250px;
     justify-content: center;
+    text-align: center;
 }
 
 .flex-container {
@@ -95,8 +97,13 @@ h1 {
     flex-wrap: wrap;
     justify-content: left;
 }
+.prodview {
+    display: flex;
+    text-align: center;
+    display:table-cell;
+}
 
-.prodimg {
+.prodimg, .revimg {
     width: 220px;
     height: auto;
     border-radius: 10px;
@@ -127,15 +134,17 @@ body {
     color: black;
     margin-top: 10px;
     padding: 10px;
-    background-color: rgb(231, 249, 230);
-    font-size: 12px;
+    background-color: #FFE5B4;
+    font-size: 15px;
     border: none;
     cursor: pointer;
     overflow-wrap: break-word;
+    font-family: 'Bodoni 72', cursive;
 }
 
 .table {
-    font-family: 'Monaco', cursive;
+    font-family: 'Bodoni 72', cursive;
+    font-weight: lighter;
     color: black;
     margin-top: 50px;
     padding: 20px;
@@ -143,20 +152,39 @@ body {
     column-gap: 40px;
 }
 
+.search-table {
+    border-collapse: separate;
+    border-spacing: 0 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.search-table th, .search-table td {
+    width: 150px;
+    text-align: center;
+    border: 1px solid black;
+    padding: 5px;
+}
+
+#desc {
+    width: 300px;
+}
+
 .search {
-    font-family: 'Monaco', cursive;
+    font-family: 'Bodoni 72', cursive;
     color: black;
     left: 50%;
     transform: translate(-50%, -50%);
     position: absolute;
+    font-size: 18px;
 }
 
 tr:hover {background-color: rgb(235, 210, 247);}
 
 .authorization {
     float: right;
-    font-family: 'Monaco', cursive;
-    font-size: 15px;
+    font-family: 'Bodoni 72', cursive;
+    font-size: 18px;
     padding: 0px 20px 60px 0px;
 }
 
@@ -165,9 +193,9 @@ tr:hover {background-color: rgb(235, 210, 247);}
     float:left; 
     padding: 20px;
     text-align: center; 
-    background: #a1ecb2; 
+    background: #add8e6; 
     margin:10px;
-    font-family: 'Monaco', cursive;
+    font-family: 'Bodoni 72', cursive;
     font-size: 16px;
     font-weight: bold;
     box-shadow: 0 0 10px 0 rgb(203, 240, 240);
@@ -201,4 +229,15 @@ tr:hover {background-color: rgb(235, 210, 247);}
     background-color: #d9eeea;
     margin-top: 50px;
     overflow-wrap: break-word;
+}
+
+.textarea-field {
+    height: 100px;
+    width: 400px;
+    padding-top: 5px;
+}
+
+.sold {
+    font-size: 20px;
+    color: red;
 }

@@ -55,7 +55,7 @@ public class FavouritesController {
     @PostMapping("/favourites/remove/{id}")
     public RedirectView removeFromfavourites(@PathVariable ("id") Long id) {
        favouriteItemsRepository.deleteByproduct_id(id);
-       return new RedirectView(String.format("/favourites/"));
+       return new RedirectView(String.format("/favourites"));
     }
 
     @PostMapping("/products/favourites/remove/{id}")

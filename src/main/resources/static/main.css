@@ -1,9 +1,9 @@
 html {
-    font-family: 'Monaco', cursive;
+    font-family: 'Bodoni 72', cursive;
 }
 
 .javabuy {
-    background-color: #4040d3;
+    background-color: #FF6600;
     opacity: 0.8;
     color: rgb(255, 255, 255);
     font-size: 50px;
@@ -16,7 +16,7 @@ html {
 }
 
 h1 {
-    font-family: 'Monaco', cursive;
+    font-family: 'Futura';
     font-size: 60;
     color: black;
     word-spacing: 2;
@@ -28,8 +28,9 @@ h1 {
 
 .navbar {
     overflow: hidden;
-    background-color: #cae0b3;
-    font-family: 'Monaco', cursive;
+    background-color: #f0ead6;
+    font-family: 'Bodoni 72';
+    font-weight: bold;
     font-size: 40;
     padding: 0;
 }
@@ -82,12 +83,13 @@ h1 {
     display: flex;
     border: 5px;
     border-radius: 10px;
-    background-color: #d9eeea;
+    background-color: #add8e6;
     margin: 10px;
     padding: 10px;
     overflow-wrap: break-word;
     width: 250px;
     justify-content: center;
+    text-align: center;
 }
 
 .flex-container {
@@ -134,15 +136,17 @@ body {
     color: black;
     margin-top: 10px;
     padding: 10px;
-    background-color: rgb(231, 249, 230);
-    font-size: 12px;
+    background-color: #FFE5B4;
+    font-size: 15px;
     border: none;
     cursor: pointer;
     overflow-wrap: break-word;
+    font-family: 'Bodoni 72', cursive;
 }
 
 .table {
-    font-family: 'Monaco', cursive;
+    font-family: 'Bodoni 72', cursive;
+    font-weight: lighter;
     color: black;
     margin-top: 50px;
     padding: 20px;
@@ -151,19 +155,20 @@ body {
 }
 
 .search {
-    font-family: 'Monaco', cursive;
+    font-family: 'Bodoni 72', cursive;
     color: black;
     left: 50%;
     transform: translate(-50%, -50%);
     position: absolute;
+    font-size: 18px;
 }
 
 tr:hover {background-color: rgb(235, 210, 247);}
 
 .authorization {
     float: right;
-    font-family: 'Monaco', cursive;
-    font-size: 15px;
+    font-family: 'Bodoni 72', cursive;
+    font-size: 18px;
     padding: 0px 20px 60px 0px;
 }
 
@@ -172,9 +177,9 @@ tr:hover {background-color: rgb(235, 210, 247);}
     float:left; 
     padding: 20px;
     text-align: center; 
-    background: #a1ecb2; 
+    background: #add8e6; 
     margin:10px;
-    font-family: 'Monaco', cursive;
+    font-family: 'Bodoni 72', cursive;
     font-size: 16px;
     font-weight: bold;
     box-shadow: 0 0 10px 0 rgb(203, 240, 240);

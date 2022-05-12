@@ -6,6 +6,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
@@ -32,6 +33,8 @@ public class FavouritesController {
     private FavouriteItemsRepository favouriteItemsRepository;
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    ProductsRepository productsRepository;
 
 
     public static Long getLoggedInUser(Principal principal, UserRepository userRepository) {
@@ -56,8 +59,10 @@ public class FavouritesController {
     }
 
     @PostMapping("/products/favourites/remove/{id}")
-    public RedirectView removeFavouriteFromHomepage(@PathVariable("id") Long id) {
+    public RedirectView removeFavouriteFromHomepage(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
         favouriteItemsRepository.deleteByproduct_id(id);
+        Product product = productsRepository.findById(id).get();
+        redirectAttributes.addFlashAttribute("message", String.format("Removed from favourites: %s", product.getName()));
         return new RedirectView("/products");
     }
     

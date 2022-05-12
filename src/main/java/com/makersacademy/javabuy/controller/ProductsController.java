@@ -44,8 +44,10 @@ public class ProductsController {
     private FavouriteItemsRepository favouriteItemsRepository;
 
     @GetMapping("/products")
-    public String index(Model model) {
+    public String index(Model model, Principal principal) {
         Iterable<Product> products = repository.findUnsoldProducts();
+        User user = getLoggedInUser(principal, userRepository);
+        model.addAttribute("user", user);
         model.addAttribute("products", products);
         model.addAttribute("product", new Product());
         return "products/index";

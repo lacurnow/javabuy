@@ -6,6 +6,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
@@ -114,7 +115,8 @@ public class ProductsController {
 
 
     @PostMapping("favourites/{id}")
-    public RedirectView addToFavourites(@PathVariable ("id") Long id, @ModelAttribute FavouriteItems favouriteItems, Model model, Principal principal) {
+    public RedirectView addToFavourites(@PathVariable ("id") Long id, @ModelAttribute FavouriteItems favouriteItems, Model model, Principal principal, 
+            RedirectAttributes redirectAttributes) {
       Optional<Product> product = repository.findById(id);
       User loggedinUser = getLoggedInUser(principal, userRepository);
       Long userId = loggedinUser.getId();
@@ -123,6 +125,7 @@ public class ProductsController {
     favouriteItems.setProduct(product.get());
     favouriteItems.setFavourite();
     favouriteItemsRepository.save(favouriteItems);
+    redirectAttributes.addFlashAttribute("message", String.format("Added %s to favourites!", product.get().getName()));
     return new RedirectView(String.format("/products"));
     }
     

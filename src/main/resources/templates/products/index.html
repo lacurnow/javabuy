@@ -26,7 +26,7 @@
     </div>
     <br>
     <br>
-
+    <div th:text="${message}"></div>
     <div class="flex-container">
     <ul class="product" th:each="product: ${products}">
         <a th:href="@{/products/{id}(id=${product.id})}"><p th:text="${product.name}"></p>
@@ -46,14 +46,15 @@
                 <input type="submit" onclick="myFunction()" value="Add to favourites" />
             </form>
         </div>
-
+     
         <div th:if="${user.favouriteItemsContains(product)}">
             <form action="#" th:action="@{/products/favourites/remove/{id} (id=${product.id})}" method="post">
                 <input class="btn" type="submit" value="Remove from favourites!" />
             </form>
         </div>
+        
                 
-                <div id="myDIV">
+                <!-- <div id="myDIV">
                     Added to Favourites!
                     </div>
 
@@ -66,7 +67,7 @@
                         x.style.display = "none";
                       }
                     }
-                    </script>
+                    </script> -->
         
 
     </ul>

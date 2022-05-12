@@ -47,7 +47,7 @@ h1 {
     float: right;
 }
   
-.navbar a:hover {
+.navbar a:hover, .btn:hover {
     animation-name: link-color;
     animation-duration: 300ms;
     animation-fill-mode: forwards;

@@ -23,18 +23,18 @@
 
     <a th:href="@{/account}">Back to Account Details</a>
 
-    
+    <div class="flex-container">
     <ul th:each="product: ${listedProducts}">
         <div class="accountitems" >
       <p th:text="${product.name}" />
       <p th:text="${product.price}" />
       <p th:text="${product.description}" />
-      <img th:src="${product.photo}" />
+      <img class="prodimg" th:src="${product.photo}" />
       <div th:if="${product.sold}">
         <div>Sold!</div>
         </div>
       </ul>
-    </div>
+    </div></div>
       
   </body>
   </html>

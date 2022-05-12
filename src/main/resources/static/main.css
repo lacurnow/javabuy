@@ -188,7 +188,7 @@ tr:hover {background-color: rgb(235, 210, 247);}
 }
 
 .accountitems {
-    width: 150px; 
+    width: 250px; 
     float:left; 
     padding: 20px;
     text-align: center; 
@@ -200,4 +200,5 @@ tr:hover {background-color: rgb(235, 210, 247);}
     border-radius: 10px;
     background-color: #d9eeea;
     margin-top: 50px;
+    overflow-wrap: break-word;
 }
